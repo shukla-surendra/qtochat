@@ -72,19 +72,22 @@ def logout(request):
   return HttpResponseRedirect('/form/')
 
 def create_subscriber(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
        try:
-          name = request.POST['name']
-          email = request.POST['email']
-          phone = request.POST['phone']
-          site_token = request.POST['token']
+          name = request.GET['name']
+          email = request.GET['email']
+          phone = request.GET['phone']
+          site_token = request.GET['token']
           site = Site.objects.get(site_token = site_token)
           #need to get active capaign id from options instead of status
           campaign = Campaign.objects.get(status = 1)
-          subscriber = Subscriber(name= name,email = email, phone = phone, site =site, token=token)
-          subscriber.save();
+          subscriber = Subscriber(name = name, email = email, phone = phone, site =site, campaign=campaign)
+          subscriber.save()
+          data = '{"success":"true","message":"Record Created"}'
+          return HttpResponse(data, content_type='application/json')
        except:
           print("Incorrect Data");
+          return HttpResponse("Error Occured")
 
       
 
