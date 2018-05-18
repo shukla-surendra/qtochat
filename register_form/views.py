@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import UserForm
-from .models import User, Site, Campaign
+from .models import User, Site, Campaign, Subscriber
 from django.contrib.auth.hashers import make_password, check_password
 
 def home(request):
@@ -59,11 +59,33 @@ def dashboard(request):
       user_set = User.objects.filter(id=request.session['id'])
       for user in user_set:
        name = user.name 
-      return render(request, "form/dashboard.html",{"title":"Welcome to Dashboard", "name":name})
+      sites = Site.objects.filter(user=user)
+      default_site_id = 0
+      for site in sites:
+           default_site_id = site.id
+           break
+      campaigns = Campaign.objects.filter(site = site)  #getting campaigns of current site
+      return render(request, "form/dashboard.html",{"title":"Welcome to Dashboard", "name":name, "sites":sites, "campaigns":campaigns})
 
 def logout(request):
   request.session.flush()
   return HttpResponseRedirect('/form/')
+
+def create_subscriber(request):
+    if request.method == 'POST':
+       try:
+          name = request.POST['name']
+          email = request.POST['email']
+          phone = request.POST['phone']
+          site_token = request.POST['token']
+          site = Site.objects.get(site_token = site_token)
+          #need to get active capaign id from options instead of status
+          campaign = Campaign.objects.get(status = 1)
+          subscriber = Subscriber(name= name,email = email, phone = phone, site =site, token=token)
+          subscriber.save();
+       except:
+          print("Incorrect Data");
+
       
 
 

@@ -35,4 +35,12 @@ class Subscriber(models.Model):
     site = models.ForeignKey('Site', on_delete = models.CASCADE,default=0)
     created_at = models.DateTimeField('date created', default=timezone.now)
 
+class Option(models.Model):
+    name = models.CharField(max_length=100, default="none")
+    relate_id   = models.PositiveIntegerField(default = 1)
+    key = models.CharField(max_length=100)
+    value = models.CharField(max_length=100)
+    status   = models.PositiveIntegerField(default = 1)
+    
+
 
