@@ -20,15 +20,19 @@ class Site(models.Model):
     user     = models.ForeignKey('User', on_delete=models.CASCADE)
 
 
-class Compaign(models.Model):
-    compaign_name = models.CharField(max_length=100)
+class Campaign(models.Model):
+    campaign_name = models.CharField(max_length=100, default = 'default')
     site = models.ForeignKey('Site', on_delete = models.CASCADE)
+    status   = models.PositiveIntegerField(default = 1)
     created_at = models.DateTimeField('date created', default=timezone.now)
 
 class Subscriber(models.Model):
     name = models.CharField(max_length=100)
     email= models.EmailField(max_length=100)
     phone = models.CharField(max_length=20)
+    status   = models.PositiveIntegerField(default = 1)
+    campaign = models.ForeignKey('Campaign', on_delete = models.CASCADE, default=0)
+    site = models.ForeignKey('Site', on_delete = models.CASCADE,default=0)
     created_at = models.DateTimeField('date created', default=timezone.now)
 
 

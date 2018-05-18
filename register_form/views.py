@@ -2,8 +2,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import UserForm
-from .models import User
+from .models import User, Site, Campaign
 from django.contrib.auth.hashers import make_password, check_password
+
+def home(request):
+   return render(request, "form/index.html",{"title":"Home Page"})    
 
 def index(request):
     if request.method == 'POST':
@@ -15,6 +18,10 @@ def index(request):
            # return HttpResponseRedirect('/thanks/')
            user = User(name = uform.cleaned_data['name'], email = uform.cleaned_data['email'], password = make_password(password = uform.cleaned_data['password'], salt= None, hasher = "bcrypt"))
            user.save()
+           site = Site(user=user, site_url = "/");
+           site.save();
+           campaign = Campaign(site =site)
+           campaign.save()
            return render(request, "form/form.html",{"title":"Registered Successfully"})
        else:
            #return HttpResponse('POST method'+request.POST['name'])
