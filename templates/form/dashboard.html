@@ -1,39 +1,41 @@
-<!doctype html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <title>{{ title }}</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Mobland - Mobile App Landing Page Template">
-    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+{% extends 'form/base.html' %}
 
-    <!-- Font -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+{% block content %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Themify Icons -->
-    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-    <!-- Owl carousel -->
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <!-- Main css -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">QTOCHAT</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="30">
-
-
-<!--<h3>{{ title }}</h3>
-<h3>Welcome {{name}}</h3>-->
-<a href="/form/logout">Logout</a>
-<select id="site_view">
-{% for site in sites %}
- <option value="{{ site.id }}">{{ site.site_name }}</option>    
-{% endfor %}
-</select>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <select id="site_view" class="form-control">
+         {% for site in sites %}
+               <option value="{{ site.id }}">{{ site.site_name }}</option>    
+         {% endfor %}
+        </select>
+      </li>
+      <li class="nav-item">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addSite">
+  Add Site
+</button>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+     <div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   Account
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="/form/logout">Logout</a>
+  </div>
+</div>
+    </div>
+  </div>
+</nav>
+<h3>{{ title }}</h3>
 
 <div class="container">
 {% for campaign in campaigns %}
@@ -41,26 +43,28 @@
 {% endfor %}
 </div>
 
-    <footer class="my-5 text-center">
-        <!-- Copyright removal is not prohibited! -->
-        <p class="mb-2"><small>COPYRIGHT © 2017. ALL RIGHTS RESERVED. MOBAPP TEMPLATE BY <a href="https://colorlib.com">COLORLIB</a></small></p>
 
-        <small>
-            <a href="#" class="m-2">PRESS</a>
-            <a href="#" class="m-2">TERMS</a>
-            <a href="#" class="m-2">PRIVACY</a>
-        </small>
-    </footer>
 
-    <!-- jQuery and Bootstrap -->
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Plugins JS -->
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- Custom JS -->
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/site.js' %}"></script>
+<!--modal-->
+<!-- Modal -->
+<div class="modal fade" id="addSite" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-</body>
-
-</html>
+{% endblock %}
