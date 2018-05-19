@@ -1,1 +1,2 @@
-require bcrypt for password haahing
+pip install bcrypt
+
