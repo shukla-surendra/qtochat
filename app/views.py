@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import UserForm
+import json
 from .models import User, Site, Campaign, Subscriber
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
@@ -37,7 +38,7 @@ def index(request):
 
 
 def client_dev_test(request):
-    return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test"})
+    return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
 
 
 def login(request):
@@ -113,7 +114,10 @@ def create_subscriber(request, format=None):
 def notify(request, format=None):
     site_token = request.POST['token']
     campaign = Campaign.objects.get(id=1)
-    percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
+    if campaign.hits_count == 0:
+        percent = 0
+    else:
+        percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
     campaign.conversion = percent
     campaign.hits_count += 1;
     campaign.save();
