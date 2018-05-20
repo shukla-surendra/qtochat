@@ -30,8 +30,8 @@ class Site(models.Model):
 class Campaign(models.Model):
     campaign_name = models.CharField(max_length=100, default='default')
     site = models.ForeignKey('Site', on_delete=models.CASCADE)
-    hits_count = models.PositiveIntegerField(default=1)
-    subscriber_count = models.PositiveIntegerField(default=1)
+    hits_count = models.PositiveIntegerField(default=0)
+    subscriber_count = models.PositiveIntegerField(default=0)
     conversion = models.CharField(max_length=10, default="0")
     status = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField('date created', default=timezone.now)

@@ -36,6 +36,10 @@ def index(request):
         return render(request, "app/signup.html", {"title": "Registration Form"})
 
 
+def client_dev_test(request):
+    return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test"})
+
+
 def login(request):
     if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
@@ -76,7 +80,7 @@ def dashboard(request):
 
 def logout(request):
   request.session.flush()
-  return HttpResponseRedirect('/app/')
+  return HttpResponseRedirect('/')
 
 
 @api_view(['POST'])
