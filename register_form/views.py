@@ -4,36 +4,40 @@ from django.http import HttpResponseRedirect
 from .forms import UserForm
 from .models import User, Site, Campaign, Subscriber
 from django.contrib.auth.hashers import make_password, check_password
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer
+
 
 def home(request):
-   return render(request, "form/index.html",{"title":"Home Page"})    
+    return render(request, "form/index.html", {"title": "Home Page"})
+
 
 def index(request):
     if request.method == 'POST':
-       uform = UserForm(request.POST)
-       if uform.is_valid():
-           # process the data in form.cleaned_data as required
-           # ...
-           # redirect to a new URL:
-           # return HttpResponseRedirect('/thanks/')
-           user = User(name = uform.cleaned_data['name'], email = uform.cleaned_data['email'], password = make_password(password = uform.cleaned_data['password'], salt= None, hasher = "bcrypt"))
-           user.save()
-           site = Site(user=user, site_url = "/");
-           site.save();
-           campaign = Campaign(site =site)
-           campaign.save()
-           return render(request, "form/form.html",{"title":"Registered Successfully"})
-       else:
-           #return HttpResponse('POST method'+request.POST['name'])
-           #request.session['name'] ="Session Created";
-           print(request.session.get('name'));
-           return render(request, "form/form.html",{"title":"Registration Form Error"})
+        uform = UserForm(request.POST)
+        if uform.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            # return HttpResponseRedirect('/thanks/')
+            user = User(name=uform.cleaned_data['name'], email=uform.cleaned_data['email'], password=make_password(password=uform.cleaned_data['password'], salt=None, hasher="bcrypt"))
+            user.save()
+            site = Site(user=user, site_url="/")
+            site.save()
+            campaign = Campaign(site=site)
+            campaign.save()
+            return render(request, "form/form.html", {"title": "Registered Successfully"})
+        else:
+            # return HttpResponse('POST method'+request.POST['name'])
+            # request.session['name'] ="Session Created";
+            print(request.session.get('name'))
+            return render(request, "form/form.html", {"title": "Registration Form Error"})
     else:  
-       return render(request, "form/form.html",{"title":"Registration Form"})
+        return render(request, "form/form.html", {"title": "Registration Form"})
 
 
 def login(request):
-     if request.method == 'POST':
+    if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
         for user in user_set:
           email = user.email
@@ -48,9 +52,9 @@ def login(request):
           else:
                 return render(request, "form/login.html",{"title":"Login Form Failed"})
         except:
-         return render(request, "form/login.html",{"title":"Login Form"})
-     else:
-         return render(request, "form/login.html",{"title":"Login Form"})
+         return render(request, "form/login.html", {"title": "Login Form"})
+    else:
+         return render(request, "form/login.html", {"title": "Login Form"})
 
 def dashboard(request):
    if "id" not in request.session:
@@ -71,26 +75,37 @@ def logout(request):
   request.session.flush()
   return HttpResponseRedirect('/form/')
 
-def create_subscriber(request):
-    if request.method == 'GET':
-       try:
-          name = request.GET['name']
-          email = request.GET['email']
-          phone = request.GET['phone']
-          site_token = request.GET['token']
-          site = Site.objects.get(site_token = site_token)
-          #need to get active capaign id from options instead of status
-          campaign = Campaign.objects.get(status = 1)
-          subscriber = Subscriber(name = name, email = email, phone = phone, site =site, campaign=campaign)
-          subscriber.save()
-          data = '{"success":"true","message":"Record Created"}'
-          return HttpResponse(data, content_type='application/json')
-       except:
-          print("Incorrect Data");
-          return HttpResponse("Error Occured")
 
-      
+@api_view(['POST'])
+@renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
+def create_subscriber(request, format=None):
+    if request.method == 'POST':
+        try:
+            name = request.POST['name']
+            email = request.POST['email']
+            phone = request.POST['phone']
+            site_token = request.POST['token']
+            site = Site.objects.get(site_token=site_token)
+            # need to get active capaign id from options instead of status
+            campaign = Campaign.objects.get(id=1)
+            campaign.subscriber_count += 1;
+            campaign.save();
+            subscriber = Subscriber(name=name, email=email, phone=phone, site=site, campaign=campaign)
+            subscriber.save()
+            data = '{"success":"true","message":"Record Created"}'
+            return HttpResponse(data, content_type='application/json')
+        except:
+            print("Incorrect Data");
+            return HttpResponse("Error occurred")
 
 
-
+@api_view(['POST'])
+@renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
+def notify(request, format=None):
+    site_token = request.POST['token']
+    campaign = Campaign.objects.get(id=1)
+    campaign.hits_count += 1;
+    campaign.save();
+    data = '{"success":"true","message":"Record Created"}'
+    return HttpResponse(data, content_type='application/json')
 # Create your views here.
