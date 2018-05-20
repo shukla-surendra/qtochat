@@ -1,4 +1,4 @@
-{% extends 'form/base.html' %}
+{% extends 'app/base.html' %}
 
 {% block content %}
 
@@ -35,13 +35,44 @@
     </div>
   </div>
 </nav>
-<h3>{{ title }}</h3>
+<h3 class = "text-center">{{ title }}</h3>
 
-<div class="container">
-{% for campaign in campaigns %}
- <div class="row">{{ campaign.campaign_name }}</div>    
-{% endfor %}
+
+
+
+ <div class="tab">
+  <button class="tablinks first" onclick="openCity(event, 'Campaign')">Campaign</button>
+  <button class="tablinks" onclick="openCity(event, 'Integration')">Integration</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
 </div>
+
+<div id="Campaign" class="tabcontent">
+
+    	{% for campaign in campaigns %}
+ <p class="text-center">{{ campaign.campaign_name }}  Subscriber : {{ campaign.subscriber_count }} Hits: {{ campaign.hits_count }} Conversion: {{ campaign.conversion }} %</p>
+{% endfor %}
+
+
+</div>
+
+<div id="Integration" class="tabcontent">
+  <h4 class="text-center">Integration with Js</h4>
+  <div contenteditable="true">
+      &lt;script src = "http://qtochat.com/static/qtochat.js" id="qtochat_start_script" token="{{site.site_token}}" &gt;&lt;script&gt;
+  </div>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
+
+
+
+
+
+
 
 
 

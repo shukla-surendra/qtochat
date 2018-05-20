@@ -1,9 +1,6 @@
-<html>
-<head>
-<title>{{ title }}
-</title>
-</head>
-<body>
+{% extends 'app/base.html' %}
+
+{% block content %}
 <h3>{{ title }}</h3>
 
 <form action="" method="post">
@@ -16,5 +13,4 @@
     <input id="password" type="password" name="password" value=""><br/><br/>
     <input type="submit" value="OK">
 </form>
-</body>
-</html>
+{% endblock %}

@@ -9,7 +9,7 @@ from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer, Browsab
 
 
 def home(request):
-    return render(request, "form/index.html", {"title": "Home Page"})
+    return render(request, "app/index.html", {"title": "Home Page"})
 
 
 def index(request):
@@ -26,14 +26,14 @@ def index(request):
             site.save()
             campaign = Campaign(site=site)
             campaign.save()
-            return render(request, "form/form.html", {"title": "Registered Successfully"})
+            return render(request, "app/signup.html", {"title": "Registered Successfully"})
         else:
             # return HttpResponse('POST method'+request.POST['name'])
             # request.session['name'] ="Session Created";
             print(request.session.get('name'))
-            return render(request, "form/form.html", {"title": "Registration Form Error"})
+            return render(request, "app/signup.html", {"title": "Registration Form Error"})
     else:  
-        return render(request, "form/form.html", {"title": "Registration Form"})
+        return render(request, "app/signup.html", {"title": "Registration Form"})
 
 
 def login(request):
@@ -48,32 +48,35 @@ def login(request):
           email
           if check_password(request.POST['password'], password):
                 request.session['id'] = id
-                return HttpResponseRedirect('/form/dashboard')
+                return HttpResponseRedirect('/dashboard')
           else:
-                return render(request, "form/login.html",{"title":"Login Form Failed"})
+                return render(request, "app/login.html",{"title":"Login Form Failed"})
         except:
-         return render(request, "form/login.html", {"title": "Login Form"})
+         return render(request, "app/login.html", {"title": "Login Form"})
     else:
-         return render(request, "form/login.html", {"title": "Login Form"})
+         return render(request, "app/login.html", {"title": "Login Form"})
+
 
 def dashboard(request):
-   if "id" not in request.session:
-      return HttpResponseRedirect('/form/')
-   else:
-      user_set = User.objects.filter(id=request.session['id'])
-      for user in user_set:
-       name = user.name 
-      sites = Site.objects.filter(user=user)
-      default_site_id = 0
-      for site in sites:
-           default_site_id = site.id
-           break
-      campaigns = Campaign.objects.filter(site = site)  #getting campaigns of current site
-      return render(request, "form/dashboard.html",{"title":"Welcome to Dashboard", "name":name, "sites":sites, "campaigns":campaigns})
+     if "id" not in request.session:
+         return HttpResponseRedirect('/login/')
+     else:
+        user = User.objects.get(id=request.session['id'])
+        sites = Site.objects.filter(user=user)
+        if request.session.get("site_id", None) is not None:
+             site = Site.objects.filter(id=request.session.site_id)
+        else:
+             for site in sites:
+                 site = site
+                 break
+        campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
+        dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
+        return render(request, "app/dashboard.html", dashboardContext)
+
 
 def logout(request):
   request.session.flush()
-  return HttpResponseRedirect('/form/')
+  return HttpResponseRedirect('/app/')
 
 
 @api_view(['POST'])
@@ -86,9 +89,11 @@ def create_subscriber(request, format=None):
             phone = request.POST['phone']
             site_token = request.POST['token']
             site = Site.objects.get(site_token=site_token)
-            # need to get active capaign id from options instead of status
+            # need to get active campaign id from options instead of status
             campaign = Campaign.objects.get(id=1)
             campaign.subscriber_count += 1;
+            percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
+            campaign.conversion = percent
             campaign.save();
             subscriber = Subscriber(name=name, email=email, phone=phone, site=site, campaign=campaign)
             subscriber.save()
@@ -104,6 +109,8 @@ def create_subscriber(request, format=None):
 def notify(request, format=None):
     site_token = request.POST['token']
     campaign = Campaign.objects.get(id=1)
+    percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
+    campaign.conversion = percent
     campaign.hits_count += 1;
     campaign.save();
     data = '{"success":"true","message":"Record Created"}'
