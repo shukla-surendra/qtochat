@@ -64,7 +64,7 @@ def login(request):
 
 def dashboard(request):
      if "id" not in request.session:
-         return HttpResponseRedirect('/login/')
+         return HttpResponseRedirect('/signin')
      else:
         user = User.objects.get(id=request.session['id'])
         sites = Site.objects.filter(user=user)
