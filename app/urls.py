@@ -26,6 +26,7 @@ urlpatterns = [
     path('dashboard', views.dashboard, name="dashboard"),
     path('logout', views.logout, name="logout"),
     path('notify', views.notify, name="notify"),
+    path('add_site', views.add_site, name="add_site"),
 ]
 
 # allow us to use '.json' and '.html' at the end of the url

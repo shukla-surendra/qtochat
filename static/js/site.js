@@ -27,3 +27,29 @@ function openCity(evt, cityName) {
 }
 
 $(".tab .first").trigger("click");
+
+function site_save_changes()
+{
+   data = "site_name="+$("#site_name").val();
+   $.ajax({
+   url:'/add_site',
+   type:'post',
+   data:data,
+   success: function(result, status, xhr){
+        if(result == "ok")
+        {
+         $("#msg_danger").hide();
+        $("#msg_success").show();
+        setInterval(function(){
+        location.reload();
+        },200)
+
+        }
+        else
+        {
+        $("#msg_danger").text(result);
+        $("#msg_danger").show();
+        }
+   }
+   })
+}

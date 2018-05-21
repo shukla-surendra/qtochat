@@ -123,4 +123,24 @@ def notify(request, format=None):
     campaign.save();
     data = '{"success":"true","message":"Record Created"}'
     return HttpResponse(data, content_type='application/json')
-# Create your views here.
+
+
+@api_view(['POST'])
+@renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
+def add_site(request, format=None):
+    if request.method == 'POST':
+        site_name = request.POST['site_name']
+        if site_name != "":
+            if "id" in request.session:
+                user = User.objects.get(id=request.session['id'])
+                site = Site(user=user,site_name=site_name, site_type="new", site_url="/")
+                site.save()
+                campaign = Campaign(site=site)
+                campaign.save()
+                return HttpResponse("ok")
+            else:
+                return HttpResponse("login first")
+        else:
+            return HttpResponse("Site name must not be blank")
+    else:
+        return HttpResponse(request.method+" Not supported")
