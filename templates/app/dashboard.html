@@ -12,8 +12,8 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <select id="site_view" class="form-control">
-         {% for site in sites %}
-               <option value="{{ site.id }}">{{ site.site_name }}</option>    
+         {% for siteObj in sites %}
+               <option {% ifequal site.id siteObj.id %} {{ "selected" }} {% endifequal %} value="{{ siteObj.id }}">{{ siteObj.site_name }}</option>
          {% endfor %}
         </select>
       </li>

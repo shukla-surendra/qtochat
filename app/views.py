@@ -69,11 +69,10 @@ def dashboard(request):
         user = User.objects.get(id=request.session['id'])
         sites = Site.objects.filter(user=user)
         if request.session.get("site_id", None) is not None:
-             site = Site.objects.filter(id=request.session.site_id)
+             site = Site.objects.get(id=request.session['site_id'])
         else:
-             for site in sites:
-                 site = site
-                 break
+            site = Site.objects.get(user=user, site_type="default")
+            request.session['site_id'] = site.id
         campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
         dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
         return render(request, "app/dashboard.html", dashboardContext)
@@ -144,3 +143,13 @@ def add_site(request, format=None):
             return HttpResponse("Site name must not be blank")
     else:
         return HttpResponse(request.method+" Not supported")
+
+@api_view(['POST'])
+@renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
+def change_site(request, format=None):
+    if request.method == 'POST':
+        site_id = request.POST['site_id']
+        request.session['site_id'] = site_id
+        return HttpResponse("ok");
+    else:
+        return HttpResponse(request.method + " Not supported")

@@ -27,8 +27,9 @@ urlpatterns = [
     path('logout', views.logout, name="logout"),
     path('notify', views.notify, name="notify"),
     path('add_site', views.add_site, name="add_site"),
+    path('change_site', views.change_site, name='change_site'),
 ]
 
 # allow us to use '.json' and '.html' at the end of the url
-urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
+#urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
 

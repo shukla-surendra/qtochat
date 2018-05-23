@@ -1,6 +1,16 @@
 $("#site_view").on("change", function(){
 
-alert("Changing Site VIew");
+site_id = $(this).val();
+
+$.ajax({
+     type:'POST',
+     data:'site_id='+site_id,
+     url:'/change_site',
+     success:function(res, status, xhr)
+     {
+       location.reload();
+     }
+})
 
 })
 
