@@ -49,7 +49,7 @@
 <div id="Campaign" class="tabcontent">
 
     	{% for campaign in campaigns %}
- <p class="text-center">{{ campaign.campaign_name }}  Subscriber : {{ campaign.subscriber_count }} Hits: {{ campaign.hits_count }} Conversion: {{ campaign.conversion }} %</p>
+ <p class="text-center">{{ campaign.campaign_name }}  Subscriber : {{ campaign.subscriber_count }} Hits: {{ campaign.hits_count }} Unique Hits: {{ campaign.unique_hits }} Conversion: {{ campaign.conversion }} %</p>
 {% endfor %}
 
 

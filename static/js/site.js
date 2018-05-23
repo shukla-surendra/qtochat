@@ -8,7 +8,11 @@ $.ajax({
      url:'/change_site',
      success:function(res, status, xhr)
      {
-       location.reload();
+         if(res == "ok")
+         {
+             location.reload();
+         }
+
      }
 })
 

@@ -5,6 +5,43 @@ token = element.getAttribute("token")
 console.log(token)
 notify_visit_to_server(token)
 
+
+//setting cookie
+
+function getCookie(c_name, remote) {
+
+
+    // get normal cookies
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) c_end = document.cookie.length;
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+    return "";
+}
+
+function setCookie(c_name, value, expiredays, remote) {
+
+
+    var cookiebody;
+    var exdate = new Date();
+    exdate.setSeconds(exdate.getSeconds() + expiredays);
+    //exdate.setDate(exdate.getDate() + expiredays);
+
+    cookiebody = c_name + "=" + escape(value) +
+((expiredays == null) ? "" : ";expires=" + exdate.toUTCString());
+
+    if (remote != null) {
+        // remote cookie// send cookies to LogonServ
+    }
+    else // normal cookie
+        document.cookie = cookiebody;
+}
+
 function notify_visit_to_server(token) {
   var xhttp;
   if (window.XMLHttpRequest) {
@@ -20,9 +57,18 @@ function notify_visit_to_server(token) {
      console.log(this.responseText);
     }
   };
-  xhttp.open("POST", SITE+"notify", true);
+   // Check for UUID of this user (if not exist create one)
+  var uuid = getCookie("site_uuid");
+  if (uuid == "") {
+    var d = new Date();
+    var rnd = Math.floor((Math.random() * 100000) + 1);
+    uuid = d.getDay() + '_' + d.getMonth() + '_' + d.getYear() + '_' + rnd + '_' + d.getSeconds() + '_' + d.getMilliseconds() + '_' + d.getMinutes() + '_' + d.getHours();
+    setCookie("site_uuid", uuid);
+  }
+  xhttp.open("POST", SITE+"notify?type=ping&quuid="+uuid, true);
   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   //xhttp.setRequestHeader('Accept', 'application/json');
+
   data = "token="+token;
   xhttp.send(data);
 }

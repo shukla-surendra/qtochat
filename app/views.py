@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from .forms import UserForm
 import json
-from .models import User, Site, Campaign, Subscriber
+from .models import User, Site, Campaign, Subscriber, Analytics
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer
@@ -111,7 +111,19 @@ def create_subscriber(request, format=None):
 @api_view(['POST'])
 @renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
 def notify(request, format=None):
+    uuid = request.GET['quuid']
+    ip = request.META['REMOTE_ADDR'];
+    url = request.META['HTTP_REFERER']
     site_token = request.POST['token']
+    unique_hits = 0
+    try:
+        analytic = Analytics.objects.get(cookie=uuid)
+        unique_hits = 0
+    except Analytics.DoesNotExist:
+        analytics = Analytics(cookie=uuid, ip=ip, url=url, site_token=site_token)
+        analytics.save()
+        unique_hits = 1
+
     campaign = Campaign.objects.get(id=1)
     if campaign.hits_count == 0:
         percent = 0
@@ -119,6 +131,7 @@ def notify(request, format=None):
         percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
     campaign.conversion = percent
     campaign.hits_count += 1;
+    campaign.unique_hits +=unique_hits
     campaign.save();
     data = '{"success":"true","message":"Record Created"}'
     return HttpResponse(data, content_type='application/json')
