@@ -24,16 +24,6 @@ DATABASES = {
 
 
 
-Analytics Reference
-
-https://www.codeproject.com/Articles/710241/How-to-build-a-simple-website-analysis-services-li
-https://www.periscopedata.com/blog/how-to-build-your-own-user-analytics-in-sql
-https://data36.com/build-data-tools-google-analytics-vs-sql/
-
-
-
-
-
 
 mySQLdb is a python interface for mysql, but it is not mysql itself. And apparently mySQLdb needs the command 'mysql_config', so you need to install that first.
 
