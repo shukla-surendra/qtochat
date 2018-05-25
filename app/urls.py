@@ -19,7 +19,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('signup', views.index, name="index"),
+    path('signup', views.signup, name="signup"),
     path('signin', views.login, name="signin"),
     path('client_dev_test', views.client_dev_test, name="client_dev_test"),
     path('create_subscriber', views.create_subscriber , name="create_subscriber"),

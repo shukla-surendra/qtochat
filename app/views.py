@@ -15,14 +15,10 @@ def home(request):
     return render(request, "app/index.html", {"title": "Home Page"})
 
 
-def index(request):
+def signup(request):
     if request.method == 'POST':
         uform = UserForm(request.POST)
         if uform.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            # return HttpResponseRedirect('/thanks/')
             user = User(name=uform.cleaned_data['name'], email=uform.cleaned_data['email'], password=make_password(password=uform.cleaned_data['password'], salt=None, hasher="bcrypt"))
             user.save()
             site = Site(user=user, site_url="/")
@@ -57,11 +53,11 @@ def login(request):
                 request.session['id'] = id
                 return HttpResponseRedirect('/dashboard')
             else:
-                return render(request, "app/login.html", {"title": "Login Form Failed"})
+                return render(request, "app/signin.html", {"title": "Login Form Failed"})
         except:
-            return render(request, "app/login.html", {"title": "Login Form"})
+            return render(request, "app/signin.html", {"title": "Login Form"})
     else:
-        return render(request, "app/login.html", {"title": "Login Form"})
+        return render(request, "app/signin.html", {"title": "Login Form"})
 
 
 def dashboard(request):
@@ -81,8 +77,8 @@ def dashboard(request):
 
 
 def logout(request):
-  request.session.flush()
-  return HttpResponseRedirect('/')
+    request.session.flush()
+    return HttpResponseRedirect('/')
 
 
 @api_view(['POST'])

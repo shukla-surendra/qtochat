@@ -2,10 +2,10 @@
 
 /*
 
-Style   : MobApp CSS
+Style   : QtoChat CSS
 Version : 1.0
-Author  : Surjith S M
-URI     : https://surjithctly.in/
+Author  : Qtochat.com
+URI     : https://qtochat.com/
 
 Copyright © All rights Reserved 
 
@@ -639,4 +639,10 @@ header {
         text-align: center;
         margin-top: 2rem;
     }
+}
+
+
+label.error
+{
+color:#FF0000
 }
