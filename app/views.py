@@ -39,7 +39,7 @@ def client_dev_test(request):
     return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
 
 
-def login(request):
+def signin(request):
     if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
         for user in user_set:
