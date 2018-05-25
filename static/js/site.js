@@ -4,7 +4,7 @@ site_id = $(this).val();
 
 $.ajax({
      type:'POST',
-     data:'site_id='+site_id,
+     data:'site_id='+site_id+"&csrfmiddlewaretoken="+getCookie("csrftoken"),
      url:'/change_site',
      success:function(res, status, xhr)
      {
@@ -18,6 +18,20 @@ $.ajax({
 
 })
 
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
 
 function openCity(evt, cityName) {
     // Declare all variables
@@ -44,7 +58,7 @@ $(".tab .first").trigger("click");
 
 function site_save_changes()
 {
-   data = "site_name="+$("#site_name").val();
+   data = "site_name="+$("#site_name").val()+"&csrfmiddlewaretoken="+getCookie("csrftoken");
    $.ajax({
    url:'/add_site',
    type:'post',
