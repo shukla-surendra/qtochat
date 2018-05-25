@@ -94,7 +94,7 @@ def create_subscriber(request, format=None):
             # need to get active campaign id from options instead of status
             campaign = Campaign.objects.get(id=1)
             campaign.subscriber_count += 1;
-            percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
+            percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.unique_hits)
             campaign.conversion = percent
             campaign.save();
             subscriber = Subscriber(name=name, email=email, phone=phone, site=site, campaign=campaign)
@@ -126,7 +126,7 @@ def notify(request, format=None):
     if campaign.hits_count == 0:
         percent = 0
     else:
-        percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
+        percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.unique_hits)
     campaign.conversion = percent
     campaign.hits_count += 1;
     campaign.unique_hits += unique_hits

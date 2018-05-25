@@ -2,15 +2,11 @@ SITE="/"
 //getting token
 element = document.getElementById("qtochat_start_script")
 token = element.getAttribute("token")
-console.log(token)
 notify_visit_to_server(token)
 
 
 //setting cookie
-
 function getCookie(c_name, remote) {
-
-
     // get normal cookies
     if (document.cookie.length > 0) {
         c_start = document.cookie.indexOf(c_name + "=");
@@ -25,8 +21,6 @@ function getCookie(c_name, remote) {
 }
 
 function setCookie(c_name, value, expiredays, remote) {
-
-
     var cookiebody;
     var exdate = new Date();
     exdate.setSeconds(exdate.getSeconds() + expiredays);
@@ -72,8 +66,14 @@ function notify_visit_to_server(token) {
   data = "token="+token;
   xhttp.send(data);
 }
+//chat box code
 
-chatFrame=document.getElementById('chatframe');
+
+chatFrame='<div class="chatframe" style="height:350px;width:250px;position:fixed;bottom:40px;right:40px;border-radius:15px">'
++'<div class="chatbox_header" style="width:100%;height:10%;border-radius:15px 15px 0 0; background-color:#428bca"></div>'
++'<div class="chatbox_content" id="chatbox_content" style="width:100%;height:80%;overflow-y: auto; padding:10px;box-sizing:border-box"><p>first</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>p</p><p>last</p></div>'
++'<div class="chatbox_footer" style="width:100%;height:10%;border-radius:0 0 15px 15px; background-color:#f0f3f5"><input type="text" placeholder="Write A reply..." id="qto_text_field" onkeypress="runScript(event)" style="background-color:#f0f3f5; border:0 solid #f0f3f5; width:100%;"></div>'
++'</div>';
 var wrapper= document.createElement('div');
 wrapper.innerHTML= chatFrame;
 var div = wrapper.firstChild;
