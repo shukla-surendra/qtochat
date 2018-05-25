@@ -25,6 +25,7 @@ DATABASES = {
 
 
 
+
 mySQLdb is a python interface for mysql, but it is not mysql itself. And apparently mySQLdb needs the command 'mysql_config', so you need to install that first.
 
 Can you confirm that you did or did not install mysql itself, by running "mysql" from the shell? That should give you a response other than "mysql: command not found".

@@ -1,4 +1,4 @@
-SITE="http://127.0.0.1:8000/"
+SITE="/"
 //getting token
 element = document.getElementById("qtochat_start_script")
 token = element.getAttribute("token")

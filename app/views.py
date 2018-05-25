@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import UserForm
 import json
+import csv
 from .models import User, Site, Campaign, Subscriber, Analytics
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
@@ -45,27 +47,27 @@ def login(request):
     if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
         for user in user_set:
-          email = user.email
-          id = user.id
-          name = user.name
-          password = user.password
+            email = user.email
+            id = user.id
+            name = user.name
+            password = user.password
         try:
-          email
-          if check_password(request.POST['password'], password):
+            email
+            if check_password(request.POST['password'], password):
                 request.session['id'] = id
                 return HttpResponseRedirect('/dashboard')
-          else:
-                return render(request, "app/login.html",{"title":"Login Form Failed"})
+            else:
+                return render(request, "app/login.html", {"title": "Login Form Failed"})
         except:
-         return render(request, "app/login.html", {"title": "Login Form"})
+            return render(request, "app/login.html", {"title": "Login Form"})
     else:
-         return render(request, "app/login.html", {"title": "Login Form"})
+        return render(request, "app/login.html", {"title": "Login Form"})
 
 
 def dashboard(request):
-     if "id" not in request.session:
-         return HttpResponseRedirect('/signin')
-     else:
+    if "id" not in request.session:
+        return HttpResponseRedirect('/signin')
+    else:
         user = User.objects.get(id=request.session['id'])
         sites = Site.objects.filter(user=user)
         if request.session.get("site_id", None) is not None:
@@ -131,9 +133,10 @@ def notify(request, format=None):
         percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.hits_count)
     campaign.conversion = percent
     campaign.hits_count += 1;
-    campaign.unique_hits +=unique_hits
+    campaign.unique_hits += unique_hits
     campaign.save();
-    data = '{"success":"true","message":"Record Created"}'
+    question_set = '[{"question": "Hey Provide your email Address", "answer_type": "input", "validation_type": "email"}, { "question": "Hey Provide your Name", "answer_type": "input", "validation_type": "name"}]'
+    data = '{"success":"true", "message": "Record Created", "question": '+question_set+'}'
     return HttpResponse(data, content_type='application/json')
 
 
@@ -166,3 +169,28 @@ def change_site(request, format=None):
         return HttpResponse("ok");
     else:
         return HttpResponse(request.method + " Not supported")
+
+
+def view_subscribers(request, id=0):
+    campaign = Campaign.objects.get(id=id);
+    subscriber_list = Subscriber.objects.filter(campaign=campaign)
+    paginator = Paginator(subscriber_list, 10)  # Show 25 contacts per page
+
+    page = request.GET.get('page', 1)
+    subscriber = paginator.get_page(page)
+    subscriber_context = {"subscribers": subscriber, "campaign_id": id}
+    return render(request, "app/view_subscribers.html", subscriber_context)
+
+
+def csv_export(request, id=0):
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Email', 'Phone'])
+    campaign = Campaign.objects.get(id=id);
+    subscriber_list = Subscriber.objects.filter(campaign=campaign)
+    for subscriber in subscriber_list:
+        writer.writerow([subscriber.name, subscriber.email, subscriber.phone])
+    return response
+
