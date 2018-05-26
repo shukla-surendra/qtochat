@@ -64,12 +64,24 @@ class Option(models.Model):
     def __str__(self):
         return '>>%s: < %s >' % (self.id, self.key)
 
+
 class Analytics(models.Model):
     created_at = models.DateTimeField('date created', default=timezone.now)
     cookie = models.CharField(max_length=100)
     site_token = models.CharField(max_length=100, null=True, blank=True)
     url = models.CharField(max_length=100)
-    ip = models.CharField(max_length=50, default = '0.0.0.0')
+    ip = models.CharField(max_length=50, default='0.0.0.0')
+
+
+class ActiveUsers(models.Model):
+    connected_at = models.DateTimeField('date connected', default=timezone.now)
+    gone_at = models.DateTimeField('date gone', default=timezone.now)
+    status = models.PositiveIntegerField(default=1)
+    cookie = models.CharField(max_length=100)
+    site_token = models.CharField(max_length=100, null=True, blank=True)
+    url = models.CharField(max_length=100)
+    ip = models.CharField(max_length=50, default='0.0.0.0')
+
     
 
 

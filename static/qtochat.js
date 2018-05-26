@@ -36,35 +36,39 @@ function setCookie(c_name, value, expiredays, remote) {
         document.cookie = cookiebody;
 }
 
-function notify_visit_to_server(token) {
-  var xhttp;
+function getXhr()
+{
+  var xhr;
   if (window.XMLHttpRequest) {
     // code for modern browsers
-    xhttp = new XMLHttpRequest();
+    xhr = new XMLHttpRequest();
     } else {
     // code for IE6, IE5
-    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    xhr = new ActiveXObject("Microsoft.XMLHTTP");
   }
+  return xhr;
+}
 
-  xhttp.onreadystatechange = function() {
+function notify_visit_to_server(token) {
+    xhr = getXhr();
+    xhr.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      console.log(this.responseText);
+     }
+    };
+    // Check for UUID of this user (if not exist create one)
+    var uuid = getCookie("site_uuid");
+    if (uuid == "") {
+        var d = new Date();
+        var rnd = Math.floor((Math.random() * 100000) + 1);
+        uuid = d.getDay() + '_' + d.getMonth() + '_' + d.getYear() + '_' + rnd + '_' + d.getSeconds() + '_' + d.getMilliseconds() + '_' + d.getMinutes() + '_' + d.getHours();
+        setCookie("site_uuid", uuid);
     }
-  };
-   // Check for UUID of this user (if not exist create one)
-  var uuid = getCookie("site_uuid");
-  if (uuid == "") {
-    var d = new Date();
-    var rnd = Math.floor((Math.random() * 100000) + 1);
-    uuid = d.getDay() + '_' + d.getMonth() + '_' + d.getYear() + '_' + rnd + '_' + d.getSeconds() + '_' + d.getMilliseconds() + '_' + d.getMinutes() + '_' + d.getHours();
-    setCookie("site_uuid", uuid);
-  }
-  xhttp.open("POST", SITE+"notify?type=ping&quuid="+uuid, true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  //xhttp.setRequestHeader('Accept', 'application/json');
-
-  data = "token="+token;
-  xhttp.send(data);
+    xhr.open("POST", SITE+"notify?type=ping&quuid="+uuid, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader('Accept', 'application/json');
+    data = "token="+token;
+    xhr.send(data);
 }
 //chat box code
 
@@ -78,6 +82,11 @@ var wrapper= document.createElement('div');
 wrapper.innerHTML= chatFrame;
 var div = wrapper.firstChild;
 document.body.appendChild(div);
+
+audioTag = document.createElement('audio');
+audioTag.setAttribute("src", "static/notify/to-the-point.mp3")
+document.body.appendChild(audioTag);
+audioTag.play();
 
 function runScript(e) {
     if (e.keyCode == 13) {
