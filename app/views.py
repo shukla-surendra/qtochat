@@ -39,6 +39,7 @@ def client_dev_test(request):
     return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
 
 
+
 def signin(request):
     if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
@@ -184,9 +185,19 @@ def csv_export(request, id=0):
     response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
     writer = csv.writer(response)
     writer.writerow(['Name', 'Email', 'Phone'])
-    campaign = Campaign.objects.get(id=id);
+    campaign = Campaign.objects.get(id=id)
     subscriber_list = Subscriber.objects.filter(campaign=campaign)
     for subscriber in subscriber_list:
         writer.writerow([subscriber.name, subscriber.email, subscriber.phone])
     return response
+
+def myadmin(request):
+
+    title= "Qtochat Admin Panel"
+
+    context = {
+        "title":title
+    }
+
+    return render(request, "app/myadmin.html", context)
 

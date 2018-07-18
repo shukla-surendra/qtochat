@@ -26,6 +26,17 @@ class Site(models.Model):
     def __str__(self):
         return '>>%s: < %s >' % (self.id, self.site_name)
 
+class widget_customization(models.Model):
+    username = models.ForeignKey('User', on_delete=models.CASCADE)
+    sitename = models.ForeignKey('Site', on_delete=models.CASCADE)
+    widget_color = models.CharField(max_length=100)
+    widget_background = models.CharField(max_length=100)
+    widget_outer_ring_color = models.CharField(max_length=100)
+
+    def __str__(self):
+        return '>>%s: < %s >' % (self.id, self.sitename)
+
+
 
 class Campaign(models.Model):
     campaign_name = models.CharField(max_length=100, default='default')
