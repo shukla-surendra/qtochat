@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .forms import UserForm
+from .forms import UserForm, widgetCustomizationForm
+from .models import widget_customization
 import json
 import csv
 from .models import User, Site, Campaign, Subscriber, Analytics
@@ -163,7 +164,7 @@ def change_site(request, format=None):
     if request.method == 'POST':
         site_id = request.POST['site_id']
         request.session['site_id'] = site_id
-        return HttpResponse("ok");
+        return HttpResponse("ok")
     else:
         return HttpResponse(request.method + " Not supported")
 
@@ -192,6 +193,7 @@ def csv_export(request, id=0):
     return response
 
 def myadmin(request):
+    
 
     title= "Qtochat Admin Panel"
 
@@ -200,4 +202,20 @@ def myadmin(request):
     }
 
     return render(request, "app/myadmin.html", context)
+
+def Widget_customization(request):
+    if request.method == 'POST':
+        #from model.py
+        
+        customize = widget_customization.objects.get(id=2)
+        customize.widget_color = "#999"
+        customize.save(['#999'])
+
+        #insert into the database
+        # add this when you install bcrypt: username = request.session['id'], sitename = request.session['site_id']
+        # customization = widget_customization(widget_color=request.POST['textcolor'], widget_background=request.POST['base-color'], widget_outer_ring_color=request.POST['outer-ring'])
+        # customization.save()
+
+        # print(uform.widget_background)
+        return redirect('myadmin')
 

@@ -1,59 +1,62 @@
 <!doctype html>
-{% load staticfiles %}
-<html lang="en">
+{% load static %}
+
+<!DOCTYPE html>
+<html >
 <head>
-    <title>{{ title }}</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Mobland - Mobile App Landing Page Template">
-    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+  
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="front-end/assets/images/chat.png" type="image/x-icon">
+  <meta name="description" content="Generate high-quality leads ">
+  <link href="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'front-end/assets/animate/animate.css' %}">
+  <link rel="stylesheet" href="{% static 'front-end/assets/web/assets/mobirise-icons/mobirise-icons.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,700,800,900">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+ <!--  <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet"> -->
+  <link rel="stylesheet" href="{% static 'front-end/assets/bootstrap/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="assets/socicon/css/socicon.min.css' %}">
+  <link rel="stylesheet" href="{% static 'front-end/assets/font-awesome/css/font-awesome.min.css' %}">
+  <link rel="stylesheet" href="{% static 'front-end/assets/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'front-end/assets/unicore/css/style.css' %}">
+  <link href="{% static 'front-end/assets/fonts/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'front-end/assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="{% static 'front-end/css/style.css' %}" rel='stylesheet' type='text/css'/>
+   <link rel="stylesheet" href="{% static 'front-end/assets/flaticon/flaticon.css' %}">
+ <!--  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script> -->
+ <!-- <script src="assets/slick/jQuery.scrollSpeed.js"></script> -->
 
-    <!-- Font -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Themify Icons -->
-    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-    <!-- Owl carousel -->
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <!-- extra css -->
-    <link rel="stylesheet" href="{% static 'css/extra.css' %}">
-    <!-- Main css -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <!-- chat widget css-->
-    <link href="{% static 'css/widget_style.css' %}" rel="stylesheet">
+ 
 </head>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="30">
+
+
+
+
+
+<body class="preload animated fadeIn">
   
 
 {% block content %}
+
+
 {% endblock %}
-    <footer class="my-5 text-center">
-        <!-- Copyright removal is not prohibited! -->
-        <p class="mb-2"><small>COPYRIGHT © 2017. ALL RIGHTS RESERVED. MOBAPP TEMPLATE BY <a href="https://colorlib.com">COLORLIB</a></small></p>
 
-        <small>
-            <a href="#" class="m-2">PRESS</a>
-            <a href="#" class="m-2">TERMS</a>
-            <a href="#" class="m-2">PRIVACY</a>
-        </small>
-    </footer>
-
-    <!-- jQuery and Bootstrap -->
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Plugins JS -->
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- Custom JS -->
-    <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/site.js' %}"></script>
-    <script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
-    <script src="{% static 'js/validation.js' %}"></script>
-
+<script src="{% static 'front-end/assets/web/assets/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'front-end/assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--[if lte IE 9]>
+  <script src="assets/jquery-placeholder/jquery.placeholder.min.js"></script>
+<![endif]-->
+<script src="{% static 'front-end/assets/smooth-scroll/SmoothScroll.js' %}"></script>
+<script src="{% static 'front-end/assets/jarallax/jarallax.js' %}"></script>
+<script src="{% static 'front-end/assets/slick/slick.js' %}"></script>
+<script src="{% static 'front-end/assets/unicore/js/script.js' %}"></script>
+<script src="{% static 'front-end/assets/formoid/formoid.min.js' %}"></script>
+<script src="https://cdn.rawgit.com/michalsnik/aos/2.1.1/dist/aos.js"></script>
+<script src="{% static 'front-end/assets/js/custom.js' %}"></script>
 </body>
-
 </html>
+   

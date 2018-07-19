@@ -870,9 +870,11 @@ async="true"&gt;&lt;/script&gt;
 							</div>
 							<div class="tab__content " style="padding-top:0px;  padding-bottom: 70px !Important; box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.04); ">
 								<div class="boxed boxed--border bg--secondary">
-									<h5 style="text-transform:uppercase;">CUSTOMIZE QTOCHAT</h5>
+									<h5 style="text-transform:uppercase;">Customize your chatbot</h5>
 									<hr>
-									<form>
+									<form id="customize" action="{% url 'customize' %}" method="POST">
+
+											{% csrf_token %}
 										<div class="row">
 											<ul style="line-height: 2.45em;">
 												<li>
@@ -886,23 +888,43 @@ async="true"&gt;&lt;/script&gt;
 													<!-- <div class="col-sm-2 text-right text-left-xs">
 													</div> -->
 													<div class="col-sm-8 text-right text-left-xs" style="padding-bottom:2px;">
-														<input type="text" id="hue-demo" class="form-control demo" data-control="hue" value="#333d54">
+														<input type="text" id="hue-demo" class="form-control demo" data-control="hue" name="base-color" value="#333d54">
 													</div>
 												</li>
 											</ul>
+
+											<!-- End base color -->
+											<ul style="line-height: 2.45em;">
+												<li>
+													<div class="col-sm-4" style="padding-bottom:2px;">
+														<p>
+															<!-- <i class="material-icons">credit_card</i> -->
+															<span> Text Color:
+															</span>
+														</p>
+													</div>
+													<!-- <div class="col-sm-2 text-right text-left-xs">
+													</div> -->
+													<div class="col-sm-8 text-right text-left-xs" style="padding-bottom:2px;">
+														<input type="text" id="hue-demo" class="form-control demo" data-control="hue" name="textcolor" value="#333d54">
+													</div>
+												</li>
+											</ul>
+
+											<!-- End base color -->
 											<ul style="line-height: 2.45em;">
 												<li>
 													<div class="col-sm-4">
 														<p>
 															<!-- <i class="material-icons">credit_card</i> -->
-															<span> Outer ring Color:
+															<span> Outer Ring Color:
 															</span>
 														</p>
 													</div>
 													<!-- <div class="col-sm-2 text-right text-left-xs">
 													</div> -->
 													<div class="col-sm-8 text-right text-left-xs">
-														<input type="text" id="hue-demo" class="form-control demo" data-control="hue" value="#00baba">
+														<input type="text" id="hue-demo" class="form-control demo" data-control="hue" name="outer-ring" value="#00baba">
 													</div>
 												</li>
 											</ul>

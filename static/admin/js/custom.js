@@ -27,3 +27,18 @@ $(function(){
         }
     });
 });
+
+
+/*
+
+chatbox dashboard customization script 
+
+*/
+
+$('#customize-button').click(function(e){
+
+    if($('#hue-demo').text==""){
+        alert('hey');
+    }
+    e.preventDefault(); 
+});

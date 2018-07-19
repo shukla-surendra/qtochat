@@ -19,7 +19,13 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('', views.home, name="home"),
+
+    #admin dashboards paths starts
     path('myadmin', views.myadmin, name="myadmin"),
+    path('customize', views.Widget_customization, name= 'customize'),
+    
+    #admin dashboards paths ends
+
     path('signup', views.signup, name="signup"),
     path('signin', views.signin, name="signin"),
     path('client_dev_test', views.client_dev_test, name="client_dev_test"),

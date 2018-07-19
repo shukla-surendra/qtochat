@@ -34,7 +34,7 @@ class widget_customization(models.Model):
     widget_outer_ring_color = models.CharField(max_length=100)
 
     def __str__(self):
-        return '>>%s: < %s >' % (self.id, self.sitename)
+        return '>>%s: < %s >' % (self.id, self.sitename, self.widget_color, self.widget_background, self.widget_outer_ring_color )
 
 
 

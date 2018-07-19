@@ -1,523 +1,538 @@
-<!doctype html>
-{% load staticfiles %}
-<html lang="en">
-<head>
-    <title>MobApp - App Landing Page Template</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Mobland - Mobile App Landing Page Template">
-    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
 
-    <!-- Font -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+{% extends 'app/base.html' %}
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <!-- Themify Icons -->
-    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
-    <!-- Owl carousel -->
-    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
-    <!-- Main css -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-</head>
+{% block content %}
+ <section id="dropdown-menu1-o" data-rv-view="20">
+   <nav class="navbar navbar-dropdown mbr-title-font navbar-fixed-top">
+      <div class="container">
+         <div class="navbar-brand">
+            <a href="index.html" class="navbar-logo"><img src="static/front-end/assets/images/chat.png" alt="Qtochat"></a>
+            <a class="text-black" href="index.html">QTOCHAT</a>
+         </div>
+         <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+         ☰
+         </button>
+         <ul class="nav-dropdown collapse pull-xs-right navbar-toggleable-sm nav navbar-nav" id="exCollapsingNavbar">
+            <li class="nav-item"><a class="nav-link link" href="index.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link link" href="#">Knowledgebase</a></li>
+            <li class="nav-item nav-btn"><a class="nav-link btn btn-primary mbr-title-font step" href="#">LoGIN</a></li>
+            <li class="nav-item nav-btn"><a class="nav-link btn btn-danger mbr-title-font cake" href="#">SIGNUP</a></li>
+         </ul>
+      </div>
+   </nav>
+</section>
 
-<body data-spy="scroll" data-target="#navbar" data-offset="30">
-
-    <!-- Nav Menu -->
-
-    <div class="nav-menu fixed-top">
+  <section class="mbr-section--bg-adapted mbr-parallax-background" id="header1-0" data-rv-view="0" style="background-image: url(static/front-end/assets/images/a10.jpg);">
+    <div class="intro intro1" style="padding-top: 80px; padding-bottom: 150px;">
+        <div class="mbr-overlay" style="opacity: 0.8; background-color: rgb(21, 21, 21);"></div>
+        
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-dark navbar-expand-lg">
-                        <a class="navbar-brand" href="/"><img src="{% static 'images/logo.png'%}" class="img-fluid" alt="logo"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
-                        <div class="collapse navbar-collapse" id="navbar">
-                            <ul class="navbar-nav ml-auto">
-                                <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
-                                <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
-                                <li class="nav-item"><a href="/signin" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Sign In</a></li>
-                                <li class="nav-item"><a href="/signup" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Sign Up</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <header class="bg-gradient" id="home">
-        <div class="container mt-5">
-            <h1>Mobile App Landing Page Template</h1>
-            <p class="tagline">The one and only solution for any kind of mobila app landing needs. Just change the screenshots and texts and you are good to go. </p>
-        </div>
-        <div class="img-holder mt-3"><img src="{% static 'images/iphonex.png' %}" alt="phone" class="img-fluid"></div>
-    </header>
-
-    <div class="client-logos my-5">
-        <div class="container text-center">
-            <img src="{% static 'images/client-logos.png' %}" alt="client logos" class="img-fluid">
-        </div>
-    </div>
-
-    <div class="section light-bg" id="features">
-
-
-        <div class="container">
-
-            <div class="section-title">
-                <small>HIGHLIGHTS</small>
-                <h3>Features you love</h3>
-            </div>
-
-
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <div class="card features">
-                        <div class="card-body">
-                            <div class="media">
-                                <span class="ti-face-smile gradient-fill ti-3x mr-3"></span>
-                                <div class="media-body">
-                                    <h4 class="card-title">Simple</h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p>
+            <div class="row center-content">
+			
+			<div class="col-sm-7 col-md-push-1" style="margin-right:0px;">
+                    <h2 class="mbr-title-font"><em><strong>CONNECT &amp; GENERATE MORE LEADS.</strong></em></h2>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="intro-box">
+                                <span class="flaticon-robot" style="font-size: 50px; margin-left: -20px;"></span>
+                                <div>
+                                    <h4 class="mbr-title-font">fRIENDLY AI CHATBOT</h4>
+                                    <p>To help you convert your website vistors to leads.<br></p>
+                                </div>
+                            </div>
+                            <div class="intro-box">
+                                <span class="fa fa-long-arrow-right"></span>
+                                <div>
+                                    <h4 class="mbr-title-font">sign up today</h4>
+                                    <p>Fill out the form today to get started.&nbsp;</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4">
-                    <div class="card features">
-                        <div class="card-body">
-                            <div class="media">
-                                <span class="ti-settings gradient-fill ti-3x mr-3"></span>
-                                <div class="media-body">
-                                    <h4 class="card-title">Customize</h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-4">
-                    <div class="card features">
-                        <div class="card-body">
-                            <div class="media">
-                                <span class="ti-lock gradient-fill ti-3x mr-3"></span>
-                                <div class="media-body">
-                                    <h4 class="card-title">Secure</h4>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+                <div class="col-sm-5 col-md-5">
+                    <div class="intro-form" data-form-type="formoid">
+                        <!-- <h4 class="mbr-title-font" style="color:#fff; font-weigt:900;">APPLY NOW!</h4> -->
+                        <div class="main">
+	<div class="social-icons">
+		 <div class="col_1_of_f span_1_of_f"><a href="#">
+		    <ul class='facebook'>
+		    	<i class="fb"> </i>
+		    	<li>Signup with Facebook</li>
+		    	<div class='clear'> </div>
+		    </ul>
+		    </a>
+		 </div>	
+		 
+		<div class="clear"> </div>	
+      </div>
+      <h2>Or Signup with</h2>
+		<form>
+		   <div class="lable">
+		        <div class="col_1_of_2 span_1_of_2">	<input type="text" class="text" value="FIRST NAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}" id="active"></div>
+                <div class="col_1_of_2 span_1_of_2"><input type="text" class="text" value="LAST NAME" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}"></div>
+                <div class="clear"> </div>
+		   </div>
+		   <div class="lable-2">
+		        <input type="text" class="text" value="your@work-email.com " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'your@email.com ';}">
+		        <input type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password ';}">
+		   </div>
+		   <h3>By creating an account, you agree to our <span class="term"><a href="#">Terms & Conditions</a></span></h3>
+		   <div class="submit">
+			  <input type="submit" onclick="myFunction()" value="Create account" >
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+         </div>
+		 </div>
+      
+                
             </div>
-
         </div>
-
-
-
     </div>
-    <!-- // end .section -->
-    <div class="section">
+</section>
 
+<section class="mbr-section--bg-adapted mbr-section--relative animated bounce" id="features7-1" data-rv-view="10" style="background-color: rgb(255, 255, 255); " >
+
+    <div class="elements-content" style="padding-top: 100px; padding-bottom: 100px;">
+
+        
+
+        <div class="container">
+            <div class="section-head text-center col-md-8 col-md-offset-2 space50">
+                <h1 class="mbr-title-font">What clients Say About us</h1>
+            </div>
+            <div class="row">
+                <ul class="clients text-center">
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/buzzfeed-logo-1-232x104.png" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/untitled-5-232x104.png" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/spotifylogo.2-232x104.jpg" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/untitled-2-232x104.png" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/untitled-4-232x104.png" class="img-responsive center-block"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="header22-t" data-rv-view="48" style="background-color: rgb(249, 250, 252);">
+        
+    <div class="icon-features" style="padding-top: 80px; padding-bottom: 80px;">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 offset-lg-6">
-                    <div class="box-icon"><span class="ti-mobile gradient-fill ti-3x"></span></div>
-                    <h2>Discover our App</h2>
-                    <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vel exercitationem eveniet vero maxime ratione </p>
-                    <a href="#" class="btn btn-primary">Read more</a>
-                </div>
-            </div>
-            <div class="perspective-phone">
-                <img src="{% static 'images/perspective.png'%}" alt="perspective phone" class="img-fluid">
-            </div>
-        </div>
-
-    </div>
-    <!-- // end .section -->
-
-
-    <div class="section light-bg">
-        <div class="container">
-            <div class="section-title">
-                <small>FEATURES</small>
-                <h3>Do more with our app</h3>
-            </div>
-
-            <ul class="nav nav-tabs nav-justified" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#communication">Communication</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#schedule">Scheduling</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#messages">Messages</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#livechat">Live Chat</a>
-                </li>
-            </ul>
-            <div class="tab-content">
-                <div class="tab-pane fade show active" id="communication">
-                    <div class="d-flex flex-column flex-lg-row">
-                        <img src="{% static 'images/graphic.png'% }" alt="graphic" class="img-fluid rounded align-self-start mr-lg-5 mb-5 mb-lg-0">
-                        <div>
-
-                            <h2>Communicate with ease</h2>
-                            <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills. </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                                congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                            </p>
-                            <p> malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                                sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="schedule">
-                    <div class="d-flex flex-column flex-lg-row">
-                        <div>
-                            <h2>Scheduling when you want</h2>
-                            <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills. </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                                congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                            </p>
-                            <p> malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                                sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
-                            </p>
-                        </div>
-                        <img src="{% static 'images/graphic.png' %}" alt="graphic" class="img-fluid rounded align-self-start mr-lg-5 mb-5 mb-lg-0">
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="messages">
-                    <div class="d-flex flex-column flex-lg-row">
-                        <img src="{% static 'images/graphic.png' %}" alt="graphic" class="img-fluid rounded align-self-start mr-lg-5 mb-5 mb-lg-0">
-                        <div>
-                            <h2>Realtime Messaging service</h2>
-                            <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills. </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                                congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                            </p>
-                            <p> malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                                sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="livechat">
-                    <div class="d-flex flex-column flex-lg-row">
-                        <div>
-                            <h2>Live chat when you needed</h2>
-                            <p class="lead">Uniquely underwhelm premium outsourcing with proactive leadership skills. </p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. Ut placerat dui eu nulla
-                                congue tincidunt ac a nibh. Mauris accumsan pulvinar lorem placerat volutpat. Praesent quis facilisis elit. Sed condimentum neque quis ex porttitor,
-                            </p>
-                            <p> malesuada faucibus augue aliquet. Sed elit est, eleifend sed dapibus a, semper a eros. Vestibulum blandit vulputate pharetra. Phasellus lobortis leo a nisl euismod, eu faucibus justo sollicitudin. Mauris consectetur, tortor
-                                sed tempor malesuada, sem nunc porta augue, in dictum arcu tortor id turpis. Proin aliquet vulputate aliquam.
-                            </p>
-                        </div>
-                        <img src="{% static 'images/graphic.png'%}" alt="graphic" class="img-fluid rounded align-self-start mr-lg-5 mb-5 mb-lg-0">
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-    <!-- // end .section -->
-
-    <div class="section">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="{% static 'images/dualphone.png' %}" alt="dual phone" class="img-fluid">
-                </div>
-                <div class="col-md-6 d-flex align-items-center">
-                    <div>
-                        <div class="box-icon"><span class="ti-rocket gradient-fill ti-3x"></span></div>
-                        <h2>Launch your App</h2>
-                        <p class="mb-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vel exercitationem eveniet vero maxime ratione </p>
-                        <a href="#" class="btn btn-primary">Read more</a></div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <!-- // end .section -->
-
-
-    <div class="section light-bg">
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 d-flex align-items-center">
-                    <ul class="list-unstyled ui-steps">
-                        <li class="media">
-                            <div class="circle-icon mr-4">1</div>
-                            <div class="media-body">
-                                <h5>Create an Account</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
-                            </div>
-                        </li>
-                        <li class="media my-4">
-                            <div class="circle-icon mr-4">2</div>
-                            <div class="media-body">
-                                <h5>Share with friends</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem eveniet</p>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="circle-icon mr-4">3</div>
-                            <div class="media-body">
-                                <h5>Enjoy your life</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium obcaecati vel exercitationem </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
                 <div class="col-md-4">
-                    <img src="{% static 'images/iphonex.png' %}" alt="iphone" class="img-fluid">
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-    <!-- // end .section -->
-
-
-    <div class="section">
-        <div class="container">
-            <div class="section-title">
-                <small>TESTIMONIALS</small>
-                <h3>What our Customers Says</h3>
-            </div>
-
-            <div class="testimonials owl-carousel">
-                <div class="testimonials-single">
-                    <img src="{% static 'images/client.png' %}" alt="client" class="client-img">
-                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
-                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
-                    <p class="text-primary">United States</p>
-                </div>
-                <div class="testimonials-single">
-                    <img src="{% static 'images/client.png' %}" alt="client" class="client-img">
-                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
-                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
-                    <p class="text-primary">United States</p>
-                </div>
-                <div class="testimonials-single">
-                    <img src="{% static 'images/client.png' %}" alt="client" class="client-img">
-                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
-                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
-                    <p class="text-primary">United States</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-    <!-- // end .section -->
-
-
-    <div class="section light-bg" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <small>GALLERY</small>
-                <h3>App Screenshots</h3>
-            </div>
-
-            <div class="img-gallery owl-carousel owl-theme">
-                <img src="{% static 'images/screen1.jpg' %}" alt="image">
-                <img src="{% static 'images/screen2.jpg' %}" alt="image">
-                <img src="{% static 'images/screen3.jpg' %}" alt="image">
-                <img src="{% static 'images/screen1.jpg' %}" alt="image">
-            </div>
-
-        </div>
-
-    </div>
-    <!-- // end .section -->
-
-
-
-
-
-    <div class="section" id="pricing">
-        <div class="container">
-            <div class="section-title">
-                <small>PRICING</small>
-                <h3>Upgrade to Pro</h3>
-            </div>
-
-            <div class="card-deck">
-                <div class="card pricing">
-                    <div class="card-head">
-                        <small class="text-primary">PERSONAL</small>
-                        <span class="price">$14<sub>/m</sub></span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <div class="list-group-item">10 Projects</div>
-                        <div class="list-group-item">5 GB Storage</div>
-                        <div class="list-group-item">Basic Support</div>
-                        <div class="list-group-item"><del>Collaboration</del></div>
-                        <div class="list-group-item"><del>Reports and analytics</del></div>
+                    <ul class="feature-left">
+                        <li>
+                            <i class="fa mbr-primary-color flaticon-upgrade size hal"></i>
+                            <div class="fl-content">
+                                <h4 class="mbr-title-font c" style="letter-spacing:2px;">Increase Conversions</h4>
+                                <p class="b">Customers are 3X more likely to interact with a website when you reach out with a proactive chat.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fa mbr-primary-color flaticon-robot hal"></i>
+                            <div class="fl-content">
+                                <h4 class="mbr-title-font c" style="letter-spacing:2px;">Fully Automated</h4>
+                                <p class="b">Qto chat needs 0% human involvement. Let your service agents focus on other important stuff.</p>
+                            </div>
+                        </li>
+                        
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary btn-lg btn-block">Choose this Plan</a>
-                    </div>
                 </div>
-                <div class="card pricing popular">
-                    <div class="card-head">
-                        <small class="text-primary">FOR TEAMS</small>
-                        <span class="price">$29<sub>/m</sub></span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <div class="list-group-item">Unlimited Projects</div>
-                        <div class="list-group-item">100 GB Storage</div>
-                        <div class="list-group-item">Priority Support</div>
-                        <div class="list-group-item">Collaboration</div>
-                        <div class="list-group-item">Reports and analytics</div>
+
+                <div class="col-md-4">
+                    <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/13.png" class="mbr-figure__img img-responsive"></figure>
+                </div>
+
+                <div class="col-md-4">
+                    <ul class="feature-right">
+                        <li>
+                            <i class="fa mbr-primary-color flaticon-smile hal"></i>
+                            <div class="fr-content">
+                                <h4 class="mbr-title-font c" style="letter-spacing:2px;">Highly Interactive</h4>
+                                <p class="b">Delight your customers by talking their native language, using our handcrafted question templates and gifs.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas mbr-primary-color flaticon-circular-alarm-clock-tool hal"></i>
+                            <div class="fr-content">
+                                <h4 class="mbr-title-font c" style="letter-spacing:2px;">Be Available 24x7</h4>
+                                <p class="b">Collect leads even when all of your sales reps are asleep or on vacation. Don't let your buisiness sleep.</p>
+                            </div>
+                        </li>
+                        
                     </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary btn-lg btn-block">Choose this Plan</a>
-                    </div>
-                </div>
-                <div class="card pricing">
-                    <div class="card-head">
-                        <small class="text-primary">ENTERPRISE</small>
-                        <span class="price">$249<sub>/m</sub></span>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <div class="list-group-item">Unlimited Projects</div>
-                        <div class="list-group-item">Unlimited Storage</div>
-                        <div class="list-group-item">Collaboration</div>
-                        <div class="list-group-item">Reports and analytics</div>
-                        <div class="list-group-item">Web hooks</div>
-                    </ul>
-                    <div class="card-body">
-                        <a href="#" class="btn btn-primary btn-lg btn-block">Choose this Plan</a>
-                    </div>
                 </div>
             </div>
-            <!-- // end .pricing -->
-
-
         </div>
-
     </div>
-    <!-- // end .section -->
+</section>
 
 
-    <div class="section pt-0">
+<section class="mbr-section--bg-adapted mbr-section--relative" id="counters3-u" data-rv-view="51" style="background-color: #fff;"> <!-- rgb(251, 60, 41) -->
+    <div id="stats2" class="bg-primary stats3" style="padding-top: 125px; padding-bottom: 135px;">
+        
         <div class="container">
-            <div class="section-title">
-                <small>FAQ</small>
-                <h3>Frequently Asked Questions</h3>
+		   <div class="section-head text-center col-md-8 col-md-offset-2 space50">
+                <h1 class="mbr-title-font" style="margin-top:30px; font-family:'montserrat' !important; font-weight:400;">Get the most out of your website</h1>
             </div>
-
-            <div class="row pt-4">
-                <div class="col-md-6">
-                    <h4 class="mb-3">Can I try before I buy?</h4>
-                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
-                    <h4 class="mb-3">What payment methods do you accept?</h4>
-                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
-
+            <div class="row" style="width: 100%">
+                <div class="col-md-3" style="display: block; border-right: 1px #eee solid;" >
+                    <div class="stats2-info"><!-- style="border-right: 1px #eee solid; -->
+                        <i class="fa flaticon-price-tag" style="color:#ccc"></i>
+                        <p class="mbr-title-font c" ><span class="count">50</span>%</p>
+                        <h2 class="mbr-text-font" style="color:#777; font-family: 'montserrat' !important;">Less spending on sales</h2>
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <h4 class="mb-3">Can I change my plan later?</h4>
-                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
-                    <h4 class="mb-3">Do you have a contract?</h4>
-                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
-
+                <div class="col-md-3" style="display: block; border-right: 1px #eee solid;">
+                    <div class="stats2-info" style="">
+                        <i class="fa flaticon-circular-alarm-clock-tool" style="color:#ccc"></i>
+                        <p class="mbr-title-font c"><span class="count">24</span> /<span class="count">7</span></p>
+                        <h2 class="mbr-text-font" style="color:#777; font-family: 'montserrat' !important;">Availability for your business</h2>
+                    </div>
+                </div>
+                <div class="col-md-3" style="display: block; border-right: 1px #eee solid;">
+                    <div class="stats2-info" style="">
+                        <i class="fa flaticon-chat" style="color:#ccc"></i>
+                        <p class="mbr-title-font c"><span class="count">3</span></p>
+                        <h2 class="mbr-text-font" style="color:#777; font-family: 'montserrat' !important;">Times more conversions</h2>
+                    </div>
+                </div>
+                <div class="col-md-3" style="display: block;">
+                    <div class="stats2-info">
+                        <i class="fa flaticon-cloud-storage-uploading-option" style="color:#ccc"></i>
+                        <p class="mbr-title-font c"><span class="count">0</span></p>
+                        <h2 class="mbr-text-font" style="color:#777; font-family: 'montserrat' !important;">Percent Effort spent on collecting data</h2>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
-    <!-- // end .section -->
+</section>
 
 
 
-    <div class="section bg-gradient">
+
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="msg-box8-2" data-rv-view="13" style="background-color: rgb(197, 220, 234);">
+    <div class="info-content" style="padding-top: 70px; padding-bottom: 0px;">
+        
         <div class="container">
-            <div class="call-to-action">
-
-                <div class="box-icon"><span class="ti-mobile gradient-fill ti-3x"></span></div>
-                <h2>Download Anywhere</h2>
-                <p class="tagline">Available for all major mobile and desktop platforms. Rapidiously visualize optimal ROI rather than enterprise-wide methods of empowerment. </p>
-                <div class="my-4">
-
-                    <a href="#" class="btn btn-light"><img src="{% static 'images/appleicon.png' %}" alt="icon"> App Store</a>
-                    <a href="#" class="btn btn-light"><img src="{% static 'images/playicon.png' %}" alt="icon"> Google play</a>
+            <div class="row center-content center-content-ipad">
+                <div class="col-md-4 col-sm-5 text-center">
+                    <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/jw-3.png" style="image-rendering: pixelated;" class="mbr-figure__img img-responsive center-content"></figure>
                 </div>
-                <p class="text-primary"><small><i>*Works on iOS 10.0.5+, Android Kitkat and above. </i></small></p>
+                <div class="col-md-8 col-sm-5">
+                    <h3 class="mbr-title-font">Qtochat</h3>
+                    <p>QtoChat is very easy to configure. Sign up, build your questions and replies and deploy the JS code on your website to start converting your users into subscribers. Watch this video to learn how it works<br/>
+					   Our user are seeing a huge spike in conversions due to interactive nature of QtoChat.</p>
+                    <div class="space30"></div>
+                    <div><a href="#" class="btn mbr-title-font btn-lg btn-primary">Get started now <i class="fa fa-long-arrow-right"></i></a></div>
+                </div>
             </div>
         </div>
-
     </div>
-    <!-- // end .section -->
+</section>
 
-    <div class="light-bg py-5" id="contact">
+
+
+
+
+
+<section class="mbr-section--bg-adapted mbr-parallax-background" id="header14-e" data-rv-view="21" style="background-image: none; border-bottom:1px #eee solid;">
+    <div class="intro intro3" style="padding-top: 70px; padding-bottom: 0px;">
+        <div class="mbr-overlay" style="opacity: 1; background-color: #fff;"></div>
+        <div class="container">
+            <div class="row center-content">
+                <div class="col-md-8 col-sm-6">
+                    <h3 class="mbr-title-font" style="color:#939393; text-transform:none; ">Create Your Own AI Chat</h3>
+                    <p style="color:#444;">QtoChat's beta testers have experienced sky high conversions because of the interactive nature of OptinChat. You will get conversions that are 2x to 3x of other tools like popups. <br/><br/>
+					    
+					
+					  <br/>
+					   Show different messages on different pages. Like, If someone is in your about me page, send them to connect on Facebook! All with the same interactive chat module.</p>
+                    <div class="space30"></div>
+                     <div><a href="#" class="btn mbr-title-font btn-lg btn-primary cake pulse">Hey, Get started. <i class="fa fa-long-arrow-right"></i></a></div>
+                </div>
+
+                <div class="col-md-4 col-sm-6 no-padding">
+                    <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/jw-3.png" style="image-rendering: pixelated;" class="mbr-figure__img img-responsive center-content"></figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="msg-box24-g" data-rv-view="31" style="background-color: rgb(255, 255, 255);">
+    <div class="blog-content element" style="padding-top: 75px; padding-bottom: 65px;">
+         <div class="col-md-3"> </div>
+		 
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 text-center text-lg-left">
-                    <p class="mb-2"> <span class="ti-location-pin mr-2"></span> 1485 Pacific St, Brooklyn, NY 11216 USA</p>
-                    <div class=" d-block d-sm-inline-block">
-                        <p class="mb-2">
-                            <span class="ti-email mr-2"></span> <a class="mr-4" href="mailto:support@mobileapp.com">support@mobileapp.com</a>
-                        </p>
-                    </div>
-                    <div class="d-block d-sm-inline-block">
-                        <p class="mb-0">
-                            <span class="ti-headphone-alt mr-2"></span> <a href="tel:51836362800">518-3636-2800</a>
-                        </p>
-                    </div>
-
+                <div class="col-md-6 ">
+                        <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width" style="box-shadow: 0px 20px 150px #d6dee4;"><iframe class="mbr-embedded-video" src="static/front-end/assets/images/myfile.mp4" width="1280" height="720" frameborder="0" allowfullscreen></iframe></figure>
                 </div>
-                <div class="col-lg-6">
-                    <div class="social-icons">
-                        <a href="#"><span class="ti-facebook"></span></a>
-                        <a href="#"><span class="ti-twitter-alt"></span></a>
-                        <a href="#"><span class="ti-instagram"></span></a>
+            </div>
+        </div>
+		<div class="col-md-3"> </div>
+    </div>
+</section>
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="testimonials3-h" data-rv-view="34" style="background-color: rgb(247, 247, 247);">
+    <div class="testimonials3 testimonials testimonials-white" style="padding-top: 140px; padding-bottom: 140px;">
+        
+        <div class="container">
+            <div class="section-head text-center col-md-8 col-md-offset-2 space50">
+                <h1 class="mbr-title-font">What Do our customers say?</h1>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="quote3 testimonials3-h">
+                        <div>
+                            <p>We run an English language training institute called HelpEng. QtoChat is a game changer for us because it helps us convert 12% of visitors into email subscribers. No other optin tool has given us this much conversion. If you take email marketing seriously, then this is a must use tool for you.</p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/5.jpg" class="mbr-figure__img"></figure>
+                            <span class="author">Mark Dave - Customer - ArtDesign</span>
+                        </div>
+                        <div>
+                            <p>QtoChat helps us to solve our existing user queries digitally in no time. Also it helped us in increasing App downloads. Best AI application, Go for it. Cheers!</p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/6.jpg" class="mbr-figure__img"></figure>
+                            <span class="author">John Doe - MD @BusinessM</span>
+                        </div>
+                        <div>
+                            <p>In one word, QtoChat is AMAZING. Money is worth investing in a next level email collecting tool. In just first 5 days, I have converted 2x than my welcome pop-up and it’s going up.</p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/7.jpg" class="mbr-figure__img"></figure>
+                            <span class="author">Jackie Doe - CEO @AkeUnited</span>
+                        </div>
+                        <div>
+                            <p>I was trying to install OptinChat plugin on my WordPress blog website www.freelancingjack.com. I find its installation process so easy that anyone can just plug and play with it. I am using free version of it now. Let's see what OptinChat has to offer to users with its pro version. </p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/final-1.png" class="mbr-figure__img"></figure>
+                            <span class="author">Mark Hult - Founder @LaunchPad.</span>
+							
+                        </div>
+						<div>
+                            <p>I would like to mention that the features that OptinChat provides are awesome and is helping me making them feel much more comfortable with AI chat than any other tool. </p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/militza-maury-profile-circle-300x300.png" class="mbr-figure__img"></figure>
+                            <span class="author">Pradesh - Founder @PointBox.</span>
+							
+                        </div>
+						
+						<div>
+                            <p>I would like to mention that the features that OptinChat provides are awesome and is helping me making them feel much more comfortable with AI chat than any other tool. </p>
+                            <figure class="mbr-figure mbr-figure--adapted mbr-figure--full-width"><img src="static/front-end/assets/images/Gilmore_Circle.png" class="mbr-figure__img"></figure>
+                            <span class="author">Zuckerberg - CEO @CreateLane.</span>
+							
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
-    <!-- // end .section -->
-    <footer class="my-5 text-center">
-        <!-- Copyright removal is not prohibited! -->
-        <p class="mb-2"><small>COPYRIGHT © 2017. ALL RIGHTS RESERVED. MOBAPP TEMPLATE BY <a href="https://colorlib.com">COLORLIB</a></small></p>
+</section>
 
-        <small>
-            <a href="#" class="m-2">PRESS</a>
-            <a href="#" class="m-2">TERMS</a>
-            <a href="#" class="m-2">PRIVACY</a>
-        </small>
-    </footer>
+<section class="mbr-section--bg-adapted mbr-section--relative" id="msg-box16-q" data-rv-view="52" style="background-color: rgb(249, 250, 252);">
+    <div class="elements-content" style="padding-top: 100px; padding-bottom: 100px;">
+        
+        <div class="container">
+            <div class="col-md-12">
+                <div class="container">
+                    <div class="row">
+                        <div class="process">
+                            <div class="process-row nav nav-tabs">
+                                <div class="process-step" style="display: block; width: 33.3333%;">
+                                    <div><a class="btn mbr-title-font btn-info btn-circle lo" data-toggle="tab" href="#menu1msg-box16-q"><i class="flaticon-robot hov fa-3x" style="font-size:20px; margin-left:-20px; top: 6px; line-height: 0px;"></i></a></div>
+                                    <small class="mbr-title-font" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">Customize Your<br>ChatBot</small>
+                                </div>
+                                <div class="process-step" style="display: block; width: 33.3333%;">
+                                    <div><a class="btn mbr-title-font btn-default btn-circle lo" data-toggle="tab" href="#menu2msg-box16-q"><i class="flaticon-code  fa-3x"></i></a></div>
+                                    <small class="mbr-title-font" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">Copy Html<br>code or WOrdpress plugin</small>
+                                </div>
+                                <div class="process-step" style="display: block; width: 33.3333%;">
+                                    <div><a class="btn mbr-title-font btn-default btn-circle lo" data-toggle="tab" href="#menu3msg-box16-q"><i class=" flaticon-envelope fa-3x"></i></a></div>
+                                    <small class="mbr-title-font" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">GET INSTANT<br>NOTIFICATION</small>
+                                </div>
+                                <div class="process-step" style="display: none; width: 33.3333%;">
+                                    <div><a class="btn mbr-title-font btn-default btn-circle" data-toggle="tab" href="#menu4msg-box16-q"><i class="fa fa-cogs fa-3x"></i></a></div>
+                                    <small class="mbr-title-font">Configure<br>display</small>
+                                </div>
+                                <div class="process-step" style="display: none; width: 33.3333%;">
+                                    <div><a class="btn mbr-title-font btn-default btn-circle" data-toggle="tab" href="#menu5msg-box16-q"><i class="fa fa-check fa-3x"></i></a></div>
+                                    <small class="mbr-title-font">Save<br>result</small>
+                                </div>
+                            </div>
+                        </div>
 
-    <!-- jQuery and Bootstrap -->
-    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-    <!-- Plugins JS -->
-    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-    <!-- Custom JS -->
-    <script src="{% static 'js/script.js' %}"></script>
+                        <div class="tab-content">
+                            <div id="menu1msg-box16-q" class="tab-pane fade active in menu1">
+                                <h3 class="mbr-title-font">1. CUSTOMIZE THE CHATBOT</h3>
+                                <div class="space20"></div>
+                                <p>Use QtoChat Simple drag and drop tool to add relevant questions and customize the look and feel of your bot. <br/><br/> <a href="#" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">See detailed instructions</a></p>
+                            </div>
+                            <div id="menu2msg-box16-q" class="tab-pane fade">
+                                <h3 class="mbr-title-font">2. HTML CODE / PLUGIN USAGE</h3>
+                                <div class="space20"></div>
+                                <p>Get the HTML code from our webssite or the or QtoChat Wordpress plugin from <a href="#">wordpress.org/qtochat</a> and add it to your website. <br/><br/> <a href="#" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">See detailed instructions</a></p>
+                            </div>
+                            <div id="menu3msg-box16-q" class="tab-pane fade">
+                                <h3 class="mbr-title-font">3. GET QUICK NOTIFICATION</h3>
+                                <div class="space20"></div>
+                                <p>Woohoo! Get instant notifications via email, Qtochat dashboard and Zapier / API callbacks.<br/><br/> <a href="#" style="font-family: Montserrat !important; color: #3e396b; font-weight: 300; font-size: 1.2em;">See detailed instructions</a></p>
+                            </div>
+                            <div id="menu4msg-box16-q" class="tab-pane fade">
+                                <h3 class="mbr-title-font">Configure Display</h3>
+                                <div class="space20"></div>
+                                <p>Nam sed mollis nisi. Praesent laoreet imperdiet est eget viverra. Aliquam ultrices euismod pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed pellentesque nibh eros, sed semper metus interdum nec. Aliquam erat volutpat. Morbi ut lectus venenatis, rutrum nunc ut, consectetur purus. Praesent ultrices sapien quam, non elementum metus sagittis id. Quisque rutrum, ex sed ultrices congue, ante nulla varius ipsum, id malesuada lorem justo eget sem. Aliquam erat volutpat. Curabitur a libero sem. Donec pulvinar aliquet dui, non varius ipsum ultricies sed. Praesent molestie arcu arcu, eu fermentum justo malesuada ut.</p>
+                            </div>
+                            <div id="menu5msg-box16-q" class="tab-pane fade">
+                                <h3 class="mbr-title-font">Save Result</h3>
+                                <div class="space20"></div>
+                                <p>Nam sed mollis nisi. Praesent laoreet imperdiet est eget viverra. Aliquam ultrices euismod pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed pellentesque nibh eros, sed semper metus interdum nec. Aliquam erat volutpat. Morbi ut lectus venenatis, rutrum nunc ut, consectetur purus. Praesent ultrices sapien quam, non elementum metus sagittis id. Quisque rutrum, ex sed ultrices congue, ante nulla varius ipsum, id malesuada lorem justo eget sem. Aliquam erat volutpat. Curabitur a libero sem. Donec pulvinar aliquet dui, non varius ipsum ultricies sed. Praesent molestie arcu arcu, eu fermentum justo malesuada ut.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-</body>
 
-</html>
+
+
+
+
+
+
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="features7-i" data-rv-view="37" style="background-color: rgb(255, 255, 255);">
+
+    <div class="elements-content" style="padding-top: 100px; padding-bottom: 100px;">
+
+        
+
+        <div class="container">
+            <div class="section-head text-center col-md-8 col-md-offset-2 space50">
+                <h1 class="mbr-title-font">Seamlessly integrates with</h1>
+            </div>
+            <div class="row">
+                <ul class="clients text-center">
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/logo-1.jpg" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/logo-2.jpg" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/logo-3.jpg" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/logo-4.jpg" class="img-responsive center-block"></li>
+                    <li style="display: block; width: 20%;"><img src="static/front-end/assets/images/logo-6.jpg" class="img-responsive center-block"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="mbr-section--bg-adapted mbr-section--relative" id="contacts5-k" data-rv-view="20" style="background-color: #414247;">
+        
+    <div id="contact-info" style="padding-top: 100px; padding-bottom: 100px;">
+        <div class="container">
+            <div class="section-head text-center col-md-8 col-md-offset-2 space50">
+                <h1 class="mbr-title-font t">Any questions ? Reach us</h1>
+                <p class="s">Convert Website Visitors into Subscribers with an automated chat that users love!.</p>
+			  <div style="margin-top:30px;"> <a href="#" class="btn mbr-title-font btn-lg btn-primary">Click On the button to get started. <i class="fa fa-long-arrow-right"></i></a></div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="c-info">
+                       <!--  <i class="fa mbr-primary-color fa-mobile"></i> -->
+                        <h5 class="mbr-title-font t">How It Works</h5>
+                        <p class="s">(080) 123 456 7890</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="c-info">
+                       <!--  <i class="fa mbr-primary-color fa-check-square-o"></i> -->
+                        <h5 class="mbr-title-font t">Support</h5>
+                        <p class="s m" style="margin-bottom:15px"><a href="#" class="k">support@qtochat.com</a></p>
+						<p class="s m" style="margin-bottom:15px"><a href="#" class="k">Knowledge Base</a></p>
+						<p class="s m" style="margin-bottom:5px"><a href="#" class="k">Contact us</a></p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="c-info">
+                        <!-- <i class="fa mbr-primary-color fa-map-marker"></i> -->
+                        <h5 class="mbr-title-font t">Pricing</h5>
+                        <p>24, Wallstreet, NY 20001</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="c-info">
+                        <!-- <i class="fa mbr-primary-color fa-envelope"></i> -->
+                        <h5 class="mbr-title-font t">Features</h5>
+                        <p>support@website.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="mbr-section mbr-section--relative mbr-section--fixed-size" id="social-buttons2-l" data-rv-view="23" style="background-color: #2a2b2f;">
+    
+
+    <div class="mbr-section__container container">
+        <div class="mbr-header mbr-header--inline row" style="padding-top: 40.8px; padding-bottom: 40.8px;">
+            <div class="col-sm-5">
+                <h5 class="mbr-header__text mbr-title-font t" style="font-size:15px;">FOLLOW QTOCHAT ON:</h5>
+				<div class="mbr-social-icons mbr-social-icons--style-1" style="margin-top:10px;"><a class="mbr-social-icons__icon socicon-bg-twitter" title="Twitter" target="_blank" href="https://twitter.com/Qtochat"><i class="socicon socicon-twitter"></i></a> 
+			<a class="mbr-social-icons__icon socicon-bg-facebook" title="Facebook" target="_blank" href="https://www.facebook.com/pages/Qtochat/1616226671953247"><i class="socicon socicon-facebook"></i></a> 
+			<a class="mbr-social-icons__icon socicon-bg-googleplus" title="Google+" target="_blank" href="https://plus.google.com/u/0/+Qtochat/posts"><i class="socicon socicon-googleplus"></i></a> 
+			 
+			<a class="mbr-social-icons__icon socicon-bg-instagram" title="Instagram" target="_blank" href="https://instagram.com/Qtochat/"><i class="socicon socicon-instagram"></i></a>  
+			<a class="mbr-social-icons__icon socicon-bg-github" title="GitHub" target="_blank" href="https://github.com/Qtochat"><i class="socicon socicon-github"></i> </a>
+			 
+			<a class="mbr-social-icons__icon socicon-bg-linkedin" title="LinkedIn" target="_blank" href="https://www.linkedin.com/in/Qtochat"><i class="socicon socicon-linkedin"></i></a> </div>
+       
+            </div>
+            <div class="mbr-social-icons mbr-social-icons--style-1 col-sm-7" style="float:right; padding-top: 40.8px; padding-bottom: 40.8px;" > 
+			
+                   <div class="wrap">
+                        <ul style="display:flex; list-style:none; color:#fff; font-family:'Radnika-Regular'; float:right;  padding-left: 14px; padding-right: 14px;">
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k">The Company</a> <span class="" style="margin-left:7px">/</span></li>
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="#" class="k">Terms Of Service <span class=" " style="margin-left:7px">/</span></a></li>
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k">Privacy Policy<span class="" style="margin-left:7px">/</span></a></li>
+							<li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k"> Why QtoChat?<span class="" style="margin-left:0px"></span></a></li>
+                        </ul> 
+
+                        <ul style="display:flex; list-style:none; color:#fff; font-family:'Radnika-Regular'; margin-top:10px; float:right;  padding-left: 14px; padding-right: 14px;">
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k">Chatbot for Travel</a> <span class="" style="margin-left:7px">/</span></li>
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="#" class="k">Chatbot for Education <span class=" " style="margin-left:7px">/</span></a></li>
+                            <li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k">Helpcenter<span class="" style="margin-left:7px">/</span></a></li>
+							<li style="padding-left: 14px; padding-right: 14px;"><a href="" class="k"> FAQ<span class="" style="margin-left:0px"></span></a></li>
+                        </ul>  						
+
+					</div>
+			 
+			 </div>
+			</div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+
+ 
