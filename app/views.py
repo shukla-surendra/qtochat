@@ -219,3 +219,10 @@ def Widget_customization(request):
         # print(uform.widget_background)
         return redirect('myadmin')
 
+def login(request):
+
+    return render(request, "app/login.html")
+
+def createaccount(request):
+    return render(request, "app/createaccount.html")
+

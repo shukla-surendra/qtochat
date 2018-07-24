@@ -1,0 +1,94 @@
+
+{% load static %}
+		<title>{{title}}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Site Description Here">
+		<link href="{% static 'admin/admin-css/bootstrap.css' %} " rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/socicon.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/lightbox.min.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/iconsmind.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/jquery.steps.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/jquery.minicolors.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/theme.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/admin-css/custom.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/fonts/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/flaticon/font/flaticon.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="{% static 'admin/flaticon/font/style.css' %}" rel="stylesheet" type="text/css" media="all" />
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lato:200,300,400,400i,500,600,700%7CMerriweather:300,300i" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Arizonia" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+{% block content %}
+
+        
+        
+            
+            
+        <div class="main-container">
+            <section class="height-100 imagebg text-center" data-overlay="4">
+                <div class="background-image-holder">
+                    <img alt="background" src="static/admin/img/inner-6.jpg" />
+                </div>
+                <div class="container pos-vertical-center">
+                    <div class="row">
+                        <div class="col-sm-7 col-md-5">
+                            <h2>Login to continue</h2>
+                            <p class="lead">
+                                Welcome back, sign in with your existing Stack account credentials
+                            </p>
+                            <form>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <input type="text" placeholder="Username" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <input type="password" placeholder="Password" />
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <button class="btn btn--primary type--uppercase" type="submit">Login</button>
+                                    </div>
+                                </div>
+                                <!--end of row-->
+                            </form>
+                            <span class="type--fine-print block">Dont have an account yet?
+                                <a href="{% url 'createaccount' %}">Create account</a>
+                            </span>
+                            <span class="type--fine-print block">Forgot your username or password?
+                                <a href="page-accounts-recover.html">Recover account</a>
+                            </span>
+                        </div>
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </section>
+        </div>
+    {%endblock%}
+        <script src="{% static 'admin/js/jquery-3.1.1.min.js' %}"></script>
+        <script src="{% static 'admin/js/flickity.min.js' %}"></script>
+        <script src="{% static 'admin/js/parallax.js' %}"></script>
+        <script src="{% static 'admin/js/typed.min.js' %}"></script>
+        <script src="{% static 'admin/js/isotope.min.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.steps.min.js' %}"></script>
+        <script src="{% static 'admin/js/countdown.min.js' %}"></script>
+        <script src="{% static 'admin/js/twitterfetcher.min.js' %}"></script>
+        <script src="{% static 'admin/js/spectragram.min.js' %}"></script>
+        <script src="{% static 'admin/js/smooth-scroll.min.js' %}"></script>
+        <script src="{% static 'admin/js/scripts.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.minicolors.min.js' %}"></script>
+        <script src="{% static 'admin/js/timezones.full.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.payform.min.js' %}" charset="utf-8"></script>
+        <script src="{% static 'admin/js/script.js' %}"></script>
+        <script src="{% static 'admin/js/stats.js' %}"></script>
+        <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+        <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+        <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+        <script src="{% static 'admin/js/chart.js' %}"></script>
+        <script src="{% static 'admin/js/custom.js' %}"></script>
