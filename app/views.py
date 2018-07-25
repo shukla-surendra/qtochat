@@ -226,3 +226,6 @@ def login(request):
 def createaccount(request):
     return render(request, "app/createaccount.html")
 
+def recover(request):
+    return render(request, "app/recover.html")
+
