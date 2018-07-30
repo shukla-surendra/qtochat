@@ -495,3 +495,36 @@ a {
 	clear: both;
 	width: 100%;
 }
+.active
+{
+	
+}
+
+.tabs{
+
+}
+
+.imagebg{
+background: #4a90e2;
+
+	
+}
+#upname
+#uppassword
+#upwebsite
+#upemail{
+	border:solid red 10px;
+	border-radius: 10px;
+}
+.round{
+	border-radius: 5px !important;
+}
+
+.type--uppercase{
+	background: rgb(247, 22, 108);
+	border-color: rgb(247, 22, 108);
+}
+.type--uppercase:hover{
+	background: rgb(247, 22, 108);
+	border-color: rgb(247, 22, 108);
+}

@@ -361,9 +361,10 @@ $.extend( $.validator, {
 
 	messages: {
 		required: "This field is required.",
+		password:"password is required",
 		remote: "Please fix this field.",
 		email: "Please enter a valid email address.",
-		url: "Please enter a valid URL.",
+		url: "Please enter a valid URL of the form: http://yourwebsite.com",
 		date: "Please enter a valid date.",
 		dateISO: "Please enter a valid date (ISO).",
 		number: "Please enter a valid number.",
@@ -1155,7 +1156,8 @@ $.extend( $.validator, {
 		dateISO: { dateISO: true },
 		number: { number: true },
 		digits: { digits: true },
-		creditcard: { creditcard: true }
+		creditcard: { creditcard: true },
+		password: { password: true }
 	},
 
 	addClassRules: function( className, rules ) {

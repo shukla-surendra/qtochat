@@ -7,7 +7,7 @@ $("#loginForm").validate({
     }
   },
   messages: {
-    password: "Please enter the password",
+    password: "Please provide your password",
     email: {
       required: "Please provide your email to login",
       email: "Your email address must be in the format of name@domain.com"
@@ -18,19 +18,24 @@ $("#loginForm").validate({
 
 $("#signupForm").validate({
   rules: {
-    name: "required",
     password: "required",
+    name: "required",
+    url: "required",
     email: {
       required: true,
       email: true
     }
+    
   },
   messages: {
+    password: "Please enter your password",
     name: "Please Provide your name",
-    password: "Please enter the password",
+    url: "Please enter a valid website in the form: http://www.yourwebsite.com",
     email: {
       required: "Please provide your email to signup",
       email: "Your email address must be in the format of name@domain.com"
-    }
+    } 
+
   }
 })
+

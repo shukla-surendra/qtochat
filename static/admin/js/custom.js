@@ -42,3 +42,15 @@ $('#customize-button').click(function(e){
     }
     e.preventDefault(); 
 });
+
+// form validation
+
+$('form').validate({
+    submit: {
+        settings: {
+            display: 'block',
+            allErrors: true
+            trigger: 'mousedown'
+        }
+    }
+});

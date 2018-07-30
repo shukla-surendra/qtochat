@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('signup', views.signup, name="signup"),
     path('signin', views.signin, name="signin"),
-    path('login', views.login, name='login'),
+    path('login', views.signin, name='login'),
     path('createaccount', views.createaccount, name='createaccount'),
     path('recover', views.recover, name="recover"),
     path('client_dev_test', views.client_dev_test, name="client_dev_test"),

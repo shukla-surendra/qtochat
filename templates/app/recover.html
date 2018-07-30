@@ -23,7 +23,6 @@
 <link href="https://fonts.googleapis.com/css?family=Arizonia" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
-
 {% block content %}
 
 
@@ -31,24 +30,31 @@
     
     
 <div class="main-container">
+    
     <section class="height-100 imagebg text-center" data-overlay="4">
-        <div class="background-image-holder">
-            <img alt="background" src="static/admin/img/inner-6.jpg" />
-        </div>
+        
+
         <div class="container pos-vertical-center">
+
+
+
+            
             <div class="row">
                 <div class="col-sm-7 col-md-5">
                     <h2>Recover your account</h2>
                     <p class="lead">
-                        Please, enter your email let's help you recover your account
+                        Please, enter the email used to register on this website let's send you a link to update your password
                     </p>
-                    <form>
+                    <form action="" method="post" id="loginForm">
+
+                            {% csrf_token %}
                         <div class="row">
-                            <div class="col-sm-12">
-                                <input type="text" placeholder="Email" />
+                            <div class="col-sm-6">
+                                <input type="text" class="round" name="email" placeholder="Email" />
                             </div>
-                            <div class="col-sm-12">
-                                <button class="btn btn--primary type--uppercase" type="submit">Reset Password</button>
+                        
+                            <div class="col-sm-6">
+                                <button class="btn btn--primary type--uppercase" type="submit">Recover</button>
                             </div>
                         </div>
                         <!--end of row-->
@@ -56,8 +62,8 @@
                     <span class="type--fine-print block">Dont have an account yet?
                         <a href="{% url 'createaccount' %}">Create account</a>
                     </span>
-                    <span class="type--fine-print block">
-                        <a href="{% url 'login' %}">Reset Password</a>
+                    <span class="type--fine-print block">Forgot your username or password?
+                        <a href="{% url 'recover' %}">Recover account</a>
                     </span>
                 </div>
             </div>
@@ -68,6 +74,8 @@
 </div>
 {%endblock%}
 <script src="{% static 'admin/js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
+<script src="{% static 'js/validation.js' %}"></script>
 <script src="{% static 'admin/js/flickity.min.js' %}"></script>
 <script src="{% static 'admin/js/parallax.js' %}"></script>
 <script src="{% static 'admin/js/typed.min.js' %}"></script>
@@ -80,7 +88,7 @@
 <script src="{% static 'admin/js/scripts.js' %}"></script>
 <script src="{% static 'admin/js/jquery.minicolors.min.js' %}"></script>
 <script src="{% static 'admin/js/timezones.full.js' %}"></script>
-<script src="{% static 'admin/js/jquery.payform.min.js' %}" charset="utf-8"></script>
+<script src="{% static 'js/validation.js' %}"></script>
 <script src="{% static 'admin/js/script.js' %}"></script>
 <script src="{% static 'admin/js/stats.js' %}"></script>
 <script src="https://www.amcharts.com/lib/3/pie.js"></script>

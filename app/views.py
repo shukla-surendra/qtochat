@@ -26,14 +26,14 @@ def signup(request):
             site.save()
             campaign = Campaign(site=site)
             campaign.save()
-            return render(request, "app/signup.html", {"title": "Registered Successfully"})
+            return render(request, "app/createaccount.html", {"title": "Registered Successfully"})
         else:
             # return HttpResponse('POST method'+request.POST['name'])
             # request.session['name'] ="Session Created";
             print(request.session.get('name'))
-            return render(request, "app/signup.html", {"title": "Registration Form Error"})
+            return render(request, "app/createaccount.html", {"title": "Registration Form Error"})
     else:  
-        return render(request, "app/signup.html", {"title": "Registration Form"})
+        return render(request, "app/createaccount.html", {"title": "Registration Form"})
 
 
 def client_dev_test(request):
@@ -53,13 +53,13 @@ def signin(request):
             email
             if check_password(request.POST['password'], password):
                 request.session['id'] = id
-                return HttpResponseRedirect('/dashboard')
+                return HttpResponseRedirect('/myadmin')
             else:
-                return render(request, "app/signin.html", {"title": "Login Form Failed"})
+                return render(request, "app/login.html", {"title": "Login Form Failed"})
         except:
-            return render(request, "app/signin.html", {"title": "Login Form"})
+            return render(request, "app/login.html", {"title": "Login Form"})
     else:
-        return render(request, "app/signin.html", {"title": "Login Form"})
+        return render(request, "app/login.html", {"title": "Login Form"})
 
 
 def dashboard(request):

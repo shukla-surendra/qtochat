@@ -30,101 +30,11 @@
 		<link href="https://fonts.googleapis.com/css?family=Arizonia" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <script src="{% static 'admin/js/jquery-validation.js' %}"></script>
 
     </head>
     <body>
-            <a id="start"></a>
-            <section class="bar bar-3 bar--sm bg--secondary" style="background:rgb(244, 245, 247) !important;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="bar__module">
-                                <img alt="avatar" src="static/admin/img/speech-bubbles-outline.png" style=" height: 50px; width: 50px; " class="image--sm cave" />
-                                
-                                <!--  type--fade --> <span class="" style="color:rgb(66, 82, 110); margin-top:10px !important; line-height: 60px; font-size:30px; font-family:'NeueEinstellung-Bold'; font-weight: 700; text-transform:none; ">Qtochat</span>
-                            </div>
-                            <ul class="menu-horizontal" style="padding-left: 30px;">
-                                <li class="dropdown dropdown--absolute">
-                                    <span class="dropdown__trigger">
-                                        <a href="#" class="modal-trigger" style="font-size:14px;">default</a>
-                                    </span>
-                                    <div class="dropdown__container">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-1 dropdown__content">
-                                                    <ul class="menu-vertical text-left">
-                                                        <li>
-                                                            <a href="#">ENG</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">GER</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                <li class="dropdown dropdown--absolute" style="border-left:1px rgb(66, 82, 110) dashed; padding-left:15px;">
-                                    <span class="dropdown__trigger">
-                                        <a href="#" class="modal-trigger" style="font-size:14px;">Add Site</a>
-                                    </span>
-                                    <div class="dropdown__container">
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-md-1 dropdown__content" style="">
-                                                    <ul class="menu-vertical text-left">
-                                                        <li>
-                                                            <a href="#">ONE</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="#">MULTIPLE</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                
-                                
-                            </ul>
-                            
-                            
-                        </div>
-                        <div class="col-md-6 text-right text-left-xs text-left-sm">
-                            <div class="bar__module">
-                                <ul class="menu-horizontal " style="    top: 5px !important;">
-                                    
-                                    
-                                    <li>
-                                        <a href="#" data-notification-link="search-box">
-                                            <i class="flaticon-magnifying-glass"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#plans;hidden" style="font-family:'montserrat';">
-                                            <i class="flaticon-price-tag-1"></i> PLANS
-                                        </a>
-                                    </li>
-                                    
-                                    <li>
-                                        <div class="text-block text-center">
-                                            <a href="#" data-notification-link="side-menu">
-                                                <img alt="avatar" src="static/admin/img/joshua.jpg" style="border-radius:100%; height: 50px; width: 50px; border:2px rgba(9, 30, 66, 0.04) solid;" class="image--sm cave" />
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <!--end of row-->
-                </div>
-                <!--end of container-->
-            </section>
-            <!--end bar-->
+          
 
         {% block content %}
 
@@ -149,9 +59,10 @@
         <script src="{% static 'admin/js/scripts.js' %}"></script>
         <script src="{% static 'admin/js/jquery.minicolors.min.js' %}"></script>
         <script src="{% static 'admin/js/timezones.full.js' %}"></script>
-        <script src="{% static 'admin/js/jquery.payform.min.js' %}" charset="utf-8"></script>
+        <script src="{% static 'vendors/jquery-validation/dist/jquery.validate.min.js' %}"></script>
         <script src="{% static 'admin/js/script.js' %}"></script>
         <script src="{% static 'admin/js/stats.js' %}"></script>
+        
         <script src="https://www.amcharts.com/lib/3/pie.js"></script>
         <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
