@@ -509,13 +509,7 @@ background: #4a90e2;
 
 	
 }
-#upname
-#uppassword
-#upwebsite
-#upemail{
-	border:solid red 10px;
-	border-radius: 10px;
-}
+
 .round{
 	border-radius: 5px !important;
 }
@@ -528,3 +522,13 @@ background: #4a90e2;
 	background: rgb(247, 22, 108);
 	border-color: rgb(247, 22, 108);
 }
+.pink-background{
+	background: rgb(247, 22, 108);
+	color:white;
+}
+.pink-background:hover{
+	background: rgb(247, 22, 108);
+	color:white !important;
+	border-color:rgb(247, 22, 108) !important;
+}
+

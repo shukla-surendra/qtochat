@@ -20,3 +20,6 @@ urlpatterns = [
     path('superadmin/', admin.site.urls),
     path('', include('app.urls')),
 ]
+
+handler404 = 'fullblog.views.handler404'
+handler500 = 'fullblog.views.handler500'
