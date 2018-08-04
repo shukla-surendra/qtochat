@@ -40,7 +40,7 @@ urlpatterns = [
     path('change_site', views.change_site, name='change_site'),
     path('view_subscribers/<int:id>', views.view_subscribers, name='view_subscribers'),
     path('verify', views.verify, name='verify'),
-    path('activate', views.activate, name='activate'),
+    path('activate/<token>', views.activate, name='activate'),
     path('csv_export/<int:id>', views.csv_export, name='csv_export'),
 ]
 

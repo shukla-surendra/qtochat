@@ -24,10 +24,6 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link href="https://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css" rel="stylesheet">
 {% block content %}
-
-        
-        
-            
             
         <div class="main-container">
             <section class="height-100 imagebg text-center" data-overlay="4">
@@ -44,6 +40,7 @@
                             <p class="lead">
                                 Welcome back, sign in with your existing Stack account credentials
                             </p>
+                            <p style="color:white">{{result}}</p> 
                             <form action="" method="post" id="loginForm">
 
                                     {% csrf_token %}
@@ -60,6 +57,7 @@
                                 </div>
                                 <!--end of row-->
                             </form>
+                          
                             <span class="type--fine-print block">Dont have an account yet?
                                 <a href="{% url 'createaccount' %}">Create account</a>
                             </span>

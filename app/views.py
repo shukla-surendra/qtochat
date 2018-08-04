@@ -25,6 +25,7 @@ def home(request):
 
 
 def signup(request):
+    serverRes = {}
     if request.method == 'POST':
 
         user_token = uuid.uuid4()
@@ -45,6 +46,7 @@ def signup(request):
                 site.save()
                 campaign = Campaign(site=site)
                 campaign.save()
+                
                 # Replace sender@example.com with your "From" address. 
                 # This address must be verified.
                 SENDER = 'support@qtochat.com'  
@@ -128,33 +130,33 @@ def signup(request):
     return render(request, "app/createaccount.html", serverRes)
 
 def verify(request):
-        pass
         return render(request, 'app/verify.html')
 
 def client_dev_test(request):
-        pass
         return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
 
 
 def signin(request):
+    ''' User authentication function for login '''
+
+    #check if form has been submitted
     if request.method == 'POST':
         user_set = User.objects.filter(email=request.POST['email'])
-        for user in user_set:
-            email = user.email
-            id = user.id
-            name = user.name
-            password = user.password
-        try:
-            email
-            if check_password(request.POST['password'], password):
-                request.session['id'] = id
-                return HttpResponseRedirect('/myadmin')
-            else:
-                return render(request, "app/login.html", {"title": "Login Form Failed"})
-        except:
-            return render(request, "app/login.html", {"title": "Login Form"})
+        #check if user-entered information matches the information in the database
+        if not user_set:
+            return render(request, "app/login.html", {"result": "You entered an invalid username and password"})
+        else:
+            for user in user_set:
+                email = user.email
+                id = user.id
+                password = user.password
+                if check_password(request.POST['password'], password) and request['email']==email:
+                    request.session['id'] = id
+                    return HttpResponseRedirect('/myadmin')
+                else:
+                    return render(request, "app/login.html", {"title": "Login Form Failed"})
     else:
-        return render(request, "app/login.html", {"title": "Login Form"})
+            return render(request, "app/login.html", {"title": "Login Form"})
 
 def activate(request, token):
 
@@ -166,7 +168,7 @@ def activate(request, token):
         return render(request, 'app/activate.html', context)
     if urlToken:
         for urlpart in urlToken:
-            if urlpart.user_token==token and urlpart.user_status=='0':
+            if urlpart.user_token==token and urlpart.status=='0':
                 urlpart.user_status="1"
                 urlpart.save()
 
