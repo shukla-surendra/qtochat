@@ -7,6 +7,7 @@ from .models import widget_customization
 import json
 import csv
 import uuid
+import os
 from .models import User, Site, Campaign, Subscriber, Analytics
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
@@ -29,7 +30,7 @@ def signup(request):
     if request.method == 'POST':
 
         user_token = uuid.uuid4()
-        UserExist = User.objects.get(email=request.POST['email'])
+        UserExist = User.objects.filter(email=request.POST['email'])
         if not UserExist:
 
             user = User(name=request.POST['name'], 
@@ -138,25 +139,33 @@ def client_dev_test(request):
 
 def signin(request):
     ''' User authentication function for login '''
-
-    #check if form has been submitted
-    if request.method == 'POST':
-        user_set = User.objects.filter(email=request.POST['email'])
-        #check if user-entered information matches the information in the database
-        if not user_set:
-            return render(request, "app/login.html", {"result": "You entered an invalid username and password"})
-        else:
-            for user in user_set:
-                email = user.email
-                id = user.id
-                password = user.password
-                if check_password(request.POST['password'], password) and request['email']==email:
-                    request.session['id'] = id
-                    return HttpResponseRedirect('/myadmin')
-                else:
-                    return render(request, "app/login.html", {"title": "Login Form Failed"})
+    if "id" in request.session:
+            return HttpResponseRedirect('/myadmin')
     else:
-            return render(request, "app/login.html", {"title": "Login Form"})
+
+        #check if form has been submitted
+        if request.method == 'POST':
+            user_set = User.objects.filter(email=request.POST['email'])
+            #check if user-entered information matches the information in the database
+            if not user_set:
+                return render(request, "app/login.html", {"result": "You entered an invalid username and password"})
+            else:
+                for user in user_set:
+                    email = user.email
+                    id = user.id
+                    password = user.password
+                    if check_password(request.POST['password'], password) and request.POST['email']==email:
+                        request.session['id'] = id
+
+                        # if request.POST['remember_me']:
+                        #     request.session.set_expiry(0)
+                        #     print(request.session.get_expiry_age())
+
+                        return HttpResponseRedirect('/myadmin')
+                    else:
+                        return render(request, "app/login.html", {"title": "Login Form Failed"})
+        else:
+                return render(request, "app/login.html", {"title": "Login Form"})
 
 def activate(request, token):
 
@@ -349,5 +358,93 @@ def createaccount(request):
     return render(request, "app/createaccount.html")
 
 def recover(request):
+
+    if request.method == "POST":
+        user = User.objects.filter(email=request.POST['email'])
+        if not user:
+            context = {
+                "result": "You are not registered with us with this email address, please enter your Qtochat email address"
+            }
+            return render(request, "app/recover.html", context)
+        else:
+            # Replace sender@example.com with your "From" address. 
+                    # This address must be verified.
+                    SENDER = 'support@qtochat.com'  
+                    SENDERNAME = 'Qtochat'
+
+                    # Replace recipient@example.com with a "To" address. If your account 
+                    # is still in the sandbox, this address must be verified.
+                    RECIPIENT  = request.POST['email']
+
+                    # Replace smtp_username with your Amazon SES SMTP user name.
+                    USERNAME_SMTP = "YOUR_SES_SMTP_USERNAME"
+
+                    # Replace smtp_password with your Amazon SES SMTP password.
+                    PASSWORD_SMTP = "YOUR_SES_SMTP_PASSWORD"
+
+                    # (Optional) the name of a configuration set to use for this message.
+                    # If you comment out this line, you also need to remove or comment out
+                    # the "X-SES-CONFIGURATION-SET:" header below.
+                    #CONFIGURATION_SET = "ConfigSet"
+
+                    # If you're using Amazon SES in an AWS Region other than US West (Oregon), 
+                    # replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP  
+                    # endpoint in the appropriate region.
+                    HOST = "email-smtp.us-east-1.amazonaws.com"
+                    PORT = 587
+
+                    # The subject line of the email.
+                    SUBJECT = 'Password reset'
+                    newpassword = str(os.urandom(8))
+                    # The email body for recipients with non-HTML email clients.
+                    BODY_TEXT = (" Your new password is: "+ newpassword + "please, change your password as soon as possible")
+
+                    # The HTML body of the email.
+                    userTitle = User.objects.get(email=request.POST['email'])
+                    context = {
+                            'title': userTitle.name,
+                            'token': userTitle.user_token,
+                            'newpassword':newpassword
+                    }
+                    userTitle.password=make_password(newpassword, salt=None, hasher="bcrypt")
+                    userTitle.save()
+                    
+                    htmlT = get_template('app/reset.html').render(context)
+                    BODY_HTML = htmlT
+                    # Create message container - the correct MIME type is multipart/alternative.
+                    msg = MIMEMultipart('alternative')
+                    msg['Subject'] = SUBJECT
+                    msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
+                    msg['To'] = RECIPIENT
+                    
+                    # Comment or delete the next line if you are not using a configuration set
+                    #msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
+
+                    # Record the MIME types of both parts - text/plain and text/html.
+                    part1 = MIMEText(BODY_TEXT, 'plain')
+                    part2 = MIMEText(BODY_HTML, 'html')
+
+                    # Attach parts into message container.
+                    # According to RFC 2046, the last part of a multipart message, in this case
+                    # the HTML message, is best and preferred.
+                    msg.attach(part1)
+                    msg.attach(part2)
+
+                    # Try to send the message.
+                    try:  
+                        server = smtplib.SMTP(HOST, PORT)
+                        server.ehlo()
+                        server.starttls()
+                        #stmplib docs recommend calling ehlo() before & after starttls()
+                        server.ehlo()
+                        server.login(USERNAME_SMTP, PASSWORD_SMTP)
+                        server.sendmail(SENDER, RECIPIENT, msg.as_string())
+                        server.close()
+                    # Display an error message if something goes wrong.
+                    except Exception as e:
+                        print ("Error: ", e)
+                    else:
+                        print ("Email sent!")
+                        return render(request, "app/recover.html", {"result":"Please, check your email for your new password"})
     return render(request, "app/recover.html")
 

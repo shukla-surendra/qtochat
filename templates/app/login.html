@@ -31,9 +31,6 @@
 
                 <div class="container pos-vertical-center">
 
-
-
-                    
                     <div class="row">
                         <div class="col-sm-7 col-md-5">
                             <h2>Login to continue</h2>
@@ -41,16 +38,20 @@
                                 Welcome back, sign in with your existing Stack account credentials
                             </p>
                             <p style="color:white">{{result}}</p> 
-                            <form action="" method="post" id="loginForm">
+                            <form action="" method="post" id="loginForm" class="form">
 
                                     {% csrf_token %}
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <input type="email" class="round" name="email" placeholder="Email" />
+                                        <input type="email" class="round form-control" name="email" placeholder="Email" />
                                     </div>
                                     <div class="col-sm-12">
-                                        <input type="password" class="round" name ="password" placeholder="Password" />
+                                        <input type="password" class="round form-control" name ="password" placeholder="Password" />
                                     </div>
+                                    <div class="col-sm-1">
+                                        <input type="checkbox"  name="remember_me"/>
+                                    </div>
+                                    <span class="" style="margin:0 !important; padding:0 !important">Keep me logged in</span>
                                     <div class="col-sm-12">
                                         <button class="btn btn--primary type--uppercase" type="submit">Login</button>
                                     </div>

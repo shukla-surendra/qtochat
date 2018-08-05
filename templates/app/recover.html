@@ -49,6 +49,7 @@
 
                             {% csrf_token %}
                         <div class="row">
+                           
                             <div class="col-sm-6">
                                 <input type="email" class="round" name="email" placeholder="Email" />
                             </div>
@@ -59,12 +60,11 @@
                         </div>
                         <!--end of row-->
                     </form>
+                    <p style="color:white">{{result}}</p>
                     <span class="type--fine-print block">Dont have an account yet?
                         <a href="{% url 'createaccount' %}">Create account</a>
                     </span>
-                    <span class="type--fine-print block">Forgot your username or password?
-                        <a href="{% url 'recover' %}">Recover account</a>
-                    </span>
+                    
                 </div>
             </div>
             <!--end of row-->

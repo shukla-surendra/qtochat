@@ -9,7 +9,7 @@ $("#loginForm").validate({
   messages: {
     password: "Please provide your password",
     email: {
-      required: "Please provide your email to login",
+      required: "Please provide your email address",
       email: "Your email address must be in the format of name@domain.com"
     }
   }
