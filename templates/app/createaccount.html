@@ -34,9 +34,10 @@
             <div class="row">
                 <div class="col-sm-7 col-md-5">
                     <h2>Register</h2>
-                    <p class="lead">
+                    <p class="">
                         Register to get your own AI powered chatbot for your website
                     </p>
+                    <p style="color:white">{{response}} </p>
                     <form action="" method="post" id="signupForm">
 
                             {% csrf_token %}
@@ -72,7 +73,7 @@
                     <span class="type--fine-print block">
                             <a href="{% url 'recover' %}">Forgot your password</a>
                         </span>
-                    <p style="color:white">{{response}} </p>
+                    
                 </div>
             </div>
             <!--end of row-->

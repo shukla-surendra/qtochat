@@ -27,8 +27,8 @@ def home(request):
 
 def signup(request):
     serverRes = {}
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         user_token = uuid.uuid4()
         UserExist = User.objects.filter(email=request.POST['email'])
         if not UserExist:
@@ -125,7 +125,7 @@ def signup(request):
                 return render(request, "app/verify.html", {"title": "Registered Successfully"})
         else:
             serverRes = {
-                "response": "A user with this login credentials has already been registered, please login to continue"
+                "response": "A user with this email exist. Please, use a different email address"
             }
 
     return render(request, "app/createaccount.html", serverRes)
@@ -148,37 +148,48 @@ def signin(request):
             user_set = User.objects.filter(email=request.POST['email'])
             #check if user-entered information matches the information in the database
             if not user_set:
-                return render(request, "app/login.html", {"result": "You entered an invalid username and password"})
+                return render(request, "app/login.html", {"result": "Your are not a registered user, please, register to log in"})
             else:
                 for user in user_set:
                     email = user.email
                     id = user.id
                     password = user.password
+                    
                     if check_password(request.POST['password'], password) and request.POST['email']==email:
-                        request.session['id'] = id
+                        if user.status==0:
+                            return render(request, "app/login.html", {"result": "Your account is not activated, yet. Please, check your email for activation link"})
+                        else:
 
-                        # if request.POST['remember_me']:
-                        #     request.session.set_expiry(0)
-                        #     print(request.session.get_expiry_age())
+                            request.session['id'] = id
 
-                        return HttpResponseRedirect('/myadmin')
+                            # if request.POST['remember_me']:
+                            #     request.session.set_expiry(0)
+                            #     print(request.session.get_expiry_age())
+                            print("logged in")
+                            return HttpResponseRedirect('/myadmin')
                     else:
-                        return render(request, "app/login.html", {"title": "Login Form Failed"})
+                        context = {
+                            "result": "Invalid username and password combination"
+                        }
+                        return render(request, "app/login.html", context)
         else:
                 return render(request, "app/login.html", {"title": "Login Form"})
+    return render(request, "app/login.html", {"title": "Login Form"})
+
+
 
 def activate(request, token):
 
     urlToken = User.objects.filter(user_token=token)
     if not urlToken:
         context = {
-            'result': "Sorry, you don't have an accouint with us, please, register. Thank you"
+            'result': "Sorry, you don't have an account with us, please, register. Thank you"
         }
         return render(request, 'app/activate.html', context)
     if urlToken:
         for urlpart in urlToken:
-            if urlpart.user_token==token and urlpart.status=='0':
-                urlpart.user_status="1"
+            if urlpart.user_token==token and urlpart.status==0:
+                urlpart.status="1"
                 urlpart.save()
 
                 context = {
