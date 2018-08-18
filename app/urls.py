@@ -34,6 +34,7 @@ urlpatterns = [
     path('client_dev_test', views.client_dev_test, name="client_dev_test"),
     path('create_subscriber', views.create_subscriber , name="create_subscriber"),
     path('dashboard', views.dashboard, name="dashboard"),
+    path('admin-sidebar', views.myadmin, name="admin-sidebar"),
     path('logout', views.logout, name="logout"),
     path('notify', views.notify, name="notify"),
     path('add_site', views.add_site, name="add_site"),

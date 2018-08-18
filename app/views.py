@@ -22,7 +22,7 @@ from email.mime.text import MIMEText
 
 
 def home(request):
-    return render(request, "app/index.html", {"title": "Home Page"})
+    return render(request, "app/frontend/index.html", {"title": "Home Page"})
 
 
 def signup(request):
@@ -128,10 +128,10 @@ def signup(request):
                 "response": "A user with this email exist. Please, use a different email address"
             }
 
-    return render(request, "app/createaccount.html", serverRes)
+    return render(request, "app/frontend/register.html", serverRes)
 
 def verify(request):
-        return render(request, 'app/verify.html')
+        return render(request, 'app/frontend/verify.html')
 
 def client_dev_test(request):
         return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
@@ -148,7 +148,7 @@ def signin(request):
             user_set = User.objects.filter(email=request.POST['email'])
             #check if user-entered information matches the information in the database
             if not user_set:
-                return render(request, "app/login.html", {"result": "Your are not a registered user, please, register to log in"})
+                return render(request, "app/frontend/login.html", {"result": "Your are not a registered user, please, register to log in"})
             else:
                 for user in user_set:
                     email = user.email
@@ -157,7 +157,7 @@ def signin(request):
                     
                     if check_password(request.POST['password'], password) and request.POST['email']==email:
                         if user.status==0:
-                            return render(request, "app/login.html", {"result": "Your account is not activated, yet. Please, check your email for activation link"})
+                            return render(request, "app/frontend/login.html", {"result": "Your account is not activated, yet. Please, check your email for activation link"})
                         else:
 
                             request.session['id'] = id
@@ -171,10 +171,10 @@ def signin(request):
                         context = {
                             "result": "Invalid username and password combination"
                         }
-                        return render(request, "app/login.html", context)
+                        return render(request, "app/frontend/login.html", context)
         else:
-                return render(request, "app/login.html", {"title": "Login Form"})
-    return render(request, "app/login.html", {"title": "Login Form"})
+                return render(request, "app/frontend/login.html", {"title": "Login Form"})
+    return render(request, "app/frontend/login.html", {"title": "Login Form"})
 
 
 
@@ -183,9 +183,9 @@ def activate(request, token):
     urlToken = User.objects.filter(user_token=token)
     if not urlToken:
         context = {
-            'result': "Sorry, you don't have an account with us, please, register. Thank you"
+            'resultFailed': "Sorry, you don't have an account with us.\n Please, register. Thank you"
         }
-        return render(request, 'app/activate.html', context)
+        return render(request, 'app/frontend/activate.html', context)
     if urlToken:
         for urlpart in urlToken:
             if urlpart.user_token==token and urlpart.status==0:
@@ -193,31 +193,33 @@ def activate(request, token):
                 urlpart.save()
 
                 context = {
-                    "result": "Your account has been activated"
+                    "resultSuccess": "Your account is fully activated. \n Please, log in"
                 }
-                return render(request, 'app/activate.html', context)
+                return render(request, 'app/frontend/activate.html', context)
             else:
                 context = {
                     "result": "Your account has been activated already, please log in"
                 }
-                return render(request, 'app/activate.html', context) 
+                return render(request, 'app/frontend/activate.html', context) 
         
-    return render(request, 'app/activate.html')
+    return render(request, 'app/frontend/activate.html')
 
 def dashboard(request):
-    if "id" not in request.session:
-        return HttpResponseRedirect('/signin')
-    else:
-        user = User.objects.get(id=request.session['id'])
-        sites = Site.objects.filter(user=user)
-        if request.session.get("site_id", None) is not None:
-             site = Site.objects.get(id=request.session['site_id'])
-        else:
-            site = Site.objects.get(user=user, site_type="default")
-            request.session['site_id'] = site.id
-        campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
-        dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
-        return render(request, "app/dashboard.html", dashboardContext)
+    # if "id" not in request.session:
+    #     return HttpResponseRedirect('/signin')
+    # else:
+    #     user = User.objects.get(id=request.session['id'])
+    #     sites = Site.objects.filter(user=user)
+    #     if request.session.get("site_id", None) is not None:
+    #          site = Site.objects.get(id=request.session['site_id'])
+    #     else:
+    #         site = Site.objects.get(user=user, site_type="default")
+    #         request.session['site_id'] = site.id
+    #     campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
+    #     dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
+    #     return render(request, "app/backend/dashboard.html", dashboardContext)
+    return render(request, "app/backend/dashboard.html")
+
 
 
 def logout(request):
@@ -343,7 +345,7 @@ def myadmin(request):
         "title":title
     }
 
-    return render(request, "app/myadmin.html", context)
+    return render(request, "app/backend/admin-sidebar.html", context)
 
 def Widget_customization(request):
     if request.method == 'POST':
@@ -456,6 +458,6 @@ def recover(request):
                         print ("Error: ", e)
                     else:
                         print ("Email sent!")
-                        return render(request, "app/recover.html", {"result":"Please, check your email for your new password"})
-    return render(request, "app/recover.html")
+                        return render(request, "app/frontend/recover.html", {"result":"Please, check your email for your new password"})
+    return render(request, "app/frontend/recover.html")
 
