@@ -53,6 +53,7 @@
                     <p>Qtochat allows you to generate more leads on your website on the fly through an AI-powered conversational chatbot</p>
                 
                     <form action="#" class="form form-group" method="post">
+                        {% csrf_token %}
                             <div class="cta-wrap clearfix">
                                 <input type="text" class="input-cta" value="" name="site[url]" placeholder="Enter Your website URL">
                                 <div class="btn btn-default btn-lg btn-cta"><!-- react-text: 142 --> <!-- /react-text -->

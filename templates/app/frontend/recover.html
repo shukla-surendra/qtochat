@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Qtochat | Log in</title>
+  <title>Qtochat | Recover</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -37,12 +37,16 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
+
+
     <p class="login-box-msg">If you've forgotten your password, enter your email address let's help you recover it</p>
 
-    <form action="#" method="post">
+    <form action="{% url 'recover' %}" method="post">
+      {%csrf_token%}
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input type="email" name="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <label class="label label-danger">{{result}}</label>
       </div>
       <div class="row">
         <div class="col-xs-4">
