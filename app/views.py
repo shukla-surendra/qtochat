@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.conf import settings
 from django.http import HttpResponseRedirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import UserForm, widgetCustomizationForm
@@ -19,6 +20,7 @@ import smtplib
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from mailchimp3 import MailChimp
 
 
 def home(request):
@@ -179,8 +181,14 @@ def signin(request):
                 return render(request, "app/frontend/login.html", {"title": "Login Form"})
     return render(request, "app/frontend/login.html", {"title": "Login Form"})
 
+##pricing view
+def pricing(request):
 
+    return render(request, 'app/frontend/pricing.html')
 
+def checkout(request):
+
+    return render(request,'app/frontend/checkout.html' )
 def activate(request, token):
 
     urlToken = User.objects.filter(user_token=token)
@@ -208,21 +216,20 @@ def activate(request, token):
     return render(request, 'app/frontend/activate.html')
 
 def dashboard(request):
-    # if "id" not in request.session:
-    #     return HttpResponseRedirect('/signin')
-    # else:
-    #     user = User.objects.get(id=request.session['id'])
-    #     sites = Site.objects.filter(user=user)
-    #     if request.session.get("site_id", None) is not None:
-    #          site = Site.objects.get(id=request.session['site_id'])
-    #     else:
-    #         site = Site.objects.get(user=user, site_type="default")
-    #         request.session['site_id'] = site.id
-    #     campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
-    #     dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
-    #     return render(request, "app/backend/dashboard.html", dashboardContext)
-    return render(request, "app/backend/dashboard.html")
-
+    if "id" not in request.session:
+        return HttpResponseRedirect('/signin')
+    else:
+        # user = User.objects.get(id=request.session['id'])
+        # sites = Site.objects.filter(user=user)
+        # if request.session.get("site_id", None) is not None:
+        #      site = Site.objects.get(id=request.session['site_id'])
+        # else:
+        #     site = Site.objects.get(user=user, site_type="default")
+        #     request.session['site_id'] = site.id
+        # campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
+        # dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
+        # return render(request, "app/backend/admin-sidebar.html", dashboardContext)
+        return render(request, "app/backend/admin-sidebar.html")
 
 
 def logout(request):
@@ -343,9 +350,11 @@ def myadmin(request):
     
 
     title= "Qtochat Admin Panel"
+    
 
     context = {
-        "title":title
+        "title":title,
+        
     }
 
     return render(request, "app/backend/admin-sidebar.html", context)
@@ -468,3 +477,24 @@ def recover(request):
                             return render(request, "app/frontend/recover.html", {"result":"Please, check your email for your new password"})
     return render(request, "app/frontend/recover.html")
 
+# Integrations
+def mailchimpIntegration(request):
+    client = MailChimp(mc_api=settings.MAILCHIMP_API_KEY)
+
+    client.lists.members.create(settings.MAILCHIMP_EMAIL_LIST_ID,
+        {
+            'email_address':'test@example.com',
+            'status':'subscribed',
+            'merge_fields':{
+            'FNAME':'Eze',
+            'LName':'Sunday',
+            },
+        }
+    )
+
+    if not client:
+        print("client not found")
+    else:
+        print("Subscriber added successfully")
+
+    return render(request, 'app/backend/mailchimp.html')

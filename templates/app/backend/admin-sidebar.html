@@ -131,32 +131,18 @@
                 <img src="static/backend/dist/img/eze.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Eze Sunday - Web Developer
-                  <small></small>
+                  Eze Sunday Eze
+                  <small>mailsforeze@gmail.com</small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+           
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#usersettings" data-toggle="pill" class="btn btn-default btn-flat">Update Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{% url 'logout'%}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -198,12 +184,12 @@
             </span>
           </a>
             <ul class="treeview-menu">
-              <li><a data-toggle="pill" href="#viewcampaign"><i class="fa fa-circle-o "></i> View Campaigns</a></li>
-              <li><a data-toggle="pill" href="#startnewcampaign"><i class="fa fa-circle-o"></i> Start New Campaign</a></li>
-              <li><a data-toggle="pill" href="#abtest"><i class="fa fa-circle-o"></i> A/B Test</a></li>
-              <li><a data-toggle="pill" href="#integrations"><i class="fa fa-circle-o"></i> Integrations</a></li>
-              <li><a data-toggle="pill" href="#settings"><i class="fa fa-circle-o"></i> Settings</a></li>
-              <li><a data-toggle="pill" href="#viewrecords"><i class="fa fa-circle-o"></i> View Records</a></li>
+              <li><a data-toggle="pill" href="#viewcampaign"><i class="glyphicon glyphicon-info-sign"></i> View Campaigns</a></li>
+              <li><a data-toggle="pill" href="#startnewcampaign"><i class="glyphicon glyphicon-plus"></i> Start New Campaign</a></li>
+              <li><a data-toggle="pill" href="#abtest"><i class="fa  fa-bolt"></i> A/B Test</a></li>
+              <li><a data-toggle="pill" href="#integrations"><i class="glyphicon glyphicon-resize-small"></i> Integrations</a></li>
+              <li><a data-toggle="pill" href="#settings"><i class="glyphicon glyphicon-wrench"></i> Settings</a></li>
+              <li><a data-toggle="pill" href="#viewrecords"><i class="glyphicon glyphicon-search"></i> View Records</a></li>
             </ul>
         </li>
 
@@ -215,31 +201,43 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-            <li><a data-toggle="pill" href="#jsintegration"><i class="fa fa-circle-o"></i>JS Integration</a></li>
-            <li><a data-toggle="pill" href="#wpintegrations"><i class="fa fa-circle-o"></i> WordPress Intgration</a></li>
+            <li><a data-toggle="pill" href="#jsintegration"><i class="fa fa-file-code-o"></i>JS Integration</a></li>
+            <li><a data-toggle="pill" href="#wpintegrations"><i class="fa fa-wordpress"></i> WordPress Intgration</a></li>
           </ul>
         </li>
 
-        <li>
+        <li class="treeview">
           <a data-toggle="pill" href="#analytics">
-            <i class="fa fa-th"></i> <span>Analytics</span>
+            <i class="glyphicon glyphicon-stats"></i> <span>Analytics</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
             </span>
           </a>
         </li>
-
+        <!---  affiliates tab-->
         <li class="treeview">
           <a data-toggle="pill" href="#affiliates">
-            <i class="fa fa-laptop"></i>
+            <i class="fa fa-bank"></i>
             <span>Affilliates</span>
             <span class="pull-right-container"></span>
           </a>
         </li>
         <!--- End of affiliates tab-->
+
+        <!-- Subscription tab-->
+        <li class="treeview">
+            <a data-toggle="pill" href="#subscriptionshistory">
+              <i class="fa fa-history"></i>
+              <span>Subscription History</span>
+              <span class="pull-right-container"></span>
+            </a>
+        </li>
+            <!--/ Subscription tab-->
+
+          <!-- set up tab -->
         <li class="treeview">
           <a data-toggle="pill" href="#settup">
-            <i class="fa fa-edit"></i>
+            <i class="fa  fa-gear"></i>
             <span>How to Set Up Qtochat</span>
             <span class="pull-right-container"></span>
           </a>
@@ -281,6 +279,12 @@
       <label class="label label-danger">
         Dashboard
       </label>
+      <div class="callout callout-warning hidden">
+          <h4>Warning!</h4>
+  
+          <p><b>Morris.js</b> charts are no longer maintained by its author. We would recommend using any of the other
+            charts that come with the template.</p>
+        </div>
     </section>
     
     
@@ -442,74 +446,92 @@
 
           <!-- campaigns content configuration #startnewcampaign-->
             <div id="startnewcampaign" class="tab-pane fade">              <!-- Form Element sizes -->
-              <div class="box box-success center" style="width: 70%; margin: 0 auto; border-radius:10px !important;">
+              <div class="text-center startcampaign">Start A New Campaign</div> 
+              <div class="box center" style="width: 70%; margin: 0 auto; border-radius:10px !important;">
                 <div class="box-body">
                     <form role="form">
                         <div class="box-body">
                           <div class="form-group">
                             <label for="exampleText" class="label label-warning">Campaign name:</label>
-                            <input type="text" class=" round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                            <input type="text" class=" round form-control" id="" placeholder="Campaign Name">
                             <p class="help-block">This is the name you will identify your campaign with. Only you will see this. Example: "Checkout Campaign" , if you want to run this campaign on your shopping cart checkout page.</p>
                           </div>
                           <div class="form-group"><label class="label label-warning">Top-bar name:</label>
-                            <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                            <input type="text" class="round form-control" id="" placeholder="Top bar name">
                             <p class="help-block">This is the name that appears at the top of the chatbox, this can be your name. For example, Eze Sunday, Peter Akwa or CEO, Founder, etc </p>
                           </div>
                           <div class="form-group">
                             <label for="exampleText" class="label label-warning">Intro text:</label>
-                            <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                            <input type="text" class="round form-control" id="email" placeholder="Introduction text">
                             <p class="help-block">This is the message that appears on the speech bubble as soon as the visitor visits your website. Make it compelling to encourage visitors to open the chatbox</p>
                           </div>
                           <div class="form-group">
                             <label for="exampleText" class="label label-warning">First question:</label>
-                            <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                            <input type="text" class="round form-control" id="" placeholder="Question">
                             <p class="help-block">This is the first message you send to your visitor after they open the chatbox. Which will require them to enter a yes or no reply. The goal is to make them say yes.</p>
 
                           </div>
                           <div class="form-group">
                               <label for="exampleText" class="label label-warning">Reply for No:</label>
-                              <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                              <input type="text" class="round form-control" id="" placeholder="Reply">
                               <p class="help-block">What if the visitor says no? Well, you can still ask them another question with a secon reply and again your goal is to get a yes as an answer and get them to enter their email address, and if they still say no, you can refer them to read your blog or check an important section of your website that might interest them.</p>
                             </div>
                             <div class="form-group">
                               <label for="exampleText" class="label label-warning">Email question:</label>
-                              <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                              <input type="text" class="round form-control" id="" placeholder="Question">
                               <p class="help-block">This is the question you ask to collect the visitors email address</p>
 
                             </div>
                             <div class="form-group">
                               <label for="exampleText" class="label label-warning">Name question:</label>
-                              <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                              <input type="text" class="round form-control" id="" placeholder="Question">
                               <p class="help-block">This is the question you ask to collect the visitor's name</p>
 
                             </div>
                             <div class="form-group">
                               <label for="exampleText" class="label label-warning">Phone question:</label>
-                              <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                              <input type="text" class="round form-control" id="" placeholder="Question">
                               <p class="help-block">This is the question you ask to collect visitor's phone number (optional)</p>
                             </div>
 
                             <div class="form-group">
                               <label for="exampleText" class="label label-warning">Open-ended question:</label>
-                              <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                              <input type="text" class="round form-control" id="" placeholder="Question">
                               <p class="help-block">This is the question you ask to accept textual responses (optional)</p>
                             </div>
                             <div class="form-group">
                                 <label for="exampleText" class="label label-warning">Thank you message:</label>
-                                <input type="text" class="round form-control" id="exampleInputEmail1" placeholder="Enter Campaign Name">
+                                <input type="text" class="round form-control" id="" placeholder="Thank you message">
                                 <p class="help-block">This is the message that your visitors will see after submitting their name, email address or phone numbers</p>
                               </div>
                             <div class="form-group">
-                                <button type="button" class="btn btn-primary pull-right">Add more questions</button></br>
+                                <button data-toggle="modal" id='more-questions-button'  data-target="#more-questions" type="button" class="btn btn-primary pull-right">Add more questions</button></br>
                             </div>
+
+                            <!--  More Questions-->
+                            <div class="modal fade" id="more-questions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                              <div class="modal-dialog">
+                              <div class="loginmodal-container">
+                                <h1>Add a Custom Question</h1><br>
+                                <form class="form-group" action="{% url 'signup'  %}" method="POST">
+                                  {%csrf_token%}
+                                <input class="form-control" id="more-question-input" type="text" name="more-question-input" placeholder="Question">
+                                <input class="form-control" id="more-question-reply" type="text" name="more-question-reply" placeholder="Response">
+
+                                <input type="submit" name="more-question" class="btn btn-primary" value="Add question">
+                                </form>
+                              </div>
+                            </div>
+                            </div>
+                           <!--/  More Questions-->
                             <div class="form-group">
                                 <label for="exampleText" class="label label-warning">Enter the URL you want to host this chatbox:</label>
-                                <input type="url" class="round form-control" >
+                                <input type="url" class="round form-control" placeholder="URL. e.g http://www.yourdomain.com">
                             </div>
                           <div class="form-group">
-                            <label for="exampleInputFile" class="label label-warning">Chatbox Avatar</label>
+                            <label for="File" class="label label-warning">Chatbox Avatar</label>
                             <div> <img src="static/backend/dist/img/avatar.png" width="50px" style="padding: 5px;" alt=""></div>
-                            <input type="file" id="exampleInputFile">
+                            <input type="file" id="File">
                             <p class="help-block">This is the image that will show at the top of your chatbox and the chat bubble</p>
                           </div>
                         </div>
@@ -620,15 +642,22 @@
                 <label  class="label label-warning">View Records</label>
 
                 <div style="padding: 10px;" class="form-group">
-                    <label>Date range:</label>
-    
-                    <div class="input-group">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
+                  
+                    <div class="form-group">
+                        <div class="input-group date text-center">
+                          <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                            <span>
+                              <i class="fa fa-calendar"></i> Select a date range
+                            </span>
+                            <i class="fa fa-caret-down"></i>
+                          </button>
+                        </div>
                       </div>
-                      <input type="text" class="form-control pull-right datepicker" id="reservation">
-                    </div>
-                    <!-- /.input group -->
+                      <!-- /.form group -->
+        
+                  <div class="form-group">
+                    <button class="btn btn-danger"><i class="glyphicon glyphicon-search"></i> Search</button>
+                  </div>
                 </div>
                   <!-- /.form group -->
                 
@@ -788,8 +817,8 @@
 
             
               <div class="row">
-                <p>Setting up Qtochat is very easy. You can follow the video tutorial below to help you get used to it and install it right away.</p>
-                  <div class="vwrapper">
+                <div class="jumbotron text-center jheader">Setting up Qtochat is very easy. You can follow the video tutorial below to help you get used to it and install it right away</div> 
+                <div class="vwrapper">
                       <video width="100%" controls="" src="static/backend/dist/video/video.mp4" autoplay loop></video>
                   </div>    
               </div>
@@ -799,7 +828,107 @@
           </div>
           <!-- End of setup tab-->
 
+          <!-- user settings tab-->
+
+          <div class="tab-pane" id="usersettings">
+          <div class="jumbotron text-center jheader"> Update your profile information</div>
+
+            <form id="update-form" class="form-horizontal" action="{% url 'admin-sidebar' %}#usersettings">
+              
+              <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">First Name</label>
+
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputName" placeholder="Name">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputName" class="col-sm-2 control-label">Last Name</label>
+
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="inputName" placeholder="Name">
+                  <label class="label label-danger" id="inputStatus"></label>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="inputExperience" class="col-sm-2 control-label">Old Password</label>
+                <div class="col-sm-10">
+                  <input class="form-control" id="old-password" placeholder="Old Password" />
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="new-password" class="col-sm-2 control-label">Password</label>
+  
+                  <div class="col-sm-10">
+                    <input class="form-control" id="new-password" placeholder="Password" />
+                  </div>
+                </div>
+              
+
+              <div class="form-group">
+                  <label for="inputName" class="col-sm-2 control-label"></label>
+  
+                  <div class="col-sm-10">
+                      <img class="img img-circle" width="50px" src="static/backend/dist/img/avatar.png" >
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label"></label>
+    
+                    <div class="col-sm-10">
+                        <input type="file" class="" id="userpicture-upload">
+                        
+                      </div>
+                  </div>
+              
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-danger" id="update">Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <!-- /user settings page -->
+
+        <!---Subscription history  -->
+        <div id="subscriptionshistory" class="round box tab-pane fade in">
+            <p class="box-title">Subscriptions</p>
+            <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tr>
+                    <th>ID</th>
+                    <th>Subscription Date</th>
+                    <th>Payment Method</th>
+                    <th>Subscription Type</th>
+                    <th>Subscription Amount</th>
+                  </tr>
+                  <tr>
+                    <td>#1843434</td>
+                    <td>11-7-2014</td>
+                    <td>Paypal</td>
+                    <td>Standard</td>
+                    <td>$20</td>
+                  </tr>
+                
+                </table>
+              </div>
+          </div>
+        <!-- Subscription history tab-->
+
+      <!--  All dashboard content must be in side this div-->
     </div>
+
+
+    
       <!--------------------------
         | Dashboard content ends here|
         -------------------------->
@@ -814,7 +943,7 @@
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      Anything you want
+      Marketing should be interesting...
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2017 <a href="#">Qtochat</a>.</strong> All rights reserved.

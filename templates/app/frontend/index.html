@@ -1,566 +1,365 @@
-{% extends "app/frontend/base.html" %}
+{% extends 'app/frontend/base.html' %}
 
-{% block content %}
-
-    <div class="preloader">
-        <div class="sk-folding-cube">
-            <div class="sk-cube1 sk-cube"></div>
-            <div class="sk-cube2 sk-cube"></div>
-            <div class="sk-cube4 sk-cube"></div>
-            <div class="sk-cube3 sk-cube"></div>
+{%block content %}
+    <!-- navbar-->
+    <header class="header">
+      <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container"><a href="./" class="navbar-brand">Qtochat</a>
+          <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right">Menu<i class="fa fa-bars ml-2"></i></button>
+          <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                  <!-- Link-->
+                  <li class="nav-item"> <a href="index.html" class="nav-link active">HOME</a></li>
+                  <!-- Link-->
+                  <li class="nav-item"> <a href="faq.html" class="nav-link">CONTACT</a></li>
+                  <!-- Link-->
+                  <li class="nav-item"> <a href="{% url 'pricing' %}" class="nav-link">PRICING</a></li>
+                  <!-- Link-->
+                  <li class="nav-item"> <a href="{% url 'login' %}"  class="nav-link">LOGIN</a></li>
+                  
+            </ul>
+            <a href="{% url 'signup' %}"  data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Signup </a>
+          </div>
         </div>
-    </div>
-    <!--Mainmenu-area-->
-    <div class="mainmenu-area" data-spy="affix" data-offset-top="100">
-        <div class="container">
-            <!--Logo-->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#primary-menu">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand logo">
-                    <img width="100px" src="static/front-end/images/logo.png" alt="">
-                </a>
-            </div>
-            <!--Logo/-->
-            <nav class="collapse navbar-collapse" id="primary-menu">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#home-page">Home</a></li>
-                    <li><a href="#service-page">Features</a></li>
-                    <li><a href="#how-it-works">How it works</a></li>
-                    <li><a href="#price-page">Pricing</a></li>
-                    <li><a href="#faq-page">FAQ</a></li>
-                    <li style="background-color: orangered" class="btn"><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login'%} ">Sign in</a></li>
-                    <li><a href="#contact-page">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <!--Mainmenu-area/-->
-
-
-
-    <!--Header-area-->
-    <header class="header-area overlay full-height relative v-center" id="home-page">
-        <div class="absolute anlge-bg"></div>
-        <div class="container">
-            <div class="row v-center">
-                <div class="col-xs-12 col-md-7 header-text">
-                    <h2>Boost your conversion by 300%</h2>
-                    <p>Qtochat allows you to generate more leads on your website on the fly through an AI-powered conversational chatbot</p>
-                
-                    <form action="#" class="form form-group" method="post">
-                        {% csrf_token %}
-                            <div class="cta-wrap clearfix">
-                                <input type="url" id = "url" class="input-cta" name="site[url]" placeholder="Enter Your website URL.">
-                                <div data-toggle="modal" id='url_signup'  data-target="#signup-modal" class="btn btn-default btn-lg btn-cta"><!-- react-text: 142 --> <!-- /react-text -->
-                                    <span>Install </span><span class="cta-icon">&gt;</span>
-                                </div>
-                        </div>
-                       </form>
-                </div>
-                <div class="hidden-xs hidden-sm col-md-5 text-right">
-                  <img class="chatbubbles" width="500" src="static/front-end/images/chatbubbles.png">
-                </div>
-            </div>
-        </div>
+      </nav>
     </header>
-    <!--Header-area/-->
-
-
-<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-    	  <div class="modal-dialog">
-				<div class="loginmodal-container">
-					<h1>Create Account</h1><br>
-				  <form class="form-group" action="{% url 'signup'  %}" method="POST">
-                      {%csrf_token%}
-                    <input class="form-control" id="modal_url" type="url" name="url" placeholder="URL">
-                    <input class="form-control" id="modal_url" type="text" name="name" placeholder="Name">
-					<input class="form-control" type="email" name="email" placeholder="Email">
-					<input class="form-control" type="password" name="password" placeholder="Password">
-					<input type="submit" name="login" class="login loginmodal-submit" value="Signup">
-				  </form>
-					
-				  <div class="login-help">
-					<a href="{% url 'signin'  %}">login</a> - <a href="{% url 'recover'  %}">Forgot Password</a>
-				  </div>
-				</div>
-			</div>
-		  </div>
-
-
-    <!--Feature-area-->
-    <section class="gray-bg section-padding" id="service-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4"><h2>Why Qtochat</h2></div>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img width="100px" src="static/front-end/images/conversion.png" alt="">
-                        </div>
-                        <h4>Increased Conversion</h4>
-                        <p>Qtochat attracts your visitor's attension to the most important part of your website in a friendly conversation. And ensures it collects the customer's name and email address and automatically follows them up. Untill they are converted to customers</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="static/front-end/images/service-icon-2.png" alt="">
-                        </div>
-                        <h4>Effective result-oriented analytics</h4>
-                        <p>Qtochat follows your visitors around your website and reminds them where they left off when next they visit your website. And you can track all these data from your dashboard and follow your customers up effectively.</p>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="box">
-                        <div class="box-icon">
-                            <img src="static/front-end/images/service-icon-3.png" alt="">
-                        </div>
-                        <h4>Integration with your best marketing tools</h4>
-                        <p>Qtochat integrates with most of the marketing automation tools you use and love such as HubSpot, SalesForce, MailChimp, Getresponse, etc </p>
-                    </div>
-                </div>
-            </div>
+    <!-- Login Modal-->
+    <div id="login" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
+      <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+          </div>
+          <div class="modal-body p-4 p-lg-5">
+            <form action="#" class="login-form text-left">
+              <div class="form-group mb-4">
+                <label>Email address</label>
+                <input type="email" name="email" placeholder="name@company.com" class="form-control">
+              </div>
+              <div class="form-group mb-4">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="Min 8 characters" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
         </div>
-    </section>
-    <!--Feature-area/-->
-
-    <section class="angle-bg sky-bg section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div id="caption_slide" class="carousel slide caption-slider" data-ride="carousel">
-                        <div class="carousel-inner" role="listbox">
-                            <div class="item active row">
-                                <div class="v-center">
-                                    <div class="col-xs-12 col-md-6">
-                                        <div class="caption-title" data-animation="animated fadeInUp">
-                                            <h2>Easy to customize chatbot</h2>
-                                        </div>
-                                        <div class="caption-desc" data-animation="animated fadeInUp">
-                                            <p>Qtochat is so powerful, you can customize all chatbot design to represent your brand for all your different businesses from one dashboard</p>
-                                        </div>
-                                        <div class="caption-button" data-animation="animated fadeInUp">
-                                            <a href="#" class="button">Read more</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo one" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo two" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item row">
-                                <div class="v-center">
-                                    <div class="col-xs-12 col-md-6">
-                                        <div class="caption-title" data-animation="animated fadeInUp">
-                                            <h2>Light Weight</h2>
-                                        </div>
-                                        <div class="caption-desc" data-animation="animated fadeInUp">
-                                            <p>Qtochat is not another widget that's going to slow down your website. It's really light weight and doesn't affect your web site speed as it loads after your website must have loaded completely</p>
-                                        </div>
-                                        <div class="caption-button" data-animation="animated fadeInUp">
-                                            <a href="#" class="button">Read more</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo one" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo two" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item row">
-                                <div class="v-center">
-                                    <div class="col-xs-12 col-md-6">
-                                        <div class="caption-title" data-animation="animated fadeInUp">
-                                            <h2>Friendly and conversational</h2>
-                                        </div>
-                                        <div class="caption-desc" data-animation="animated fadeInUp">
-                                            <p> Qtochat uses a none-pushy approach to generate qualified leads from your website and allows you to maximize your marketing spend </p>
-                                        </div>
-                                        <div class="caption-button" data-animation="animated fadeInUp">
-                                            <a href="#" class="button">Read more</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo one" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo two" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item row">
-                                <div class="v-center">
-                                    <div class="col-xs-12 col-md-6">
-                                        <div class="caption-title" data-animation="animated fadeInUp">
-                                            <h2>Direct your visitors on what to do on your website</h2>
-                                        </div>
-                                        <div class="caption-desc" data-animation="animated fadeInUp">
-                                            <p>Qtochat allows you to direct your website's visitor's to take important actions on your website. </p>
-                                        </div>
-                                        <div class="caption-button" data-animation="animated fadeInUp">
-                                            <a href="#" class="button">Read more</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo one" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-md-3">
-                                        <div class="caption-photo two" data-animation="animated fadeInRight">
-                                            <img src="static/front-end/images/screen1.png" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators caption-indector">
-                            <li data-target="#caption_slide" data-slide-to="0" class="active">
-                                Easy to customize
-                            </li>
-                            <li data-target="#caption_slide" data-slide-to="1">
-                                Light Weight                            </li>
-                            <li data-target="#caption_slide" data-slide-to="2">
-                                Friendly and conversational                            </li>
-                            <li data-target="#caption_slide" data-slide-to="3">
-                                Give your visitors direction                            </li>
-                        </ol>
-                    </div>
-                </div>
+      </div>
+    </div>
+    <!-- Hero Section-->
+    <section class="hero">
+      <div class="container mb-5">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2>Boost your conversion rate by 300%</h2>            <div class="row">
+              <div class="col-lg-10">
+                 
+                <p class="lead text-muted mt-4 mb-4">Qtochat allows you to generate more leads on your website on the fly through an AI-powered conversational chatbot</p>
+              </div>
             </div>
+            <form action="#" class="subscription-form">
+              <div class="form-group">
+                <input type="url" name="url" placeholder="http://yourwebsite.com" class="form-control">
+                <button type="submit" class="btn btn-primary">INSTALL QTOCHAT</button>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-6"><img src="static/front-end/img/chatbubbles.png" alt="..." class="hero-image img-fluid d-none d-lg-block"></div>
         </div>
+      </div>
     </section>
-
-
-
-    <section class="gray-bg section-padding" id="how-it-works">
-        <div class="container">
-            
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                    <div class="page-title">
-                        <h2>How it works</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="video-cover">
-                                    <video class="round" width="100%" src="static/backend/dist/video/video.mp4" autoplay controls="" ></video>
-
-                            </div>
-                        </div>
-
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                        </div>
-                    
-                </div>
-            </div>
-               
+    <!-- Intro Section-->
+    <section>
+      <div class="container">
+        <div class="text-center">
+          <h2>How Qtochat Works</h2>
+          <p class="lead text-muted mt-2"></p>
         </div>
-    </section>
-
-
-
-
-    <section class="price-area overlay section-padding" id="price-page">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                    <div class="page-title">
-                        <h2>Pricing</h2>
-                        <p>We have a really flexible pricing fror every business, small, medium or large. Depending on your requirements</p>
-                    </div>
+        <div class="row">
+          <div class="col-lg-7 mx-auto mt-5">     
+              <div class="embed-responsive embed-responsive-16by9 video-cover">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <div class="price-table">
-                        <h3 class="text-uppercase price-title">Standard</h3>
-                        <hr>
-                        <ul class="list-unstyled">
-                            <li><strong class="amount">$ <span class="big">20</span></strong>/Month</li>
-                            <li>100 MB Disk Space</li>
-                            <li>2 Subdomains</li>
-                            <li>5 Email Accounts</li>
-                            <li>Webmail Support</li>
-                            <li>Customer Support 24/7</li>
-                        </ul>
-                        <hr>
-                        <a href="#" class="button">Sign Up</a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="price-table active">
-                        <span class="price-info"><span class="ti-crown"></span></span>
-                        <h3 class="text-uppercase price-title">Silver</h3>
-                        <hr>
-                        <ul class="list-unstyled">
-                            <li><strong class="amount">$ <span class="big">39</span></strong>/Month</li>
-                            <li>100 MB Disk Space</li>
-                            <li>2 Subdomains</li>
-                            <li>5 Email Accounts</li>
-                            <li>Webmail Support</li>
-                            <li>Customer Support 24/7</li>
-                        </ul>
-                        <hr>
-                        <a href="#" class="button">Sign Up</a>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="price-table">
-                        <h3 class="text-uppercase price-title">Gold</h3>
-                        <hr>
-                        <ul class="list-unstyled">
-                            <li><strong class="amount">$ <span class="big">59</span></strong>/Month</li>
-                            <li>100 MB Disk Space</li>
-                            <li>2 Subdomains</li>
-                            <li>5 Email Accounts</li>
-                            <li>Webmail Support</li>
-                            <li>Customer Support 24/7</li>
-                        </ul>
-                        <hr>
-                        <a href="#" class="button">Sign Up</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section id="integration-page" class="mbr-section--bg-adapted mbr-section--relative" id="features7-i" data-rv-view="37" style="background-color: rgb(255, 255, 255);">
-
-            <div class="elements-content" style="padding-top: 100px; padding-bottom: 100px;">
-        
                 
-        
-                <div class="container" >
-                    
-                            <div class="row text-center">
-                                    <h3 class="mbr-title-font">Qtochat seamlessly integrates with</h3>
-                                </div>
+            </div>
+      </div>
+    </section>
+
+<!-- How it works-->
+<section class="bg-gray">
+    <div class="container">
+      <div class="text-center">
+        <h2>You can start using Qtochat within minutes</h2>
+        <div class="row">
+          <div class="col-lg-8 mx-auto">
+            <p class="lead text-muted mt-2">In fact, you can get started in 3-Steps ...</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-xs-12 process-wrap">
+              <ul class="process">
+                 <li class="process_item">
+                    <div class="process-number">
+                       <span>1</span>
+                    </div>
+                    <div class="process-body">
+                       <p>
+                          <span class=""> Add your chatbot questions and customize your bot</span>
+                       </p>
+                    </div>
+                 </li>
+                 <li class="process_item">
+                    <div class="process-number"><span>2</span>
+                    </div>
+                    <div class="process-body">
+                       <p>
+                          <!-- react-text: 273 -->Get Qtochat <!-- /react-text -->
+                          <span class="f-w-400">HTML code or the WordPress plugin for your website</span>
+                          <!-- react-text: 275 --> and add it to your website.<!-- /react-text -->
+                       </p>
+                    </div>
+                 </li>
+                 <li class="process_item">
+                    <div class="process-number"><span>3</span>
+                    </div>
+                    <div class="process-body">
+                       <p>
+                          <!-- react-text: 100 -->Great Job! <!-- /react-text -->
+                          <span class="f-w-400">Sit back and start recieving notifications for new conversions that are rolling into your CRM, MailChimp, SalesForce, GetResponse, etc...</span>
+                         
+                       </p>
+                    </div>
+                 </li>
+              </ul>
+           </div>
+
+      </div>
+     
+      </div>
+  </section>
+
+  
+
+
+
+  
+
+    <!-- Divider Section-->
+    <section class="bg-primary text-white">
+      <div class="container">
+        <div class="text-center">
+          <h2>Get Maximum Returns From Your Website</h2>
+          <div class="row">
+            <div class="col-lg-9 mx-auto">
+              <p class="lead text-white mt-2">Qtochat allows you to get the best our of your website by boosting your user experience and helping you increase your conversion rate</p>
+            </div>
+          </div><a href="#" class="btn btn-outline-light">Learn More</a>
+        </div>
+      </div>
+    </section>
+    <!-- Integrations Section-->
+    <section>
+      <div class="container">
+        <div class="text-center">
+          <h2>What's in for you</h2>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <p class="lead text-muted mt-2">Why Install Qtochat On Your Website, You asked?</p>
+            </div>
+          </div>
+        </div>
+        <div class="integrations mt-5">
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/monitor.svg" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Increased Conversion Rate</h3>
+                <p class="text-small font-weight-light">Customers are more likely to interact with your website if you first reachout to them with a chat. </p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/target.svg" alt="..." class="img-fluid"></div>
             
-                        
-                    <div class="row">
-                        
-                           <div class='col-md-1'>
-                                <img src="static/front-end/images/logo-1.jpg" class="img-responsive">
-                           </div> 
-                           <div class='col-md-1'>
-                                <img src="static/front-end/images/logo-2.jpg" class="img-responsive">
-                            </div> 
-                            <div class='col-md-2'>
-                                    <img src="static/front-end/images/logo-3.jpg" class="img-responsive">
-                            </div> 
-                            <div class='col-md-2'>
-                                    <img src="static/front-end/images/logo-4.jpg" class="img-responsive">
-                            </div> 
-                            <div class='col-md-2'>
-                                    <img src="static/front-end/images/logo-6.jpg" class="img-responsive">
-                            </div> 
-                            
-                    
-                    </div>
-                </div>
+                <h3 class="h4">High-Qaulity Analytics</h3>
+                <p class="text-small font-weight-light">Qtochat monitors your user's activity on your website, reports back to you and reminds your visitors where they left next time they visit.</p>
+              </div>
             </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/chat.svg" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Maximize Returns For Your Marketing Spend</h3>
+                <p class="text-small font-weight-light">Visitor's are likely to become paying customers after an encounter with your conversational chatbot</p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/idea.svg" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Email Marketing</h3>
+                <p class="text-small font-weight-light">Qtochat does it job to effectively allow your collect emails from customers who are interested in your product</p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/coffee-cup.svg" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Direct Your Customers</h3>
+                <p class="text-small font-weight-light">Qtochat allows you to direct your website's visitor's to take important actions on your website.</p>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="box text-center">
+                <div class="icon d-flex align-items-end"><img src="static/front-end/img/pen.svg" alt="..." class="img-fluid"></div>
+                <h3 class="h4">Integrates with your best marketing tools </h3>
+                <p class="text-small font-weight-light">Qtochat integrates with a range of marketing automation tools to allow you run a seamless handsfree marketing campaign</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CLients Section-->
+    <section class="bg-gray">
+      <div class="container">
+        <div class="text-center">
+          <h2>INTEGRATIONS</h2>
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <p class="lead text-muted mt-2">Qtochat allows you to sync your marketing automated tools to your business workflow.</p>
+            </div>
+          </div>
+        </div>
+        <div class="clients mt-5 bg-white">
+          <div class="row bg-white logo-border">
+
+                  <div class="col-lg-2"><img src="static/front-end/img/logo-1.jpg" alt="" class="client-image img-fluid"></div>
+                  <div class="col-lg-2"><img src="static/front-end/img/logo-2.jpg" alt="" class="client-image img-fluid"></div>
+                  <div class="col-lg-3"><img src="static/front-end/img/logo-3.jpg" alt="" class="client-image img-fluid"></div>
+                  <div class="col-lg-2"><img src="static/front-end/img/logo-4.jpg" alt="" class="client-image img-fluid"></div>
+                  <div class="col-lg-2"><img src="static/front-end/img/logo-6.jpg" alt="" class="client-image img-fluid"></div>             
+               
+           </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Testimonials-->
+
+
+    <section class="bg-primary text-white">
+      <div class="container">
         
-        </section>
-
-
-
-
-    <section class="testimonial-area section-padding gray-bg overlay">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                    <div class="page-title">
-                        <h2>Client says</h2>
-                        <p>Don't take our word for it, here is what our clients say about Qtochat</p>
-                    </div>
-                </div>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              
+              <div class="carousel-inner">
+                  <div class="carousel-item active">
+                      <p>Qtochat is an amazing tool. It booste our conversions by 240%</p> 
+                    <p>Philip Daniel<em>, Graphics Designer at Microsoft</em></p>
+                  </div>
+                  <div class="carousel-item">
+                      <p>Thanks for creating Qtochat. We are converting more visitors to customers now</p> 
+                    <p>Philip Daniel<em>, Graphics Designer at Microsoft</em></p>
+                  </div>
+                  <div class="carousel-item">
+                      <p>Qtochat is an amazing tool. It booste our conversions by 240%</p> 
+                    <p>Philip Daniel<em>, Graphics Designer at Microsoft</em></p>
+                  </div>
+              </div>
+          
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <div class="testimonials">
-                        <div class="testimonial">
-                            <div class="testimonial-photo">
-                                <img class="round" width="120" src="static/front-end/images/avatar1.jpg" alt="">
-                            </div>
-                            <h3>Peter Castle</h3>
-                            <p>I was excited to use Qtochat to enhance my marketing touchpoints and boost my conversion rate and I wasn't disapointed. Thanks to the Qtochat team</p>
-                        </div>
-
-                        <div class="testimonial">
-                            <div class="testimonial-photo">
-                                <img class="round" width="120" src="static/front-end/images/avatar.png" alt="">
-                            </div>
-                            <h3>Neil Love</h3>
-                            <p>Truly, I love this tool. It's more than a chatapp. Since using it, visitors have become more engage with my website unlike before.</p>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+            
+      </div>
     </section>
 
 
-
-
-
-
-    <section class="gray-bg section-padding" id="faq-page">
-        <div class="container">
+    <!-- How it works Section-->
+    <section class="bg-gray">
+      <div class="container text-center text-lg-left">
+        <div class="row align-items-center">
+          <div class="col-lg-7">
+            <h2 class="divider-heading">Read our knowledgebase</h2>
             <div class="row">
-                <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                    <div class="page-title">
-                        <h2>Frequently Asked Questions</h2>
-                    
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                    <div class="panel-group" id="accordion">
-                        <div class="panel">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true">What is Qtochat actually?</a>
-                            </h4>
-                            <div id="collapse1" class="panel-collapse collapse">
-                                <p>Qtochat is an AI-powered chatbot that allows you to generate more customers from your website by helpiing you collect their emails conversationally and adding taking them on a ride to their journey to becoming paying customers.</p>
-                            </div>
-                        </div>
-                        <div class="panel">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Can I install qtochat on more than one website?</a>
-                            </h4>
-                            <div id="collapse2" class="panel-collapse collapse">
-                                <p>Of course, yes. You can install qtochat on as many websites as possible that you own. You just have to create a custom campaign for each site to make it unique for each site.</p>                            
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+              <div class="col-lg-10">
+                <p class="lead divider-subtitle mt-2 text-muted">Want to learn more about how to grow your business with Qtochat?</p>
+              </div>
+            </div><a href="#" class="btn btn-primary">Read our knowledgebase</a>
+          </div>
+          <div class="col-lg-5 mt-5 mt-lg-0"><img src="static/front-end/img/chatbubbles.png" alt="" class="divider-image img-fluid"></div>
         </div>
+      </div>
     </section>
-
-
-    <footer class="footer-area relative sky-bg" id="contact-page">
-        <div class="absolute footer-bg"></div>
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-3 text-center">
-                        <div class="page-title">
-                            <h2>Contact us</h2>
-                            <p>Have any challenge? Have inquiries? You can quickly contact us using the contact form below</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-md-4">
-                        <address class="side-icon-boxes">
-                            <div class="side-icon-box">
-                                <div class="side-icon">
-                                    <img src="static/front-end/images/location-arrow.png" alt="">
-                                </div>
-                                <p><strong>Address: </strong> Box 564, Disneyland <br />USA</p>
-                            </div>
-                            <div class="side-icon-box">
-                                <div class="side-icon">
-                                    <img src="static/front-end/images/phone-arrow.png" alt="">
-                                </div>
-                                <p><strong>Telephone: </strong>
-                                    <a href="callto:2349067005754">+2349067005754</a> <br />
-                                    <a href="callto:917838839719">+917838839719</a>
-                                </p>
-                            </div>
-                            <div class="side-icon-box">
-                                <div class="side-icon">
-                                    <img src="static/front-end/images/mail-arrow.png" alt="">
-                                </div>
-                                <p><strong>E-mail: </strong>
-                                    <a href="mailto:support@qtochat.com">support@qtochat.com</a> <br />
-                                    <a href="mailto:sales@qtochat.com">sales@qtochat.com</a>
-                                </p>
-                            </div>
-                        </address>
-                    </div>
-                    <div class="col-xs-12 col-md-8">
-                        <form action="process.php" id="contact-form" method="post" class="contact-form">
-                            <div class="form-double">
-                                <input type="text" id="form-name" name="form-name" placeholder="Your name" class="form-control" required="required">
-                                <input type="email" id="form-email" name="form-email" class="form-control" placeholder="E-mail address" required="required">
-                            </div>
-                            <input type="text" id="form-subject" name="form-subject" class="form-control" placeholder="Message topic">
-                            <textarea name="message" id="form-message" name="form-message" rows="5" class="form-control" placeholder="Your message" required="required"></textarea>
-                            <button type="sibmit" class="button">Submit</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+  
+    <section class="get-started">
+      <div class="container text-center">
+        <h2>Get started today</h2>
+        <div class="row">
+          <div class="col-lg-8 m-auto">
+            <p class="lead text-muted mt-2">If you can make a list or send an email, you can definitely use Qtochat.</p>
+          </div>
         </div>
-        <div class="footer-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 pull-right">
-                        <ul class="social-menu text-right x-left">
-                            <li><a href="#"><i class="ti-facebook"></i></a></li>
-                            <li><a href="#"><i class="ti-twitter"></i></a></li>
-                            <li><a href="#"><i class="ti-google"></i></a></li>
-                            <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                            <li><a href="#"><i class="ti-github"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-6">
-                        <p>Marketing should be lovely, interesting, and result-oriented</p>
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-lg-6 mx-auto">
+            <form action="#" class="subscription-form mt-5">
+              <div class="form-group">
+                <input type="url" name="url" placeholder="http://yourdomain.com" class="form-control">
+                <button type="submit" class="btn btn-primary">Get Started</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 text-center">
-                        <p>&copy;Copyright 2018 All right resurved.  Made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://qtochat.com"><img width="50px" src="static/front-end/images/logo.png"></a></p>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </section>
+    <footer class="main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 mb-5 mb-lg-0">
+            <div class="footer-logo">Qtochat</div>
+          </div>
+          <div class="col-lg-3 mb-5 mb-lg-0">
+            <ul class="list-unstyled">
+              <li> <a href="index.html" class="footer-link">Home</a></li>
+              <li> <a href="faq.html" class="footer-link">FAQ</a></li>
+              <li> <a href="contact.html" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 mb-5 mb-lg-0">
+            <ul class="list-unstyled">
+              <li> <a href="#" class="footer-link">Support</a></li>
+              <li> <a href="#" class="footer-link">Why Qtochat?</a></li>
+              <li> <a href="#" class="footer-link">Blog</a></li>
+              <li> <a href="#" class="footer-link">Pricing</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3">
+            
+            <ul class="list-unstyled">
+              <li> <a href="#" class="footer-link">Crest Avenue, United States</a></li>
+              <li> <a href="#" class="footer-link">+2349067005754</a></li>
+              <li> <a href="#" class="footer-link">support@qtochat.com</a></li>
+              <li> <a href="#" class="footer-link">Affiliates</a></li>
+            </ul>
+          </div>
         </div>
+      </div>
+      <div class="copyrights">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 text-center text-lg-left">
+              <p class="copyrights-text mb-3 mb-lg-0">&copy; All rights reserved Qtochat. </p>
+              <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+              
+            </div>
+            <div class="col-lg-6 text-center text-lg-right">
+              <ul class="list-inline social mb-0">
+                <li class="list-inline-item"><a href="#" class="social-link"><i class="fa fa-facebook"></i></a><a href="#" class="social-link"><i class="fa fa-twitter"></i></a><a href="#" class="social-link"><i class="fa fa-youtube-play"></i></a><a href="#" class="social-link"><i class="fa fa-vimeo"></i></a><a href="#" class="social-link"><i class="fa fa-pinterest"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
     </footer>
 
-
-
-
-{%endblock%}
+    {%endblock%}

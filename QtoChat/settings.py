@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
     'app',
     'rest_framework'
 ]
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
@@ -64,10 +66,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                 'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'QtoChat.wsgi.application'
 
@@ -125,12 +138,44 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'app.pipeline.save_profile',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 
 STATIC_DIRS = 'static'
+
+LOGIN_URL = 'signin'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'dashboard'
+SOCIAL_AUTH_FACEBOOK_KEY = '236591863715312'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'dce6e1e1ba4d0210f82fa2a49a4ff1d8'  # App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+  'locale': 'ru_RU',
+  'fields': 'id, name, email, age_range'
+}
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ="189282320856-l3ouufcuv26rd54fai4q8ia04j6jmr57.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET ="pgLWTS7m1dYV6JFLMRhv5EV4"
+
+MAILCHIMP_API_KEY = "YOUR_MAILCHIMP_API_KEY"
+MAILCHIMP_DATA_CENTER= "us18"
+MAILCHIMP_EMAIL_LIST_ID = "34235675b9"
 
 STATICFILES_DIRS = [
     STATIC_DIRS,

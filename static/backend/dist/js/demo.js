@@ -383,3 +383,15 @@ $(function () {
   $('#datepicker').datepicker({
     autoclose: true
   })
+
+  // form update
+    update = document.getElementById("update-form");
+    updateButton = document.getElementById("update")
+    inputStatus = document.getElementById("inputStatus")
+    inputName = document.getElementById("inputName")
+    
+  
+
+    updateButton.addEventListener('click', function(e){
+        alert("Updated successfully");
+    })

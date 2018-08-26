@@ -13,14 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, include
 from . import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('', views.home, name="home"),
-
-    #admin dashboards paths starts
+    path('oauth', include('social_django.urls', namespace='social')),  # <--
     path('myadmin', views.myadmin, name="myadmin"),
     path('customize', views.Widget_customization, name= 'customize'),
     
@@ -43,6 +42,10 @@ urlpatterns = [
     path('verify', views.verify, name='verify'),
     path('activate/<token>', views.activate, name='activate'),
     path('csv_export/<int:id>', views.csv_export, name='csv_export'),
+    path('pricing', views.pricing, name="pricing"),
+    path('checkout', views.checkout, name='checkout'),
+    #mailchimp
+    path('mailchimp', views.mailchimpIntegration, name='mailchimp')
 ]
 
 # allow us to use '.json' and '.html' at the end of the url
