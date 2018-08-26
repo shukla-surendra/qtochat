@@ -1,13 +1,13 @@
 #required module
 
-I) pip install bcrypt
-II) pip install djangorestframework
+* I) pip install bcrypt
+* II) pip install djangorestframework
 
-III) sudo apt-get install libmysqlclient-dev
+* III) sudo apt-get install libmysqlclient-dev
  or in case of mariadb
-III) sudo apt-get install libmariadbclient-dev
+* III) sudo apt-get install libmariadbclient-dev
 
-IV) pip install mysqlclient
+* IV) pip install mysqlclient
 
 
 apart from this manage separate install of mysql/mariadb or remote mysql and configuration will be as follow  in QtoChat/QtoChat/setting.py
@@ -41,5 +41,7 @@ sudo apt-get install libmysqlclient-dev
 if you are using mariadb, the drop in replacement for mysql, then run
 
 sudo apt-get install libmariadbclient-dev
+```shell
 
 pip install mysqlclient
+```
