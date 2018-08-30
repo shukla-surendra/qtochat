@@ -516,7 +516,7 @@ class MailChimpIntegration(TemplateView):
         #delete userFrom list
         pass
 
-    def addToList(self, APIkey, listId):
+    def addToList(self, APIkey, listId, Fname, LName, status="subscribed", email_address):
         client = MailChimp(APIkey)
 
         client.lists.members.create(listId,

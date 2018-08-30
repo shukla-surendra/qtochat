@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Qtochat | Checkout</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'front-end/css/responsive.css' %}">
+  <link rel="stylesheet" href="{% static 'front-end/css/checkout.css'%}" />
+
+</head>
+  <!--Mainmenu-area-->
+ <!-- /Mainmenu-->
+<body>
+  <main class="page payment-page">
+    <section class="payment-form dark">
+        <div class="block-heading" style="background: white">
+           <img style="width: 2%" src="static/front-end/images/qtochat.png" alt=""> <h2> Qtochat</h2>
+            <p>Need help? support@qtochat.com</p>
+          </div>
+      <div class="container-fluid">
+       
+        <form>
+          <div class="products">
+            <h3 class="title">Product Details</h3>
+            <div class="item">
+              <span class="price">$5/month</span>
+              <p class="item-name">Standard</p>
+              <p class="item-description"> 100 email subscribers</p>
+              <p class="item-description"> 1 authoresponder integration</p>
+              <p class="item-description"> 100 email subscribers</p>
+
+              <h3 class="title">Subscription</h3>
+              <p class="item-description"> You get 10% discount after your first month </p>
+              <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>$5/month..</option>
+                  <option value="1">$50/year</option>
+                </select>
+            </div>
+            <div class="total">Total<span class="price">$320</span></div>
+          </div>
+          <div class="card-details">
+            <h3 class="title">Credit Card Details</h3>
+            <div class="row">
+              <div class="form-group col-sm-7">
+                <label for="card-holder">Card Holder</label>
+                <input id="card-holder" type="text" class="form-control" placeholder="Card Holder" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-5">
+                <label for="">Expiration Date</label>
+                <div class="input-group expiration-date">
+                  <input type="text" class="form-control" placeholder="MM" aria-label="MM" aria-describedby="basic-addon1">
+                  <span class="date-separator">/</span>
+                  <input type="text" class="form-control" placeholder="YY" aria-label="YY" aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="form-group col-sm-8">
+                <label for="card-number">Card Number</label>
+                <input id="card-number" type="text" class="form-control" placeholder="Card Number" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-4">
+                <label for="cvc">CVC</label>
+                <input id="cvc" type="text" class="form-control" placeholder="CVC" aria-label="Card Holder" aria-describedby="basic-addon1">
+              </div>
+              <div class="form-group col-sm-12">
+                <button type="button" class="btn btn-primary btn-block">Proceed</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="{% static 'front-end/js/main.js' %}"></script>
+    <script src="{% static 'front-end/js/custom.js' %}"></script>
+</body>
+</html>
