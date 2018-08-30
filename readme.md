@@ -44,3 +44,7 @@ sudo apt-get install libmariadbclient-dev
 
 pip install mysqlclient
 ```
+
+
+pip install python-social-auth[django]
+pip install mailchimp3

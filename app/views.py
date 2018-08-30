@@ -5,10 +5,7 @@ from django.http import HttpResponseRedirect
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .forms import UserForm, widgetCustomizationForm
 from .models import widget_customization
-import json
-import csv
-import uuid
-import os
+import json, csv, uuid, os
 from .models import User, Site, Campaign, Subscriber, Analytics
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
