@@ -21,6 +21,7 @@ import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from mailchimp3 import MailChimp
+from django.views.generic import TemplateView
 
 
 def home(request):
@@ -478,23 +479,67 @@ def recover(request):
     return render(request, "app/frontend/recover.html")
 
 # Integrations
-def mailchimpIntegration(request):
-    client = MailChimp(mc_api=settings.MAILCHIMP_API_KEY)
+# def mailchimpIntegration(request):
+#     client = MailChimp(mc_api=settings.MAILCHIMP_API_KEY)
 
-    client.lists.members.create(settings.MAILCHIMP_EMAIL_LIST_ID,
-        {
-            'email_address':'test@example.com',
-            'status':'subscribed',
-            'merge_fields':{
-            'FNAME':'Eze',
-            'LName':'Sunday',
-            },
-        }
-    )
+#     client.lists.members.create(settings.MAILCHIMP_EMAIL_LIST_ID,
+#         {
+#             'email_address':'test@example.com',
+#             'status':'subscribed',
+#             'merge_fields':{
+#             'FNAME':'Eze',
+#             'LName':'Sunday',
+#             },
+#         }
+#     )
 
-    if not client:
-        print("client not found")
-    else:
-        print("Subscriber added successfully")
+#     if not client:
+#         print("client not found")
+#     else:
+#         print("Subscriber added successfully")
 
-    return render(request, 'app/backend/mailchimp.html')
+#     return render(request, 'app/backend/mailchimp.html')
+
+class MailChimpIntegration(TemplateView):
+
+    template_name = 'app/backend/mailchimp.html'
+    def integrate(self, APIkey, listId ):
+        #collect username, site, and APIKey, with list
+        #save them in the database
+        #query the database for mailchimp informtion of a speocific user
+        pass
+    def checkIntegration(self, APIkey, listId):
+        #quey the database to check if user has their mailchimo integated
+        ''' if user is integrated then show user data else show integrate button'''
+        pass
+    def deleteFromList(self, APIkey, listId):
+        #delete userFrom list
+        pass
+
+    def addToList(self, APIkey, listId):
+        client = MailChimp(APIkey)
+
+        client.lists.members.create(listId,
+            {
+                'email_address':'test@example.com',
+                'status':'subscribed',
+                'merge_fields':{
+                'FNAME':'Eze',
+                'LName':'Sunday',
+                },
+            }
+        )
+
+    def viewList(self, APIkey, listId):
+        client = MailChimp(APIkey)
+        p = client.lists.members.all(listId, count=100, offset=0, fields="members.email_address")
+        t = client.lists.members.all(listId, get_all=True)
+        a = client.lists.members.all(listId, get_all=True, fields="members.email_address,members.id")
+        for i, j in enumerate(a):
+            print(j[i])
+            
+
+
+user = MailChimpIntegration()
+#user.addToList()
+user.viewList(settings.MAILCHIMP_API_KEY, settings.MAILCHIMP_EMAIL_LIST_ID) 
