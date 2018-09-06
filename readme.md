@@ -8,6 +8,8 @@
 * III) sudo apt-get install libmariadbclient-dev
 
 * IV) pip install mysqlclient
+* v) pip install mailchimp3
+
 
 
 Apart from this manage separate install of mysql/mariadb or remote mysql and configuration will be as follow  in QtoChat/QtoChat/setting.py

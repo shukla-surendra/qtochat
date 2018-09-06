@@ -10,6 +10,7 @@ from .models import User, Site, Campaign, Subscriber, Analytics
 from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer
+from django.template import Template, Context
 
 ##Email modules
 from django.template.loader import get_template
@@ -17,8 +18,10 @@ import smtplib
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 from mailchimp3 import MailChimp
-from django.views.generic import TemplateView
+from .mailchimp import integrate
+from .models import Mailchimp as mModel
 
 
 def home(request):
@@ -346,14 +349,24 @@ def csv_export(request, id=0):
 
 def myadmin(request):
     
-
-    title= "Qtochat Admin Panel"
-    
+    #checkIntegration  
+    user = User.objects.get(id=request.session['id'])
+    checkMailchimp = mModel.objects.filter(user=user)
 
     context = {
-        "title":title,
-        
+     "title":"Admin Dashboard",
+        }
+    add = Template("<button class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>")
+    cancel = Template("<button class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>")
+    if not checkMailchimp:
+        btn=add.render(Context())
+    else:
+        btn=cancel.render(Context())
+    context = {
+        "btn":btn
     }
+
+    #title= "Qtochat Admin Panel"
 
     return render(request, "app/backend/admin-sidebar.html", context)
 
@@ -497,46 +510,62 @@ def recover(request):
 
 #     return render(request, 'app/backend/mailchimp.html')
 
-class MailChimpIntegration(TemplateView):
-
-    template_name = 'app/backend/mailchimp.html'
-    def integrate(self, APIkey, listId ):
-        #collect username, site, and APIKey, with list
-        #save them in the database
-        #query the database for mailchimp informtion of a speocific user
-        pass
-    def checkIntegration(self, APIkey, listId):
-        #quey the database to check if user has their mailchimo integated
-        ''' if user is integrated then show user data else show integrate button'''
-        pass
-    def deleteFromList(self, APIkey, listId):
-        #delete userFrom list
-        pass
-
-    def addToList(self, APIkey, listId, Fname, LName, status="subscribed", email_address):
-        client = MailChimp(APIkey)
-
-        client.lists.members.create(listId,
-            {
-                'email_address':'test@example.com',
-                'status':'subscribed',
-                'merge_fields':{
-                'FNAME':'Eze',
-                'LName':'Sunday',
-                },
-            }
-        )
-
-    def viewList(self, APIkey, listId):
-        client = MailChimp(APIkey)
-        p = client.lists.members.all(listId, count=100, offset=0, fields="members.email_address")
-        t = client.lists.members.all(listId, get_all=True)
-        a = client.lists.members.all(listId, get_all=True, fields="members.email_address,members.id")
-        for i, j in enumerate(a):
-            print(j[i])
+    #mailchimp integration functions
+    
             
 
+def mailchimpIntegrate(request):
+    if request.method == "POST":
+        apiKEY = request.POST['apiKEY']
+        listID = request.POST['listID']
+        integrate(request, apiKEY, listID)
+        context = {
+            'hello':'hello'
+        }
+        return HttpResponse('')
 
-user = MailChimpIntegration()
-#user.addToList()
-user.viewList(settings.MAILCHIMP_API_KEY, settings.MAILCHIMP_EMAIL_LIST_ID) 
+        
+
+
+
+def deleteFromList(request, APIkey, listId):
+    #delete userFrom list
+    pass
+
+def addToList(request, APIkey, listId, Fname, LName,  email_address, status="subscribed"):
+    client = MailChimp(APIkey)
+
+    client.lists.members.create(listId,
+        {
+            'email_address':email_address,
+            'status':status,
+            'merge_fields':{
+            'FNAME':Fname,
+            'LName':LName,
+            },
+        }
+    )
+    #print(self.request)
+    #collect username, site, and APIKey, with list
+    #save them in the database
+    #query the database for mailchimp informtion of a speocific user
+def viewList(request, APIkey):
+    client = MailChimp(APIkey)
+    client = client.lists.all(get_all=True, fields="lists.name,lists.id")
+    for listName in client['lists']:
+        print(listName['name'])
+        
+    print("You have {0} list(s) in your mailchimp account".format(client['total_items']))
+
+def emailOfSubScribers(request, APIkey, listId):
+    client = MailChimp(APIkey)
+    client = client.lists.members.all(listId, count=100, offset=0, fields="members.email_address")
+    for dic, e in enumerate(client.values()):
+        for a, b in enumerate(e):
+            for c, d in enumerate(b.values()):
+                print(d)
+        
+                #print(client) 
+
+            
+

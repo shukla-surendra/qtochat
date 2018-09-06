@@ -94,6 +94,9 @@ class ActiveUsers(models.Model):
     url = models.CharField(max_length=100)
     ip = models.CharField(max_length=50, default='0.0.0.0')
 
-    
+class Mailchimp(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    apikey = models.CharField(max_length=200)
+    listId = models.CharField(max_length=50)
 
 

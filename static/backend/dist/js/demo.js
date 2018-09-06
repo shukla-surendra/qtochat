@@ -395,3 +395,23 @@ $(function () {
     updateButton.addEventListener('click', function(e){
         alert("Updated successfully");
     })
+
+    $(document).on('submit', '#integrate', function(e){
+        e.preventDefault();
+        $.ajax({
+            type:'POST',
+            url:'mailchimp',
+            data:{
+                apiKEY:$('#apiKEY').val(),
+                listID:$('#listID').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+            },
+            success: function(){
+                hello = document.getElementById('eze');
+                hello.setAttribute("disabled","");
+                hello.innerHTML="Successfull";
+               
+            }
+        })
+        e.preventDefault();
+    });

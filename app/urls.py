@@ -45,7 +45,7 @@ urlpatterns = [
     path('pricing', views.pricing, name="pricing"),
     path('checkout', views.checkout, name='checkout'),
     #mailchimp   
-    path('mailchimp', views.MailChimpIntegration.as_view(), name='mailchimp')
+    path('mailchimp', views.mailchimpIntegrate, name='mailchimp')
 ]
 
 # allow us to use '.json' and '.html' at the end of the url
