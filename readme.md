@@ -1,4 +1,8 @@
 #required module
+Virtualenv
+
+Install virtualenv, create and activate your virtual environment
+then run:
 
 ```python
 pip install -r requirements.txt
