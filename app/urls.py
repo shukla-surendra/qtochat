@@ -19,35 +19,41 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     path('', views.home, name="home"),
-    path('oauth', include('social_django.urls', namespace='social')),  # <--
     path('myadmin', views.myadmin, name="myadmin"),
-    path('customize', views.Widget_customization, name= 'customize'),
-    
+    path('customize', views.Widget_customization, name='customize'),
     #admin dashboards paths ends
-
     path('signup', views.signup, name="signup"),
     path('signin', views.signin, name="signin"),
     path('login', views.signin, name='login'),
     path('createaccount', views.createaccount, name='createaccount'),
     path('recover', views.recover, name="recover"),
     path('client_dev_test', views.client_dev_test, name="client_dev_test"),
-    path('create_subscriber', views.create_subscriber , name="create_subscriber"),
+    path(
+        'create_subscriber', views.create_subscriber,
+        name="create_subscriber"),
     path('dashboard', views.dashboard, name="dashboard"),
     path('admin-sidebar', views.myadmin, name="admin-sidebar"),
     path('logout', views.logout, name="logout"),
     path('notify', views.notify, name="notify"),
     path('add_site', views.add_site, name="add_site"),
     path('change_site', views.change_site, name='change_site'),
-    path('view_subscribers/<int:id>', views.view_subscribers, name='view_subscribers'),
+    path(
+        'view_subscribers/<int:id>',
+        views.view_subscribers,
+        name='view_subscribers'),
     path('verify', views.verify, name='verify'),
     path('activate/<token>', views.activate, name='activate'),
     path('csv_export/<int:id>', views.csv_export, name='csv_export'),
     path('pricing', views.pricing, name="pricing"),
     path('checkout', views.checkout, name='checkout'),
-    #mailchimp   
-    path('mailchimp', views.mailchimpIntegrate, name='mailchimp')
+    #mailchimp
+    path('mailchimp', views.mailchimpIntegrate, name='mailchimp'),
+    path(
+        'mailchimpSearchList',
+        views.mailChimpSubscribers,
+        name='mailchimpSearchList'),
+    path('deletecampaign/<id>', views.deletecampaign, name='deletecampaign'),
 ]
 
 # allow us to use '.json' and '.html' at the end of the url
 #urlpatterns = format_suffix_patterns(urlpatterns, allowed=['json', 'html'])
-

@@ -14,13 +14,13 @@ from django.template import Template, Context
 
 ##Email modules
 from django.template.loader import get_template
-import smtplib  
+import smtplib
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
 from mailchimp3 import MailChimp
-from .mailchimp import integrate
+from .mailchimp import integrate, showList
 from .models import Mailchimp as mModel
 
 
@@ -33,17 +33,21 @@ def signup(request):
 
     if request.method == 'POST':
         user_token = uuid.uuid4()
-        if request.POST['email'] =="" or request.POST['url']=="" or request.POST['name']=="" or request.POST=="":
-            return render(request, 'app/frontend/register.html', {"response":"Please, fill out all fields."})
+        if request.POST['email'] == "" or request.POST[
+                'url'] == "" or request.POST[
+                    'name'] == "" or request.POST == "":
+            return render(request, 'app/frontend/register.html',
+                          {"response": "Please, fill out all fields."})
         else:
             UserExist = User.objects.filter(email=request.POST['email'])
             if not UserExist:
 
-                user = User(name=request.POST['name'], 
-                email=request.POST['email'], 
-                password=make_password(request.POST['password'], 
-                salt=None, hasher="bcrypt"),
-                user_token=user_token)
+                user = User(
+                    name=request.POST['name'],
+                    email=request.POST['email'],
+                    password=make_password(
+                        request.POST['password'], salt=None, hasher="bcrypt"),
+                    user_token=user_token)
                 user.save()
 
                 if not user:
@@ -53,15 +57,15 @@ def signup(request):
                     site.save()
                     campaign = Campaign(site=site)
                     campaign.save()
-                    
-                    # Replace sender@example.com with your "From" address. 
+
+                    # Replace sender@example.com with your "From" address.
                     # This address must be verified.
-                    SENDER = 'support@qtochat.com'  
+                    SENDER = 'support@qtochat.com'
                     SENDERNAME = 'Qtochat'
 
-                    # Replace recipient@example.com with a "To" address. If your account 
+                    # Replace recipient@example.com with a "To" address. If your account
                     # is still in the sandbox, this address must be verified.
-                    RECIPIENT  = request.POST['email']
+                    RECIPIENT = request.POST['email']
 
                     # Replace smtp_username with your Amazon SES SMTP user name.
                     USERNAME_SMTP = "YOUR_SES_SMTP_USERNAME"
@@ -74,8 +78,8 @@ def signup(request):
                     # the "X-SES-CONFIGURATION-SET:" header below.
                     #CONFIGURATION_SET = "ConfigSet"
 
-                    # If you're using Amazon SES in an AWS Region other than US West (Oregon), 
-                    # replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP  
+                    # If you're using Amazon SES in an AWS Region other than US West (Oregon),
+                    # replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
                     # endpoint in the appropriate region.
                     HOST = "email-smtp.us-east-1.amazonaws.com"
                     PORT = 587
@@ -84,22 +88,25 @@ def signup(request):
                     SUBJECT = 'Welcome to the Qtochat Family'
 
                     # The email body for recipients with non-HTML email clients.
-                    BODY_TEXT = (" Thank you for registering on Qtochat, to complete your registration, please visit this URL: https://qtochat.com/token")
+                    BODY_TEXT = (
+                        " Thank you for registering on Qtochat, to complete your registration, please visit this URL: https://qtochat.com/token"
+                    )
 
                     # The HTML body of the email.
                     userTitle = User.objects.get(email=request.POST['email'])
                     context = {
-                            'title': userTitle.name,
-                            'token': userTitle.user_token
+                        'title': userTitle.name,
+                        'token': userTitle.user_token
                     }
-                    htmlT = get_template('app/backend/welcome_email.html').render(context)
+                    htmlT = get_template(
+                        'app/backend/welcome_email.html').render(context)
                     BODY_HTML = htmlT
                     # Create message container - the correct MIME type is multipart/alternative.
                     msg = MIMEMultipart('alternative')
                     msg['Subject'] = SUBJECT
                     msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
                     msg['To'] = RECIPIENT
-                    
+
                     # Comment or delete the next line if you are not using a configuration set
                     #msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
 
@@ -114,7 +121,7 @@ def signup(request):
                     msg.attach(part2)
 
                     # Try to send the message.
-                    try:  
+                    try:
                         server = smtplib.SMTP(HOST, PORT)
                         server.ehlo()
                         server.starttls()
@@ -125,28 +132,35 @@ def signup(request):
                         server.close()
                     # Display an error message if something goes wrong.
                     except Exception as e:
-                        print ("Error: ", e)
+                        print("Error: ", e)
                     else:
-                        print ("Email sent!")
-                    return render(request, "app/frontend/verify.html", {"title": "Registered Successfully"})
+                        print("Email sent!")
+                    return render(request, "app/frontend/verify.html",
+                                  {"title": "Registered Successfully"})
             else:
                 serverRes = {
-                    "response": "A user with this email exist. Please, use a different email address"
+                    "response":
+                    "A user with this email exist. Please, use a different email address"
                 }
 
     return render(request, "app/frontend/register.html", serverRes)
 
+
 def verify(request):
-        return render(request, 'app/frontend/verify.html')
+    return render(request, 'app/frontend/verify.html')
+
 
 def client_dev_test(request):
-        return render(request, "app/client_dev_test.html", {"title": "JavaScript Code Client Test", 'BASE_URL':request.get_host})
+    return render(request, "app/client_dev_test.html", {
+        "title": "JavaScript Code Client Test",
+        'BASE_URL': request.get_host
+    })
 
 
 def signin(request):
     ''' User authentication function for login '''
     if "id" in request.session:
-            return HttpResponseRedirect('/myadmin')
+        return HttpResponseRedirect('/myadmin')
     else:
 
         #check if form has been submitted
@@ -154,16 +168,26 @@ def signin(request):
             user_set = User.objects.filter(email=request.POST['email'])
             #check if user-entered information matches the information in the database
             if not user_set:
-                return render(request, "app/frontend/login.html", {"result": "Your are not a registered user, please, register to log in"})
+                return render(
+                    request, "app/frontend/login.html", {
+                        "result":
+                        "Your are not registered. Please, register."
+                    })
             else:
                 for user in user_set:
                     email = user.email
                     id = user.id
                     password = user.password
-                    
-                    if check_password(request.POST['password'], password) and request.POST['email']==email:
-                        if user.status==0:
-                            return render(request, "app/frontend/login.html", {"result": "Your account is not activated, yet. Please, check your email for activation link"})
+
+                    if check_password(
+                            request.POST['password'],
+                            password) and request.POST['email'] == email:
+                        if user.status == 0:
+                            return render(
+                                request, "app/frontend/login.html", {
+                                    "result":
+                                    "Your account is not activated, yet. Please, check your email for activation link"
+                                })
                         else:
 
                             request.session['id'] = id
@@ -175,46 +199,57 @@ def signin(request):
                             return HttpResponseRedirect('/myadmin')
                     else:
                         context = {
-                            "result": "Invalid username and password combination"
+                            "result":
+                            "Invalid username and password combination"
                         }
-                        return render(request, "app/frontend/login.html", context)
+                        return render(request, "app/frontend/login.html",
+                                      context)
         else:
-                return render(request, "app/frontend/login.html", {"title": "Login Form"})
+            return render(request, "app/frontend/login.html",
+                          {"title": "Login Form"})
     return render(request, "app/frontend/login.html", {"title": "Login Form"})
+
 
 ##pricing view
 def pricing(request):
 
     return render(request, 'app/frontend/pricing.html')
 
+
 def checkout(request):
 
-    return render(request,'app/frontend/checkout.html' )
+    return render(request, 'app/frontend/checkout.html')
+
+
 def activate(request, token):
 
     urlToken = User.objects.filter(user_token=token)
     if not urlToken:
         context = {
-            'resultFailed': "Sorry, you don't have an account with us.\n Please, register. Thank you"
+            'resultFailed':
+            "Sorry, you don't have an account with us.\n Please, register. Thank you"
         }
         return render(request, 'app/frontend/activate.html', context)
     if urlToken:
         for urlpart in urlToken:
-            if urlpart.user_token==token and urlpart.status==0:
-                urlpart.status="1"
+            if urlpart.user_token == token and urlpart.status == 0:
+                urlpart.status = "1"
                 urlpart.save()
 
                 context = {
-                    "resultSuccess": "Your account is fully activated. \n Please, log in"
+                    "resultSuccess":
+                    "Your account is fully activated. \n Please, log in"
                 }
                 return render(request, 'app/frontend/activate.html', context)
             else:
                 context = {
-                    "result": "Your account has been activated already, please log in"
+                    "result":
+                    "Your account has been activated already, please log in"
                 }
-                return render(request, 'app/frontend/activate.html', context) 
-        
+                return render(request, 'app/frontend/activate.html', context)
+
     return render(request, 'app/frontend/activate.html')
+
 
 def dashboard(request):
     if "id" not in request.session:
@@ -230,6 +265,7 @@ def dashboard(request):
         # campaigns = Campaign.objects.filter(site=site)  # getting campaigns of current site
         # dashboardContext = {"title": "Welcome to Dashboard", "site": site, "sites": sites, "campaigns": campaigns}
         # return render(request, "app/backend/admin-sidebar.html", dashboardContext)
+
         return render(request, "app/backend/admin-sidebar.html")
 
 
@@ -250,16 +286,22 @@ def create_subscriber(request, format=None):
             site = Site.objects.get(site_token=site_token)
             # need to get active campaign id from options instead of status
             campaign = Campaign.objects.get(id=1)
-            campaign.subscriber_count += 1;
-            percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.unique_hits)
+            campaign.subscriber_count += 1
+            percent = "{0:.2f}".format(
+                (campaign.subscriber_count * 100) / campaign.unique_hits)
             campaign.conversion = percent
-            campaign.save();
-            subscriber = Subscriber(name=name, email=email, phone=phone, site=site, campaign=campaign)
+            campaign.save()
+            subscriber = Subscriber(
+                name=name,
+                email=email,
+                phone=phone,
+                site=site,
+                campaign=campaign)
             subscriber.save()
             data = '{"success":"true","message":"Record Created"}'
             return HttpResponse(data, content_type='application/json')
         except:
-            print("Incorrect Data");
+            print("Incorrect Data")
             return HttpResponse("Error occurred")
 
 
@@ -267,7 +309,7 @@ def create_subscriber(request, format=None):
 @renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
 def notify(request, format=None):
     uuid = request.GET['quuid']
-    ip = request.META['REMOTE_ADDR'];
+    ip = request.META['REMOTE_ADDR']
     url = request.META['HTTP_REFERER']
     site_token = request.POST['token']
     unique_hits = 0
@@ -275,7 +317,8 @@ def notify(request, format=None):
         analytic = Analytics.objects.get(cookie=uuid)
         unique_hits = 0
     except Analytics.DoesNotExist:
-        analytics = Analytics(cookie=uuid, ip=ip, url=url, site_token=site_token)
+        analytics = Analytics(
+            cookie=uuid, ip=ip, url=url, site_token=site_token)
         analytics.save()
         unique_hits = 1
 
@@ -283,13 +326,14 @@ def notify(request, format=None):
     if campaign.hits_count == 0:
         percent = 0
     else:
-        percent = "{0:.2f}".format((campaign.subscriber_count * 100) / campaign.unique_hits)
+        percent = "{0:.2f}".format(
+            (campaign.subscriber_count * 100) / campaign.unique_hits)
     campaign.conversion = percent
-    campaign.hits_count += 1;
+    campaign.hits_count += 1
     campaign.unique_hits += unique_hits
-    campaign.save();
+    campaign.save()
     question_set = '[{"question": "Hey Provide your email Address", "answer_type": "input", "validation_type": "email"}, { "question": "Hey Provide your Name", "answer_type": "input", "validation_type": "name"}]'
-    data = '{"success":"true", "message": "Record Created", "question": '+question_set+'}'
+    data = '{"success":"true", "message": "Record Created", "question": ' + question_set + '}'
     return HttpResponse(data, content_type='application/json')
 
 
@@ -301,7 +345,11 @@ def add_site(request, format=None):
         if site_name != "":
             if "id" in request.session:
                 user = User.objects.get(id=request.session['id'])
-                site = Site(user=user,site_name=site_name, site_type="new", site_url="/")
+                site = Site(
+                    user=user,
+                    site_name=site_name,
+                    site_type="new",
+                    site_url="/")
                 site.save()
                 campaign = Campaign(site=site)
                 campaign.save()
@@ -311,7 +359,8 @@ def add_site(request, format=None):
         else:
             return HttpResponse("Site name must not be blank")
     else:
-        return HttpResponse(request.method+" Not supported")
+        return HttpResponse(request.method + " Not supported")
+
 
 @api_view(['POST'])
 @renderer_classes((JSONRenderer, TemplateHTMLRenderer, BrowsableAPIRenderer))
@@ -325,7 +374,7 @@ def change_site(request, format=None):
 
 
 def view_subscribers(request, id=0):
-    campaign = Campaign.objects.get(id=id);
+    campaign = Campaign.objects.get(id=id)
     subscriber_list = Subscriber.objects.filter(campaign=campaign)
     paginator = Paginator(subscriber_list, 10)  # Show 25 contacts per page
 
@@ -347,33 +396,56 @@ def csv_export(request, id=0):
         writer.writerow([subscriber.name, subscriber.email, subscriber.phone])
     return response
 
+
 def myadmin(request):
-    
-    #checkIntegration  
-    user = User.objects.get(id=request.session['id'])
-    checkMailchimp = mModel.objects.filter(user=user)
+    context = {}
+    #check if user is loggined in
 
-    context = {
-     "title":"Admin Dashboard",
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
         }
-    add = Template("<button class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>")
-    cancel = Template("<button class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>")
-    if not checkMailchimp:
-        btn=add.render(Context())
+
+        return render(request, "app/backend/admin-sidebar.html", context)
     else:
-        btn=cancel.render(Context())
-    context = {
-        "btn":btn
-    }
+        return redirect(signin)
 
-    #title= "Qtochat Admin Panel"
 
-    return render(request, "app/backend/admin-sidebar.html", context)
+def deletecampaign(request, id):
+        print(request.POST['CampaignID'])
+        campaign = Campaign.objects.filter(id=id)
+        campaign.delete()
+
 
 def Widget_customization(request):
     if request.method == 'POST':
         #from model.py
-        
+
         customize = widget_customization.objects.get(id=2)
         customize.widget_color = "#999"
         customize.save(['#999'])
@@ -386,107 +458,121 @@ def Widget_customization(request):
         # print(uform.widget_background)
         return redirect('myadmin')
 
+
 def login(request):
 
     return render(request, "app/login.html")
 
+
 def createaccount(request):
     return render(request, "app/createaccount.html")
+
 
 def recover(request):
 
     if request.method == "POST":
-        if request.POST['email']=="":
-            context = {"result":"email field can't be empty, please enter a valid email address"}
+        if request.POST['email'] == "":
+            context = {
+                "result":
+                "email field can't be empty, please enter a valid email address"
+            }
             return render(request, "app/frontend/recover.html", context)
         else:
             user = User.objects.filter(email=request.POST['email'])
             if not user:
                 context = {
-                    "result": "You are not registered with us with this email address, please enter your Qtochat email address"
+                    "result":
+                    "You are not registered with us with this email address, please enter your Qtochat email address"
                 }
                 return render(request, "app/frontend/recover.html", context)
             else:
-                # Replace sender@example.com with your "From" address. 
-                        # This address must be verified.
-                        SENDER = 'support@qtochat.com'  
-                        SENDERNAME = 'Qtochat'
+                # Replace sender@example.com with your "From" address.
+                # This address must be verified.
+                SENDER = 'support@qtochat.com'
+                SENDERNAME = 'Qtochat'
 
-                        # Replace recipient@example.com with a "To" address. If your account 
-                        # is still in the sandbox, this address must be verified.
-                        RECIPIENT  = request.POST['email']
+                # Replace recipient@example.com with a "To" address. If your account
+                # is still in the sandbox, this address must be verified.
+                RECIPIENT = request.POST['email']
 
-                        # Replace smtp_username with your Amazon SES SMTP user name.
-                        USERNAME_SMTP = "YOUR_SES_SMTP_USERNAME"
+                # Replace smtp_username with your Amazon SES SMTP user name.
+                USERNAME_SMTP = "YOUR_SES_SMTP_USERNAME"
 
-                        # Replace smtp_password with your Amazon SES SMTP password.
-                        PASSWORD_SMTP = "YOUR_SES_SMTP_PASSWORD"
+                # Replace smtp_password with your Amazon SES SMTP password.
+                PASSWORD_SMTP = "YOUR_SES_SMTP_PASSWORD"
 
-                        # (Optional) the name of a configuration set to use for this message.
-                        # If you comment out this line, you also need to remove or comment out
-                        # the "X-SES-CONFIGURATION-SET:" header below.
-                        #CONFIGURATION_SET = "ConfigSet"
+                # (Optional) the name of a configuration set to use for this message.
+                # If you comment out this line, you also need to remove or comment out
+                # the "X-SES-CONFIGURATION-SET:" header below.
+                #CONFIGURATION_SET = "ConfigSet"
 
-                        # If you're using Amazon SES in an AWS Region other than US West (Oregon), 
-                        # replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP  
-                        # endpoint in the appropriate region.
-                        HOST = "email-smtp.us-east-1.amazonaws.com"
-                        PORT = 587
+                # If you're using Amazon SES in an AWS Region other than US West (Oregon),
+                # replace email-smtp.us-west-2.amazonaws.com with the Amazon SES SMTP
+                # endpoint in the appropriate region.
+                HOST = "email-smtp.us-east-1.amazonaws.com"
+                PORT = 587
 
-                        # The subject line of the email.
-                        SUBJECT = 'Password reset'
-                        newpassword = str(os.urandom(8))
-                        # The email body for recipients with non-HTML email clients.
-                        BODY_TEXT = (" Your new password is: "+ newpassword + "please, change your password as soon as possible")
+                # The subject line of the email.
+                SUBJECT = 'Password reset'
+                newpassword = str(os.urandom(8))
+                # The email body for recipients with non-HTML email clients.
+                BODY_TEXT = (
+                    " Your new password is: " + newpassword +
+                    "please, change your password as soon as possible")
 
-                        # The HTML body of the email.
-                        userTitle = User.objects.get(email=request.POST['email'])
-                        context = {
-                                'title': userTitle.name,
-                                'token': userTitle.user_token,
-                                'newpassword':newpassword
-                        }
-                        userTitle.password=make_password(newpassword, salt=None, hasher="bcrypt")
-                        userTitle.save()
-                        
-                        htmlT = get_template('app/frontend/reset.html').render(context)
-                        BODY_HTML = htmlT
-                        # Create message container - the correct MIME type is multipart/alternative.
-                        msg = MIMEMultipart('alternative')
-                        msg['Subject'] = SUBJECT
-                        msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
-                        msg['To'] = RECIPIENT
-                        
-                        # Comment or delete the next line if you are not using a configuration set
-                        #msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
+                # The HTML body of the email.
+                userTitle = User.objects.get(email=request.POST['email'])
+                context = {
+                    'title': userTitle.name,
+                    'token': userTitle.user_token,
+                    'newpassword': newpassword
+                }
+                userTitle.password = make_password(
+                    newpassword, salt=None, hasher="bcrypt")
+                userTitle.save()
 
-                        # Record the MIME types of both parts - text/plain and text/html.
-                        part1 = MIMEText(BODY_TEXT, 'plain')
-                        part2 = MIMEText(BODY_HTML, 'html')
+                htmlT = get_template('app/frontend/reset.html').render(context)
+                BODY_HTML = htmlT
+                # Create message container - the correct MIME type is multipart/alternative.
+                msg = MIMEMultipart('alternative')
+                msg['Subject'] = SUBJECT
+                msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
+                msg['To'] = RECIPIENT
 
-                        # Attach parts into message container.
-                        # According to RFC 2046, the last part of a multipart message, in this case
-                        # the HTML message, is best and preferred.
-                        msg.attach(part1)
-                        msg.attach(part2)
+                # Comment or delete the next line if you are not using a configuration set
+                #msg.add_header('X-SES-CONFIGURATION-SET',CONFIGURATION_SET)
 
-                        # Try to send the message.
-                        try:  
-                            server = smtplib.SMTP(HOST, PORT)
-                            server.ehlo()
-                            server.starttls()
-                            #stmplib docs recommend calling ehlo() before & after starttls()
-                            server.ehlo()
-                            server.login(USERNAME_SMTP, PASSWORD_SMTP)
-                            server.sendmail(SENDER, RECIPIENT, msg.as_string())
-                            server.close()
-                        # Display an error message if something goes wrong.
-                        except Exception as e:
-                            print ("Error: ", e)
-                        else:
-                            print ("Email sent!")
-                            return render(request, "app/frontend/recover.html", {"result":"Please, check your email for your new password"})
+                # Record the MIME types of both parts - text/plain and text/html.
+                part1 = MIMEText(BODY_TEXT, 'plain')
+                part2 = MIMEText(BODY_HTML, 'html')
+
+                # Attach parts into message container.
+                # According to RFC 2046, the last part of a multipart message, in this case
+                # the HTML message, is best and preferred.
+                msg.attach(part1)
+                msg.attach(part2)
+
+                # Try to send the message.
+                try:
+                    server = smtplib.SMTP(HOST, PORT)
+                    server.ehlo()
+                    server.starttls()
+                    #stmplib docs recommend calling ehlo() before & after starttls()
+                    server.ehlo()
+                    server.login(USERNAME_SMTP, PASSWORD_SMTP)
+                    server.sendmail(SENDER, RECIPIENT, msg.as_string())
+                    server.close()
+                # Display an error message if something goes wrong.
+                except Exception as e:
+                    print("Error: ", e)
+                else:
+                    print("Email sent!")
+                    return render(request, "app/frontend/recover.html", {
+                        "result":
+                        "Please, check your email for your new password"
+                    })
     return render(request, "app/frontend/recover.html")
+
 
 # Integrations
 # def mailchimpIntegration(request):
@@ -510,62 +596,69 @@ def recover(request):
 
 #     return render(request, 'app/backend/mailchimp.html')
 
-    #mailchimp integration functions
-    
-            
+#mailchimp integration functions
+
 
 def mailchimpIntegrate(request):
     if request.method == "POST":
         apiKEY = request.POST['apiKEY']
         listID = request.POST['listID']
         integrate(request, apiKEY, listID)
-        context = {
-            'hello':'hello'
-        }
-        return HttpResponse('')
-
-        
-
+        context = {'hello': 'hello'}
+        return HttpResponse(content=context)
 
 
 def deleteFromList(request, APIkey, listId):
     #delete userFrom list
     pass
 
-def addToList(request, APIkey, listId, Fname, LName,  email_address, status="subscribed"):
+
+def addToList(request,
+              APIkey,
+              listId,
+              Fname,
+              LName,
+              email_address,
+              status="subscribed"):
     client = MailChimp(APIkey)
 
-    client.lists.members.create(listId,
-        {
-            'email_address':email_address,
-            'status':status,
-            'merge_fields':{
-            'FNAME':Fname,
-            'LName':LName,
+    client.lists.members.create(
+        listId, {
+            'email_address': email_address,
+            'status': status,
+            'merge_fields': {
+                'FNAME': Fname,
+                'LName': LName,
             },
-        }
-    )
+        })
+
+
     #print(self.request)
     #collect username, site, and APIKey, with list
     #save them in the database
     #query the database for mailchimp informtion of a speocific user
+def mailChimpSubscribers(request):
+    if request.method == "POST":
+        return showList(request)
+
+
 def viewList(request, APIkey):
     client = MailChimp(APIkey)
     client = client.lists.all(get_all=True, fields="lists.name,lists.id")
     for listName in client['lists']:
         print(listName['name'])
-        
-    print("You have {0} list(s) in your mailchimp account".format(client['total_items']))
+
+    print("You have {0} list(s) in your mailchimp account".format(
+        client['total_items']))
+
 
 def emailOfSubScribers(request, APIkey, listId):
     client = MailChimp(APIkey)
-    client = client.lists.members.all(listId, count=100, offset=0, fields="members.email_address")
+    client = client.lists.members.all(
+        listId, count=100, offset=0, fields="members.email_address")
     for dic, e in enumerate(client.values()):
         for a, b in enumerate(e):
             for c, d in enumerate(b.values()):
                 print(d)
-        
-                #print(client) 
 
-            
-
+                #print(client)

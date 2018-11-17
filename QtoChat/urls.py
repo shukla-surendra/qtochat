@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('app.urls')),
 ]
 
-handler404 = 'fullblog.views.handler404'
-handler500 = 'fullblog.views.handler500'
+#setting custom 404 pages
+handler404 = 'app.views.handler404'
+handler500 = 'app.views.handler500'

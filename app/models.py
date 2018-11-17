@@ -5,7 +5,7 @@ import uuid
 
 class User(models.Model):
     name = models.CharField(max_length=100)
-    email= models.EmailField(max_length=100)
+    email = models.EmailField(max_length=100)
     password = models.CharField(max_length=100)
     user_token = models.CharField(max_length=200, default=uuid.uuid4())
     status = models.PositiveIntegerField(default=0)
@@ -27,6 +27,7 @@ class Site(models.Model):
     def __str__(self):
         return '>>%s: < %s >' % (self.id, self.site_name)
 
+
 class widget_customization(models.Model):
     username = models.ForeignKey('User', on_delete=models.CASCADE)
     sitename = models.ForeignKey('Site', on_delete=models.CASCADE)
@@ -35,8 +36,9 @@ class widget_customization(models.Model):
     widget_outer_ring_color = models.CharField(max_length=100)
 
     def __str__(self):
-        return '>>%s: < %s >' % (self.id, self.sitename, self.widget_color, self.widget_background, self.widget_outer_ring_color )
-
+        return '>>%s: < %s >' % (self.id, self.sitename, self.widget_color,
+                                 self.widget_background,
+                                 self.widget_outer_ring_color)
 
 
 class Campaign(models.Model):
@@ -48,6 +50,7 @@ class Campaign(models.Model):
     conversion = models.CharField(max_length=10, default="0")
     status = models.PositiveIntegerField(default=1)
     created_at = models.DateTimeField('date created', default=timezone.now)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return '>>%s: < %s >' % (self.id, self.campaign_name)
@@ -58,7 +61,8 @@ class Subscriber(models.Model):
     email = models.EmailField(max_length=100)
     phone = models.CharField(max_length=20)
     status = models.PositiveIntegerField(default=1)
-    campaign = models.ForeignKey('Campaign', on_delete=models.CASCADE, default=0)
+    campaign = models.ForeignKey(
+        'Campaign', on_delete=models.CASCADE, default=0)
     site = models.ForeignKey('Site', on_delete=models.CASCADE, default=0)
     created_at = models.DateTimeField('date created', default=timezone.now)
 
@@ -94,9 +98,8 @@ class ActiveUsers(models.Model):
     url = models.CharField(max_length=100)
     ip = models.CharField(max_length=50, default='0.0.0.0')
 
+
 class Mailchimp(models.Model):
     user = models.ForeignKey('User', on_delete=models.CASCADE)
     apikey = models.CharField(max_length=200)
     listId = models.CharField(max_length=50)
-
-

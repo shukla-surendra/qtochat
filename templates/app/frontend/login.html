@@ -15,10 +15,9 @@
   <link rel="stylesheet" href="{% static 'backend/bower_components/Ionicons/css/ionicons.min.css' %}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{% static 'backend/dist/css/AdminLTE.min.css' %}">
-  <link rel="stylesheet" href="{% static 'backend/dist/css/custom.css' %}">
-
   <!-- iCheck -->
   <link rel="stylesheet" href="{% static 'backend/plugins/iCheck/square/blue.css' %}">
+   <link rel="stylesheet" href="{% static 'front-end/css/custom.css' %}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -30,20 +29,23 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="  background-image: url(static/front-end/img/slide2.png); background-repeat: no-repeat" >
+<body class="hold-transition login-page" >
+<div class="blogin">
 <div class="login-box">
   <div class="login-logo">
     <a href="https://qtochat.com"><b><img width="100px" src="static/front-end/img/logo.png" alt=""></b></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-      <label  style=" color: orangered; width: 100%; margin: 0 auto;">
+      <label  style=" color: orangered; padding:10px; width: 100%; margin: 0 auto;">
 
-          {% block content %}
+          {% if result %}
             {{result}}
-          {%endblock%}
+            {% else %}
+        <p  class="login-box-msg">Welcome back, please sign in to continue...</p>
+          {%endif%}
           </label>  
-    <p class="login-box-msg">Welcome back, please sign in to continue...</p>
+    
     <form action="{% url 'signin' %}" method="post">
       {% csrf_token %}
       <div class="form-group has-feedback">
@@ -71,16 +73,6 @@
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a href="{% url 'social:begin' 'facebook' %}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
-        Facebook</a>
-        <!--- to get user id from facebook use uer.id, user.username, etc. -->
-      <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
-        Google+</a>
-    </div>
-    <!-- /.social-auth-links -->
-
     <a href="{% url 'recover' %}">I forgot my password</a><br>
     <a href="{% url 'signup' %}" class="text-center">Sign up</a>
  
@@ -91,6 +83,7 @@
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+</div>
 
 <!-- jQuery 3 -->
 <script src="{% static 'backend/bower_components/jquery/dist/jquery.min.js' %}"></script>
