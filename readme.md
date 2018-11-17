@@ -1,18 +1,13 @@
 #required module
 
-* I) pip install bcrypt
-* II) pip install djangorestframework
+```python
+pip install -r requirements.txt
+```
 
-* III) sudo apt-get install libmysqlclient-dev
- or in case of mariadb
-* III) sudo apt-get install libmariadbclient-dev
+to install all the dependencies
 
-* IV) pip install mysqlclient
-* v) pip install mailchimp3
+Apart from this manage separate install of mysql/mariadb or remote mysql and configuration will be as follow in QtoChat/QtoChat/setting.py
 
-
-
-Apart from this manage separate install of mysql/mariadb or remote mysql and configuration will be as follow  in QtoChat/QtoChat/setting.py
 ```python
 DATABASES = {
     'default': {
@@ -42,11 +37,11 @@ sudo apt-get install libmysqlclient-dev
 if you are using mariadb, the drop in replacement for mysql, then run
 
 sudo apt-get install libmariadbclient-dev
+
 ```shell
 
 pip install mysqlclient
 ```
-
 
 pip install python-social-auth[django]
 pip install mailchimp3
