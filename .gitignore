@@ -1,1 +1,6 @@
 env/
+app/migrations/
+app/__pycache__/
+QtoChat/__pycache__/
+.idea/
+.vscode/
