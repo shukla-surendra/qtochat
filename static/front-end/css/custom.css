@@ -7,9 +7,11 @@ body{
   color:white;
 }
 
-.video-cover {
-}
+.videowrapper{
 
+  /* border-radius:10px; */
+ 
+}
 .rex {
   background-color: green !important;
 }

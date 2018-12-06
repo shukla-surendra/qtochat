@@ -29,9 +29,11 @@ def home(request):
 
 
 def signup(request):
+    
     serverRes = {}
 
     if request.method == 'POST':
+        print(request.POST['url'])
         user_token = uuid.uuid4()
         if request.POST['email'] == "" or request.POST[
                 'url'] == "" or request.POST[
@@ -144,6 +146,7 @@ def signup(request):
                 }
 
     return render(request, "app/frontend/register.html", serverRes)
+
 
 
 def verify(request):

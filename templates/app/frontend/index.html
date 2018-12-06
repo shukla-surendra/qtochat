@@ -1,4 +1,5 @@
 {% extends 'app/frontend/base.html' %}
+{% load static %}
 
 {%block content %}
     <!-- navbar-->
@@ -85,7 +86,7 @@
 				  <div class="login-help">
 					<a href="{% url 'signin'  %}">login</a> - <a href="{% url 'recover'  %}">Forgot Password</a>
 				  </div>
-          
+          <i id='progress'></i>
 				</div>
           </div>
         </div>
@@ -126,11 +127,10 @@
           <p class="lead text-muted mt-2"></p>
         </div>
         <div class="row">
-          <div class="col-lg-7 mx-auto mt-5">     
-              <div class="embed-responsive embed-responsive-16by9 video-cover">
-                  <iframe class="embed-responsive-item" src="" allowfullscreen></iframe>
-                </div>
-                
+          <div class="col-lg-7 mx-auto mt-5"> 
+            <video style="background:orangered; border-radius:10px; box-shadow: 5 5 2 3" class="afterglow" id="myvideo" width="1280" height="720" data-skin="light">
+              <source type="video/mp4" src="{% static 'front-end/img/videoplayback.mp4' %}" />
+            </video> 
             </div>
       </div>
     </section>
@@ -161,7 +161,7 @@
                  </li>
                  <li class="process_item">
                     <div class="process-number"><span>2</span>
-                    </div>
+                  </div>
                     <div class="process-body">
                        <p>
                           <!-- react-text: 273 -->Get Qtochat <!-- /react-text -->
@@ -202,7 +202,7 @@
           <h2>Get Maximum Returns From Your Website</h2>
           <div class="row">
             <div class="col-lg-9 mx-auto">
-              <p class="lead text-white mt-2">Qtochat allows you to get the best our of your website by boosting your user experience and helping you increase your conversion rate</p>
+              <p class="lead text-white mt-2">Qtochat allows you to get the best out of your website by boosting your user experience and helping you increase your conversion rate</p>
             </div>
           </div><a href="#" class="btn btn-outline-light">Learn More</a>
         </div>

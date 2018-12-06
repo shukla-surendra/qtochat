@@ -46,18 +46,19 @@ $(document).on("submit", "#register", function(e) {
     url: "signup",
     //dataType: "json",
     data: {
-      url: $("#modal_url").text(),
-      name: $("#name").text(),
-      email: $("#email").text(),
-      password: $("#password").text(),
-      password2: $("password2").text(),
+      url: $("#modal_url").val(),
+      name: $("#name").val(),
+      email: $("#email").val(),
+      password: $("#password").val(),
+      password2: $("#password2").val(),
       csrfmiddlewaretoken: $("input[name=csrfmiddlewaretoken]").val()
     },
 
     success: function(response) {
       //alert(response);
       //obj = JSON.parse(response);
-      $("#recordContent").text(response);
+      hello = document.getElementById("#progress");
+      window.location = "verify";
     },
 
     error: function(xhr, status, error) {
