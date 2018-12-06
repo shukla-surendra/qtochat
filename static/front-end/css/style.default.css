@@ -271,7 +271,7 @@ STYLE SWITCHER FOR DEMO
   position: relative;
 }
 
-.subscription-form .form-group button {
+.subscription-form .form-group a {
   position: absolute;
   top: 0.375rem;
   right: 0.4rem;
@@ -305,7 +305,7 @@ STYLE SWITCHER FOR DEMO
   .subscription-form .form-group {
     position: static;
   }
-  .subscription-form .form-group button {
+  .subscription-form .form-group a {
     position: static;
     width: 100%;
     margin-top: 0.5rem;

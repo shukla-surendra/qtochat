@@ -11,21 +11,22 @@
                   <!-- Link-->
                   <li class="nav-item"> <a href="#" class="nav-link active">HOME</a></li>
                   <!-- Link-->
-                  <li class="nav-item"> <a href="faq.html" class="nav-link">CONTACT</a></li>
+                  <li class="nav-item"> <a href="#" class="nav-link">CONTACT</a></li>
                   <!-- Link-->
                   <li class="nav-item"> <a href="{% url 'pricing' %}" class="nav-link">PRICING</a></li>
                   <!-- Link-->
                   <li class="nav-item"> <a href="{% url 'login' %}"  class="nav-link">LOGIN</a></li>
                   
             </ul>
-            <a href="{% url 'signup' %}"  data-toggle="modal" data-target="#login" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Signup </a>
+            <a href="{% url 'signup' %}"  data-toggle="modal" data-target="#signup_modal" class="btn btn-primary navbar-btn ml-0 ml-lg-3">Signup </a>
           </div>
         </div>
       </nav>
     </header>
+
     <!-- Login Modal-->
     <div id="login" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade bd-example-modal-lg">
-      <div role="document" class="modal-dialog modal-dialog-centered modal-lg">
+      <div role="document" class="modal-dialog modal-dialog-centered modal-md">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
@@ -48,21 +49,64 @@
         </div>
       </div>
     </div>
-    <!-- Hero Section-->
+
+<!-- signup Modal-->
+    <div id="signup_modal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade">
+      <div role="document" class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+         <div class="loginmodal-container">
+					<h1>Create Account</h1><br>
+				  <form class="form-group" id="register">
+                      {%csrf_token%}
+          <div class="form-group has-feedback">
+          <input class="form-control" id="modal_url" type="url" name="url" placeholder="URL" autocomplete>
+         <i id="uresponse"></i> 
+         </div>
+         <div class="form-group has-feedback">
+          <input class="form-control" id="name" type="text" name="name" placeholder="Name" autocomplete>
+          <i id="nresponse"></i> 
+        </div>
+        <div class="form-group has-feedback">
+        	<input class="form-control" type="email" id="email" name="email" placeholder="Email" autocomplete>
+        <i id="eresponse"></i> 
+        </div>
+			<div class="form-group has-feedback">
+        <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" name="password" id="password2" class="form-control" placeholder="Retype password">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <i id="presponse"></i> 
+        	<input type="submit" name="login" class="login loginmodal-submit" value="Signup" autocomplete>
+				  </form>
+					
+				  <div class="login-help">
+					<a href="{% url 'signin'  %}">login</a> - <a href="{% url 'recover'  %}">Forgot Password</a>
+				  </div>
+          
+				</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
     <section class="hero">
       <div class="container mb-5">
         <div class="row align-items-center">
           <div class="col-lg-6">
-            <h2>Boost your conversion rate by 300%</h2>            <div class="row">
+            <h2 style="color:#dc3545">Boost Your Conversion Rate By 300%</h2>
+            <div class="row">
               <div class="col-lg-10">
-                 
                 <p class="lead text-muted mt-4 mb-4">Qtochat allows you to generate more leads on your website on the fly through an AI-powered conversational chatbot</p>
               </div>
             </div>
-            <form action="#" class="subscription-form">
+            <form action="#login" data-toggle="modal" class="subscription-form">
               <div class="form-group">
-                <input type="url" name="url" placeholder="http://yourwebsite.com" class="form-control">
-                <button type="submit" class="btn btn-primary">INSTALL QTOCHAT</button>
+                <input type="url" id="url" name="url" placeholder="http://yourwebsite.com" class="form-control">
+                <a id="signup_link" data-toggle="modal" data-target="#signup_modal" class="btn btn-primary mylink">INSTALL QTOCHAT</a>
               </div>
             </form>
           </div>
@@ -70,6 +114,10 @@
         </div>
       </div>
     </section>
+
+
+
+
     <!-- Intro Section-->
     <section>
       <div class="container">
@@ -305,7 +353,7 @@
             <form action="#" class="subscription-form mt-5">
               <div class="form-group">
                 <input type="url" name="url" placeholder="http://yourdomain.com" class="form-control">
-                <button type="submit" class="btn btn-primary">Get Started</button>
+                <a type="submit" class="btn btn-primary">Get Started</a>
               </div>
             </form>
           </div>
@@ -362,4 +410,28 @@
       </div>
     </footer>
 
+    <!--signup modal
+    <div class="modal fade" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true" >
+    	  <div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="loginmodal-container">
+					<h1>Create Account</h1><br>
+				  <form class="form-group" action="{% url 'signup'  %}" method="POST">
+                      {%csrf_token%}
+                    <input class="form-control" id="modal_url" type="url" name="url" placeholder="URL" autocomplete>
+                    <input class="form-control" id="name" type="text" name="name" placeholder="Name" autocomplete>
+					<input class="form-control" type="email" name="email" placeholder="Email" autocomplete>
+					<input class="form-control" type="password" name="password" placeholder="Password" autocomplete>
+					<input type="submit" name="login" class="login loginmodal-submit" value="Signup" autocomplete>
+				  </form>
+					
+				  <div class="login-help">
+					<a href="{% url 'signin'  %}">login</a> - <a href="{% url 'recover'  %}">Forgot Password</a>
+				  </div>
+          
+				</div>
+			</div>
+		  </div>
+      -->
+
     {%endblock%}
+
