@@ -23,6 +23,7 @@ urlpatterns = [
     path('customize', views.Widget_customization, name='customize'),
     #admin dashboards paths ends
     path('signup', views.signup, name="signup"),
+    path('xhr_signup', views.xhr_signup, name="xhr_signup"),
     path('signin', views.signin, name="signin"),
     path('login', views.signin, name='login'),
     path('createaccount', views.createaccount, name='createaccount'),

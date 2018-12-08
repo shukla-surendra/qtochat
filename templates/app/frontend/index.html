@@ -80,13 +80,13 @@
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <i id="presponse"></i> 
-        	<input type="submit" name="login" class="login loginmodal-submit" value="Signup" autocomplete>
+        	<input type="submit" id='signup' name="login" class="login loginmodal-submit" value="Signup" autocomplete>
 				  </form>
 					
 				  <div class="login-help">
 					<a href="{% url 'signin'  %}">login</a> - <a href="{% url 'recover'  %}">Forgot Password</a>
 				  </div>
-          <i id='progress'></i>
+          <i id='progressinfo' ><img style="margin-left:100px; display:none;" id='loading' src="{% static '/images/loading.svg'%}" ></i>
 				</div>
           </div>
         </div>
