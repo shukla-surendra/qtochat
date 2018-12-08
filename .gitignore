@@ -4,3 +4,4 @@ app/__pycache__/
 QtoChat/__pycache__/
 .idea/
 .vscode/
+static/front-end/img/videoplayback.mp4
