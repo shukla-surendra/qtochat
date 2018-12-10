@@ -185,7 +185,7 @@ def xhr_signup(request):
 
                     # Replace recipient@example.com with a "To" address. If your account
                     # is still in the sandbox, this address must be verified.
-                    
+
                     RECIPIENT = request.POST['email']
                     # Replace smtp_username with your Amazon SES SMTP user name.
                     USERNAME_SMTP = "YOUR_SES_SMTP_USERNAME"
@@ -550,11 +550,470 @@ def myadmin(request):
             "btn": btn,
             "campaigns": campaigns,
             "title": "Qtochat Admin Panel",
+            'user':user,
         }
+        
 
         return render(request, "app/backend/admin-sidebar.html", context)
     else:
         return redirect(signin)
+
+def view_campaigns(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+            'user':user,
+        }
+
+        return render(request, "app/backend/viewcampaigns.html", context)
+    else:
+        return redirect(signin)
+def start_campaigns(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/startcampaigns.html", context)
+    else:
+        return redirect(signin)
+
+def abtest(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/abtest.html", context)
+    else:
+        return redirect(signin)
+def affiliate(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/affiliate.html", context)
+    else:
+        return redirect(signin)
+
+def analytics_page(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/analytics.html", context)
+    else:
+        return redirect(signin)
+
+def integrations_page(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/integrations.html", context)
+    else:
+        return redirect(signin)
+
+def profile(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/profile.html", context)
+    else:
+        return redirect(signin)
+
+def settings_page(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/settings.html", context)
+    else:
+        return redirect(signin)
+
+def subhist(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/subhist.html", context)
+    else:
+        return redirect(signin)
+
+def statistic(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/statistics.html", context)
+    else:
+        return redirect(signin)
+
+def tutorial(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/tutorial.html", context)
+    else:
+        return redirect(signin)
+
+
+def code_integration(request):
+    context = {}
+    #check if user is loggined in
+
+    if 'id' in request.session:
+        '''Find out if mailchimp integration is active and display the appropriate message'''
+        user = User.objects.get(id=request.session['id'])
+        checkMailchimp = mModel.objects.filter(user=user)
+
+        add = Template(
+            "<button id = 'addM' class='btn btn-danger' data-toggle='modal' data-target='#add'>Add</button>"
+        )
+        cancel = Template(
+            "<button id='cancelM' class='btn btn-danger' data-toggle='modal' data-target='#'>Cancel</button>"
+        )
+        if not checkMailchimp:
+            btn = add.render(Context())
+        else:
+            btn = cancel.render(Context())
+            # context = {
+            #     "btn": btn,
+            #     "title": "Qtochat Admin Panel",
+            # }
+        ''' Get campaigns '''
+        campaigns = Campaign.objects.filter(user=request.session['id'])
+        ''' Get user sites '''
+        sites = Site.objects.filter(user_id=request.session['id'])
+        context = {
+            "site": sites,
+            "btn": btn,
+            "campaigns": campaigns,
+            "title": "Qtochat Admin Panel",
+        }
+
+        return render(request, "app/backend/codeintegration.html", context)
+    else:
+        return redirect(signin)
+
 
 
 def deletecampaign(request, id):
