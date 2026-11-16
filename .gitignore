@@ -5,3 +5,13 @@ QtoChat/__pycache__/
 .idea/
 .vscode/
 static/front-end/img/videoplayback.mp4
+# local env / data / IDE
+qtochat/
+__pycache__/
+*.pyc
+*.sqlite3
+*.sql
+.idea/
+.vscode/
+.DS_Store
+.env
